@@ -1,8 +1,8 @@
 <template>
   <div>Vite + Vue</div>
   <h3>当前计数: {{ count }}</h3>
-  <button @click="increment">+1</button>
-  <button @click="decrement">-1</button>
+  <el-button type="primary" @click="increment">+1</el-button>
+  <el-button @click="decrement">-1</el-button>
 </template>
 
 <script setup lang="ts">
