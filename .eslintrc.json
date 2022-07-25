@@ -9,7 +9,8 @@
     "eslint:recommended",
     "plugin:vue/vue3-essential",
     "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "./.eslintrc-auto-import.json" //导入全局导入的vue，vue-router等相关api，解决eslint报错
   ],
   "parserOptions": {
     "ecmaVersion": "latest",
@@ -17,5 +18,7 @@
     "sourceType": "module"
   },
   "plugins": ["vue", "@typescript-eslint"],
-  "rules": {}
+  "rules": {
+    "vue/multi-word-component-names": 0
+  }
 }

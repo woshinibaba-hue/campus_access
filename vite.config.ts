@@ -11,6 +11,18 @@ export default defineConfig({
   plugins: [
     vue(),
     AutoImport({
+      include: [
+        /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
+        /\.vue$/,
+        /\.vue\?vue/ // .vue
+      ],
+      imports: ['vue', 'vue-router', 'pinia'],
+      // 解决eslint报错，无法找到
+      eslintrc: {
+        enabled: true, // 若没此json文件，先开启，生成后在关闭
+        filepath: './.eslintrc-auto-import.json', // Default `./.eslintrc-auto-import.json`
+        globalsPropValue: true
+      },
       resolvers: ElementPlusResolver()
     }),
     Components({
