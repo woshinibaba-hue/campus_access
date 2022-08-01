@@ -34,5 +34,18 @@ export default defineConfig({
     alias: {
       '@': resolve(__dirname, './src')
     }
+  },
+  // 配置proxy代理，解决开发阶段跨域问题
+  server: {
+    proxy: {
+      '/api': {
+        // 代理地址
+        target: 'http://apipc-xiaotuxian-front.itheima.net',
+        // 将请求地址改为代理地址
+        changeOrigin: true,
+        // 重写请求路径
+        rewrite: (path) => path.replace(/^\/api/, '')
+      }
+    }
   }
 })
