@@ -1,16 +1,251 @@
-# Vue 3 + TypeScript + Vite
+# Vite + Vue3 + TypeScript + Pinia
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+该模板集成了 Vue3 常用的一些配置项
 
-## Recommended IDE Setup
+**安装依赖**
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+``` bash
+pnpm i
+```
 
-## Type Support For `.vue` Imports in TS
+**启动项目**
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's Take Over mode by following these steps:
+``` bash
+pnpm run dev
+```
 
-1. Run `Extensions: Show Built-in Extensions` from VS Code's command palette, look for `TypeScript and JavaScript Language Features`, then right click and select `Disable (Workspace)`. By default, Take Over mode will enable itself if the default TypeScript extension is disabled.
-2. Reload the VS Code window by running `Developer: Reload Window` from the command palette.
+## eslint + Prettier
 
-You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/volar/discussions/471).
+该项目采用 eslint 统一代码格式，使用 prettier 进行统一代码格式化，使得其符合一定的规范
+
+``` json
+// .prettierrc
+{
+  "useTabs": false,
+  "tabWidth": 2,
+  "printWidth": 80,
+  "singleQuote": true,
+  "trailingComma": "none",
+  "semi": false,
+  "endOfLine": "lf"
+}
+```
+
+``` json
+// .eslintrc.json
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "parser": "vue-eslint-parser",
+  "extends": [
+    "eslint:recommended",
+    "plugin:vue/vue3-essential",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
+    "./.eslintrc-auto-import.json"
+  ],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "parser": "@typescript-eslint/parser",
+    "sourceType": "module"
+  },
+  "plugins": ["vue", "@typescript-eslint"],
+  "rules": {
+    "vue/multi-word-component-names": 0,
+    "@typescript-eslint/no-non-null-assertion": 0
+  }
+}
+
+```
+
+
+
+## axios
+
+网络请求采用 axios ，并且也对 axios 一些常用配置项进行二次封装
+
+``` javascript
+import axios, { AxiosError, AxiosInstance } from 'axios'
+
+import { IRequestConfig, IDataResult } from './type'
+
+class Request {
+  private instance: AxiosInstance
+
+  constructor(requestConfig: IRequestConfig) {
+    this.instance = axios.create(requestConfig)
+
+    // 给每个单独的请求配置添加拦截器
+    this.instance.interceptors.request.use(
+      requestConfig.interceptors?.requestInstance,
+      requestConfig.interceptors?.requestInstanceCatch
+    )
+
+    this.instance.interceptors.response.use(
+      requestConfig.interceptors?.responseInstance,
+      requestConfig.interceptors?.responseInstanceCatch
+    )
+
+    // 给所有的axios实例添加拦截器
+    this.instance.interceptors.request.use(
+      (config) => {
+        // 如果有token，则添加到请求头
+        const token = '111'
+        if (token) {
+          config.headers!.Authorization = `Bearer ${token}`
+        }
+        return config
+      },
+      (err) => {
+        return Promise.reject(err)
+      }
+    )
+
+    this.instance.interceptors.response.use(
+      (response) => {
+        return response.data
+      },
+      (err: AxiosError<IDataResult>) => {
+        if (err.response?.data.message) {
+          ElMessage.error(err.response.data.message)
+        }
+        return Promise.reject(err)
+      }
+    )
+  }
+
+  // 请求方法
+  private request<T = unknown>(requestConfig: IRequestConfig) {
+    return new Promise<IDataResult<T>>((resolve, reject) => {
+      this.instance
+        .request<unknown, IDataResult<T>>(requestConfig)
+        .then((res) => {
+          resolve(res)
+        })
+        .catch((err) => {
+          reject(err)
+        })
+    })
+  }
+
+  get<T = unknown>(config: IRequestConfig) {
+    return this.request<T>({ ...config, method: 'get' })
+  }
+
+  post<T = unknown>(config: IRequestConfig) {
+    return this.request<T>({ ...config, method: 'post' })
+  }
+
+  put<T = unknown>(config: IRequestConfig) {
+    return this.request<T>({ ...config, method: 'put' })
+  }
+
+  delete<T = unknown>(config: IRequestConfig) {
+    return this.request<T>({ ...config, method: 'delete' })
+  }
+}
+
+export default Request
+```
+
+``` typescript
+// 类型声明
+import { AxiosRequestConfig } from 'axios'
+
+interface IRequestInterceptors {
+  // 请求拦截器
+  requestInstance?: (request: AxiosRequestConfig) => AxiosRequestConfig
+  // 请求失败拦截器
+  requestInstanceCatch?: (error: unknown) => unknown
+  // 响应拦截器
+  responseInstance?: (response: AxiosRequestConfig) => AxiosRequestConfig
+  // 响应失败拦截器
+  responseInstanceCatch?: (error: unknown) => unknown
+}
+
+// 扩展请求配置，使得传入更多的属性
+interface IRequestConfig extends AxiosRequestConfig {
+  interceptors?: IRequestInterceptors
+}
+
+// 服务器返回的数据类型
+interface IDataResult<T = unknown> {
+  code: number
+  data: T
+  message?: string
+}
+
+export type { IRequestConfig, IDataResult }
+```
+
+
+
+## Pinia
+
+状态管理采用 pinia，它比 vue4x 更好的支持 TS 类型检查
+
+``` typescript
+export const useCount = defineStore('count', () => {
+  const count = ref(0)
+
+  const increment = () => count.value++
+
+  const decrement = () => count.value--
+
+  return {
+    count,
+    increment,
+    decrement
+  }
+})
+```
+
+## Element-plus
+
+UI 组件使用 Element-plus，也对此进行了按需导入
+
+
+
+## 自动导入
+
+使用 unplugin-vue-components 来将 element-plus 和 自定义组件 进行按需自动导入
+
+使用 unplugin-auto-import 来将一些 api 进行自动导入，本模板只配置了 vue、axios、pinia的自动导入
+
+具体配置如下
+
+``` typescript
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+
+export default defineConfig({
+  plugins: [
+    vue(),
+    AutoImport({
+      include: [
+        /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
+        /\.vue$/,
+        /\.vue\?vue/ // .vue
+      ],
+      imports: ['vue', 'vue-router', 'pinia'],
+      eslintrc: {
+        enabled: true,
+        filepath: './.eslintrc-auto-import.json',
+        globalsPropValue: true
+      },
+      resolvers: ElementPlusResolver()
+    }),
+    Components({
+      resolvers: ElementPlusResolver()
+    })
+  ]
+})
+
+```
+

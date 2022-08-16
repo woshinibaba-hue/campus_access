@@ -1,5 +1,5 @@
 <template>
-  <!-- <div>Vite + Vue</div>
+  <div>Vite + Vue</div>
   <h3>当前计数: {{ count }}</h3>
   <el-button type="primary" @click="increment">+1</el-button>
   <el-button @click="decrement">-1</el-button>
@@ -10,20 +10,33 @@
 
   <div class="box">
     <div class="name">哈哈哈哈就</div>
-  </div> -->
+  </div>
 
   <RouterView />
 </template>
 
 <script setup lang="ts">
-// import { useCount } from '@/store'
+import { useCount } from '@/store'
+// test API
+import request from '@/server'
 
-// const countStore = useCount()
+const countStore = useCount()
 
-// const { count } = storeToRefs(countStore)
-// const { increment, decrement } = useCount()
+const { count } = storeToRefs(countStore)
+const { increment, decrement } = useCount()
 
-// const value = ref('')
+const value = ref('')
+
+request
+  .get({
+    url: '/get',
+    params: {
+      name: 'zs'
+    }
+  })
+  .then((res) => {
+    console.log(res)
+  })
 </script>
 
 <style scoped lang="less">
