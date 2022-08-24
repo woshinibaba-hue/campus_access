@@ -40,7 +40,7 @@ export default defineConfig({
     proxy: {
       '/api': {
         // 代理地址
-        target: 'http://apipc-xiaotuxian-front.itheima.net',
+        target: 'http://localhost:8080',
         // 将请求地址改为代理地址
         changeOrigin: true,
         // 重写请求路径
