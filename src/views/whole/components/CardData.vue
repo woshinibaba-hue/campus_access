@@ -1,14 +1,19 @@
 <template>
   <div class="card">
-    <p class="title">境外输入</p>
-    <p class="num">26773</p>
-    <p class="today">较昨日<span class="num">+168</span></p>
+    <p class="title">{{ name }}</p>
+    <p class="num">{{ num }}</p>
+    <p class="today">
+      较昨日<span class="num">+{{ todayNum }}</span>
+    </p>
   </div>
 </template>
 
 <script setup lang="ts">
 defineProps<{
   color: string
+  name: string
+  num?: number
+  todayNum: number
 }>()
 </script>
 
