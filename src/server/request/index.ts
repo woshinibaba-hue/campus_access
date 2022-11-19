@@ -39,8 +39,13 @@ class Request {
         return response.data
       },
       (err: AxiosError<IDataResult>) => {
-        if (err.response?.data.message) {
-          ElMessage.error(err.response.data.message)
+        if (
+          Array.isArray(err.response?.data.message) &&
+          err.response?.data.message.length
+        ) {
+          ElMessage.error(err.response?.data.message[0])
+        } else {
+          ElMessage.error(err.response?.data.message)
         }
         return Promise.reject(err)
       }

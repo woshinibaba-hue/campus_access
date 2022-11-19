@@ -1,3 +1,1 @@
-import { useCount } from './count'
-
-export { useCount }
+export { useUser } from './user'
