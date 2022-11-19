@@ -26,6 +26,7 @@ declare module '@vue/runtime-core' {
     IconEpFold: typeof import('~icons/ep/fold')['default']
     IconEplatform: typeof import('~icons/ep/latform')['default']
     IconEpLineMdLaptop: typeof import('~icons/ep/line-md-laptop')['default']
+    IconEpPlace: typeof import('~icons/ep/place')['default']
     IconEpplatform: typeof import('~icons/ep/platform')['default']
     IconEpPlatform: typeof import('~icons/ep/platform')['default']
     IconMdiLineMdLaptop: typeof import('~icons/mdi/line-md-laptop')['default']
