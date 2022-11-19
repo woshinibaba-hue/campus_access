@@ -1,10 +1,9 @@
 <template>
   <el-menu
-    :default-active="ative"
+    :default-active="route.path"
     class="el-menu-vertical-demo"
     router
     unique-opened
-    @select="handleSelect"
   >
     <el-sub-menu index="1">
       <template #title>
@@ -22,17 +21,14 @@
         <span>疫情防控信息</span>
       </template>
       <el-menu-item-group>
-        <el-menu-item index="whole">全国疫情信息</el-menu-item>
+        <el-menu-item index="/whole">全国疫情信息</el-menu-item>
       </el-menu-item-group>
     </el-sub-menu>
   </el-menu>
 </template>
 
 <script setup lang="ts">
-const ative = ref('')
-const handleSelect = (index: string) => {
-  ative.value = index
-}
+const route = useRoute()
 </script>
 
 <style scoped></style>

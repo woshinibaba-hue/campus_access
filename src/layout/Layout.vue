@@ -25,7 +25,7 @@ import Footer from './components/footer.vue'
 
 <style scoped lang="less">
 .el-main {
-  height: calc(100vh - 120px);
+  min-height: calc(100vh - 120px);
   background-color: #f5f5f5;
 }
 </style>
