@@ -81,6 +81,7 @@
     </el-col>
     <el-col :span="12">
       <el-card>
+        <p class="title">全国疫情图</p>
         <Map :data="data?.chinaConfirm ?? []" />
       </el-card>
     </el-col>
@@ -102,8 +103,9 @@ getOutbreak().then((res) => {
 <style scoped lang="less">
 .title {
   font-size: 20px;
-  height: 55px;
-  text-align: center;
+  padding-left: 12px;
+  border-left: 4px solid var(--el-color-primary);
+  margin-bottom: 20px;
 }
 
 .updateDate {

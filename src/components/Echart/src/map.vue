@@ -15,7 +15,7 @@ const option: ComputedRef<echarts.EChartsOption | echarts.EChartsCoreOption> =
     title: [
       {
         show: true,
-        text: '全国疫情图',
+        // text: '全国疫情图',
         textStyle: {
           color: '#333',
           fontSize: 20,
