@@ -61,6 +61,23 @@
         </el-row>
         <p class="updateDate">截至 {{ data?.lastUpdateTime ?? '出错啦~' }}</p>
       </el-card>
+      <el-card style="margin-top: 10px">
+        <p class="title">各个省份以及城市的疫情信息</p>
+        <el-table
+          :data="data?.chinaConfirm ?? []"
+          style="width: 100%; height: 500px"
+          row-key="id"
+          :tree-props="{ children: 'children' }"
+          lazy
+        >
+          <el-table-column label="更多" width="60" />
+          <el-table-column prop="name" label="地区" :width="120" />
+          <el-table-column prop="value" label="现有确诊" />
+          <el-table-column prop="confirm" label="新增确诊" />
+          <el-table-column prop="dead" label="累计死亡" />
+          <el-table-column prop="heal" label="累计治愈" />
+        </el-table>
+      </el-card>
     </el-col>
     <el-col :span="12">
       <el-card>
