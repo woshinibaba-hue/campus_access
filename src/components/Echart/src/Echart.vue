@@ -24,8 +24,7 @@ const props = withDefaults(
 onMounted(() => {
   // 当 options 发生变化时，重新渲染图表
   nextTick(() => {
-    const { setOptions } = useEchart(echartRef.value!)
-
+    const { setOptions, echart } = useEchart(echartRef.value!)
     watchEffect(() => {
       setOptions(props.option)
     })

@@ -15,6 +15,7 @@ export function useEchart(echartEl: HTMLElement) {
   }
 
   return {
-    setOptions
+    setOptions,
+    echart
   }
 }

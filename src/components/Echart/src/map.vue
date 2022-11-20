@@ -52,7 +52,7 @@ const option: ComputedRef<echarts.EChartsOption | echarts.EChartsCoreOption> =
         color: '#7B93A7'
       },
       bottom: 30,
-      left: 'left'
+      left: 'center'
     },
     geo: {
       map: 'china',
