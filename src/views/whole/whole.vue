@@ -63,7 +63,15 @@
       </el-card>
       <el-card style="margin-top: 10px">
         <p class="title">各个省份以及城市的疫情信息</p>
-        <el-table
+        <el-table-v2
+          :columns="columns"
+          :data="data?.chinaConfirm ?? []"
+          :width="600"
+          :height="500"
+          fixed
+          expand-column-key="children"
+        />
+        <!-- <el-table
           :data="data?.chinaConfirm ?? []"
           style="width: 100%; height: 500px"
           row-key="id"
@@ -76,7 +84,7 @@
           <el-table-column prop="confirm" label="新增确诊" />
           <el-table-column prop="dead" label="累计死亡" />
           <el-table-column prop="heal" label="累计治愈" />
-        </el-table>
+        </el-table> -->
       </el-card>
     </el-col>
     <el-col :span="12">
@@ -94,6 +102,45 @@ import { Map } from '@/components/Echart'
 import { getOutbreak } from '@/api/outbreak'
 
 const data = ref<any>()
+
+const columns = [
+  {
+    key: 'children',
+    dataKey: '',
+    title: '更多',
+    width: 50
+  },
+  {
+    key: 'name',
+    dataKey: 'name',
+    title: '地区',
+    width: 100
+  },
+  {
+    key: 'value',
+    dataKey: 'value',
+    title: '现有确诊',
+    width: 120
+  },
+  {
+    key: 'confirm',
+    dataKey: 'confirm',
+    title: '新增确诊',
+    width: 110
+  },
+  {
+    key: 'dead',
+    dataKey: 'dead',
+    title: '累计死亡',
+    width: 110
+  },
+  {
+    key: 'heal',
+    dataKey: 'heal',
+    title: '累计治愈',
+    width: 110
+  }
+]
 
 getOutbreak().then((res) => {
   data.value = res.data
