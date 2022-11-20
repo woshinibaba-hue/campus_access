@@ -1,5 +1,5 @@
 <template>
-  <div class="echart" ref="echartRef" :style="{ width, height }"></div>
+  <div class="echart" ref="echartRef" :style="{ width, height }" />
 </template>
 
 <script setup lang="ts">
@@ -24,7 +24,7 @@ const props = withDefaults(
 onMounted(() => {
   // 当 options 发生变化时，重新渲染图表
   nextTick(() => {
-    const { setOptions, echart } = useEchart(echartRef.value!)
+    const { setOptions } = useEchart(echartRef.value!)
     watchEffect(() => {
       setOptions(props.option)
     })

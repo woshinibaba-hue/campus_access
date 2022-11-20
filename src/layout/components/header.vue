@@ -21,7 +21,9 @@
         </span>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item>全国疫情信息</el-dropdown-item>
+            <el-dropdown-item @click="$router.push('/whole')">
+              全国疫情信息
+            </el-dropdown-item>
             <el-dropdown-item @click="userData.logout">
               退出登录
             </el-dropdown-item>

@@ -1,7 +1,7 @@
 <template>
   <el-row :gutter="10">
     <el-col :span="12">
-      <el-card>
+      <el-card v-load="loading">
         <p class="title">全国疫情数据(含港澳台)</p>
         <el-row>
           <el-col :span="8">
@@ -64,6 +64,7 @@
       <el-card style="margin-top: 10px">
         <p class="title">各个省份以及城市的疫情信息</p>
         <el-table-v2
+          v-load="loading"
           :columns="columns"
           :data="data?.chinaConfirm ?? []"
           :width="600"
@@ -102,6 +103,8 @@ import { Map } from '@/components/Echart'
 import { getOutbreak } from '@/api/outbreak'
 
 const data = ref<any>()
+
+const loading = ref(true)
 
 const columns = [
   {
@@ -144,6 +147,7 @@ const columns = [
 
 getOutbreak().then((res) => {
   data.value = res.data
+  loading.value = false
 })
 </script>
 
