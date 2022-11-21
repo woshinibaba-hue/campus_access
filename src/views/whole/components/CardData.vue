@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <p class="title">{{ name }}</p>
-    <p class="num"><Count :num="num ?? 0" /></p>
+    <p class="num"><Count :num="isNaN(num!) ? 0 : num" /></p>
     <p class="today">
       <template v-if="todayNum">
         较昨日<span class="num"> +<Count :num="todayNum" /> </span>
