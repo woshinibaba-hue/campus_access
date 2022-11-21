@@ -1,5 +1,16 @@
 import axios, { AxiosError, AxiosInstance } from 'axios'
 
+import NProgress from 'nprogress'
+
+NProgress.configure({
+  easing: 'ease', // 动画方式
+  speed: 1000, // 递增进度条的速度
+  showSpinner: false, // 是否显示加载ico
+  trickleSpeed: 200, // 自动递增间隔
+  minimum: 0.3, // 更改启动时使用的最小百分比
+  parent: 'body' //指定进度条的父容器
+})
+
 import { IRequestConfig, IDataResult } from './type'
 
 class Request {
@@ -54,6 +65,8 @@ class Request {
 
   // 请求方法
   private request<T = unknown>(requestConfig: IRequestConfig) {
+    // 开启loading
+    NProgress.start()
     return new Promise<IDataResult<T>>((resolve, reject) => {
       this.instance
         .request<unknown, IDataResult<T>>(requestConfig)
@@ -62,6 +75,10 @@ class Request {
         })
         .catch((err) => {
           reject(err)
+        })
+        .finally(() => {
+          // 关闭loading
+          NProgress.done()
         })
     })
   }

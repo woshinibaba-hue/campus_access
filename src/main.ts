@@ -5,6 +5,8 @@ import './assets/css/index.less'
 import { vLoading } from 'element-plus/es/components/loading/src/directive'
 import 'element-plus/theme-chalk/index.css'
 
+import 'nprogress/nprogress.css'
+
 const app = createApp(App).use(createPinia()).use(router)
 
 // 注册 element-plus loading组件，解决自动化导入不生效情况
