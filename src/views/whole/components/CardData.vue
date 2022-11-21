@@ -3,7 +3,10 @@
     <p class="title">{{ name }}</p>
     <p class="num">{{ num }}</p>
     <p class="today">
-      较昨日<span class="num">+{{ todayNum }}</span>
+      <template v-if="todayNum">
+        较昨日<span class="num">+{{ todayNum }}</span>
+      </template>
+      <template v-else>较昨日待公布</template>
     </p>
   </div>
 </template>
@@ -20,7 +23,7 @@ defineProps<{
 <style scoped lang="less">
 .card {
   text-align: center;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
 
   .title {
     font-weight: 600;
