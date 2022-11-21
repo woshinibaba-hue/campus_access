@@ -7,6 +7,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    Count: typeof import('./src/components/Count/Count.vue')['default']
     Echart: typeof import('./src/components/Echart/src/Echart.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
@@ -63,5 +64,6 @@ declare module '@vue/runtime-core' {
     Map: typeof import('./src/components/Echart/src/map.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    VueCountTo: typeof import('./src/components/Count/vue-countTo.vue')['default']
   }
 }
