@@ -17,7 +17,7 @@
     <el-col :span="12">
       <el-dropdown>
         <span class="el-dropdown-link">
-          欢迎回来 <span class="name">{{ user?.username }}</span>
+          欢迎回来 <span class="name">{{ user?.nickName }}</span>
         </span>
         <template #dropdown>
           <el-dropdown-menu>

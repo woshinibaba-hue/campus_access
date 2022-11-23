@@ -15,7 +15,7 @@
 defineProps<{
   color: string
   name: string
-  num?: number
+  num: number
   todayNum: number
 }>()
 </script>

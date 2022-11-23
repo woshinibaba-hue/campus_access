@@ -1,7 +1,7 @@
 export type IUser = {
   id: number
   email: string
-  username: string
+  nickName: string
   token: string
   avatar?: null | string
   referral?: string

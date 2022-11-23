@@ -3,27 +3,27 @@
     :default-active="route.path"
     class="el-menu-vertical-demo"
     router
-    :collapse="isCollapse"
     unique-opened
+    :collapse="isCollapse"
     :collapse-transition="false"
   >
     <el-menu-item index="6">
       <el-icon><IconAntDesignDashboardFilled /></el-icon>
       <span>首页</span>
     </el-menu-item>
-    <el-sub-menu index="6">
-      <template #title>
-        <el-icon><IconIcSharpDiversity1 /></el-icon>
-        <span>我的健康</span>
-      </template>
-      <el-menu-item index="/">健康信息录入</el-menu-item>
-    </el-sub-menu>
     <el-sub-menu index="1">
       <template #title>
         <el-icon><IconEpPlatform /></el-icon>
         <span>系统管理</span>
       </template>
       <el-menu-item index="/user">用户管理</el-menu-item>
+    </el-sub-menu>
+    <el-sub-menu index="7">
+      <template #title>
+        <el-icon><IconIcSharpDiversity1 /></el-icon>
+        <span>我的健康</span>
+      </template>
+      <el-menu-item index="/">健康信息录入</el-menu-item>
     </el-sub-menu>
     <el-sub-menu index="2">
       <template #title>

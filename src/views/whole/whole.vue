@@ -8,7 +8,7 @@
             <CardData
               color="#ffa352"
               name="境外输入"
-              :num="data?.chinaTotal.total.input"
+              :num="data?.chinaTotal.total.input ?? 0"
               :today-num="data?.chinaTotal.today.input ?? 0"
             />
           </el-col>
@@ -16,7 +16,7 @@
             <CardData
               name="无症状感染者"
               color="#791618"
-              :num="data?.chinaTotal.extData.noSymptom"
+              :num="data?.chinaTotal.extData.noSymptom ?? 0"
               :today-num="data?.chinaTotal.extData.incrNoSymptom ?? 0"
             />
           </el-col>
@@ -26,8 +26,8 @@
               color="#e44a3d"
               :num="
                 data?.chinaTotal.total.confirm -
-                data?.chinaTotal.total.dead -
-                data?.chinaTotal.total.heal
+                  data?.chinaTotal.total.dead -
+                  data?.chinaTotal.total.heal ?? 0
               "
               :today-num="data?.chinaTotal.today.storeConfirm ?? 0"
             />
@@ -38,7 +38,7 @@
             <CardData
               name="累计确证"
               color="#a31d13"
-              :num="data?.chinaTotal.total.confirm"
+              :num="data?.chinaTotal.total.confirm ?? 0"
               :today-num="data?.chinaTotal.today.confirm ?? 0"
             />
           </el-col>
@@ -46,7 +46,7 @@
             <CardData
               name="累计死亡"
               color="#333"
-              :num="data?.chinaTotal.total.dead"
+              :num="data?.chinaTotal.total.dead ?? 0"
               :today-num="data?.chinaTotal.today.dead ?? 0"
             />
           </el-col>
@@ -54,7 +54,7 @@
             <CardData
               name="累计治愈"
               color="#34aa70"
-              :num="data?.chinaTotal.total.heal"
+              :num="data?.chinaTotal.total.heal ?? 0"
               :today-num="data?.chinaTotal.today.heal ?? 0"
             />
           </el-col>
@@ -89,7 +89,7 @@
       </el-card>
     </el-col>
     <el-col :span="12">
-      <el-card>
+      <el-card v-load="loading">
         <p class="title">全国疫情图</p>
         <Map :data="data?.chinaConfirm ?? []" />
       </el-card>
@@ -146,7 +146,7 @@ const columns = [
 ]
 
 getOutbreak().then((res) => {
-  data.value = res.data
+  data.value = res?.data
   loading.value = false
 })
 </script>

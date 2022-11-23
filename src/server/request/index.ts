@@ -47,7 +47,10 @@ class Request {
 
     this.instance.interceptors.response.use(
       (response) => {
-        return response.data
+        if (response.data) {
+          return response.data
+        }
+        ElMessage.error('服务器异常')
       },
       (err: AxiosError<IDataResult>) => {
         if (Array.isArray(err.response?.data.message)) {

@@ -34,7 +34,7 @@ import { ElForm, FormRules } from 'element-plus/es'
 
 import { useUser } from '@/store'
 
-const form = reactive({ email: 'root@qq.com', password: '123' })
+const form = reactive({ email: 'zz@qq.com', password: '123' })
 
 const rules = reactive<FormRules>({
   email: [{ required: true, message: '邮箱不能为空~' }],
