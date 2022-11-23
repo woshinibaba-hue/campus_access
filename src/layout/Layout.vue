@@ -41,6 +41,7 @@ const handlerCollapse = () => {
 
 .el-aside {
   transition: width 0.25s;
+  overflow-x: hidden;
 }
 
 .view-enter-active {

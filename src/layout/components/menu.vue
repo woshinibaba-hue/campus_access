@@ -65,5 +65,6 @@ defineProps<{
 <style scoped>
 .el-menu {
   user-select: none;
+  border-right: 0;
 }
 </style>
