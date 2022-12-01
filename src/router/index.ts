@@ -16,6 +16,11 @@ const routes: RouteRecordRaw[] = [
         path: '/whole',
         name: 'whole',
         component: () => import('@/views/whole/whole.vue')
+      },
+      {
+        path: '/404',
+        name: '404',
+        component: () => import('@/views/404/404.vue')
       }
     ]
   },
@@ -23,6 +28,10 @@ const routes: RouteRecordRaw[] = [
     path: '/login',
     name: 'login',
     component: () => import('@/views/login/login.vue')
+  },
+  {
+    path: '/:pathMatch(.*)',
+    redirect: '/404'
   }
 ]
 

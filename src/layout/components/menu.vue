@@ -7,7 +7,7 @@
     :collapse="isCollapse"
     :collapse-transition="false"
   >
-    <el-menu-item index="6">
+    <el-menu-item index="/home">
       <el-icon><IconAntDesignDashboardFilled /></el-icon>
       <span>首页</span>
     </el-menu-item>
@@ -23,26 +23,24 @@
         <el-icon><IconIcSharpDiversity1 /></el-icon>
         <span>我的健康</span>
       </template>
-      <el-menu-item index="/">健康信息录入</el-menu-item>
+      <el-menu-item index="/health">健康信息录入</el-menu-item>
     </el-sub-menu>
     <el-sub-menu index="2">
       <template #title>
         <el-icon><IconMingcuteEbikeFill /></el-icon>
         <span>校园出入管理</span>
       </template>
-      <el-menu-item index="/">请假申请</el-menu-item>
-      <el-menu-item index="/">销假申请</el-menu-item>
-      <el-menu-item index="/">校外入校申请</el-menu-item>
+      <el-menu-item index="/asking">请假申请</el-menu-item>
+      <el-menu-item index="/outside">校外入校申请</el-menu-item>
     </el-sub-menu>
     <el-sub-menu index="3">
       <template #title>
         <el-icon><IconIcOutlineEditLocation /></el-icon>
         <span>健康信息上报</span>
       </template>
-      <el-menu-item index="/">每日健康打卡</el-menu-item>
-      <el-menu-item index="/">每日核酸上报</el-menu-item>
-      <el-menu-item index="/">返校信息登记</el-menu-item>
-      <el-menu-item index="/">校内疫情通知</el-menu-item>
+      <el-menu-item index="/punch">每日健康打卡</el-menu-item>
+      <el-menu-item index="/nucleate">每日核酸上报</el-menu-item>
+      <el-menu-item index="/inform">校内疫情通知</el-menu-item>
     </el-sub-menu>
     <el-sub-menu index="4">
       <template #title>
