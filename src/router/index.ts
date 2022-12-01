@@ -8,6 +8,11 @@ const routes: RouteRecordRaw[] = [
     component: () => import('@/layout/Layout.vue'),
     children: [
       {
+        path: '/home',
+        name: 'home',
+        component: () => import('@/views/home/home.vue')
+      },
+      {
         path: '/user',
         name: 'user',
         component: () => import('@/views/users/users.vue')
@@ -16,6 +21,16 @@ const routes: RouteRecordRaw[] = [
         path: '/whole',
         name: 'whole',
         component: () => import('@/views/whole/whole.vue')
+      },
+      {
+        path: '/entering',
+        name: 'entering',
+        component: () => import('@/views/health/entering/entering.vue')
+      },
+      {
+        path: '/punch',
+        name: 'punch',
+        component: () => import('@/views/health/punch/punch.vue')
       },
       {
         path: '/404',

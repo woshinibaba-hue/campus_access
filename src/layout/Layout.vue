@@ -4,6 +4,7 @@
       <Menu :isCollapse="isCollapse" />
     </el-aside>
     <el-container>
+      <!-- <Menu :isCollapse="isCollapse" /> -->
       <el-header>
         <Header :isCollapse="isCollapse" @handleFold="handlerCollapse" />
       </el-header>
@@ -19,6 +20,10 @@
       </el-footer>
     </el-container>
   </el-container>
+  <!--
+  <div class="layout-btn">
+    <el-icon><IconBiGear /></el-icon>
+  </div> -->
 </template>
 
 <script setup lang="ts">
@@ -72,5 +77,21 @@ const handlerCollapse = () => {
     opacity: 0;
     transform: translateX(300px);
   }
+}
+
+.layout-btn {
+  position: fixed;
+  text-align: center;
+  width: 50px;
+  height: 50px;
+  line-height: 56px;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 30px;
+  cursor: pointer;
+  color: #fff;
+  background-color: var(--el-menu-active-color);
+  border-radius: 8px 0 0 8px;
 }
 </style>

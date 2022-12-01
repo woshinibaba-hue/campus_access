@@ -23,7 +23,7 @@
         <el-icon><IconIcSharpDiversity1 /></el-icon>
         <span>我的健康</span>
       </template>
-      <el-menu-item index="/health">健康信息录入</el-menu-item>
+      <el-menu-item index="/entering">健康信息录入</el-menu-item>
     </el-sub-menu>
     <el-sub-menu index="2">
       <template #title>
