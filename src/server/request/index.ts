@@ -1,6 +1,7 @@
 import axios, { AxiosError, AxiosInstance } from 'axios'
 
 import NProgress from 'nprogress'
+import storage from '@/utils/storage'
 
 NProgress.configure({
   easing: 'ease', // 动画方式
@@ -34,9 +35,10 @@ class Request {
     this.instance.interceptors.request.use(
       (config) => {
         // 如果有token，则添加到请求头
-        const token = '111'
-        if (token) {
-          config.headers!.Authorization = `Bearer ${token}`
+        const user = storage.get<any>('user')
+
+        if (user?.token) {
+          config.headers!.Authorization = `Bearer ${user.token}`
         }
         return config
       },
@@ -95,8 +97,8 @@ class Request {
     return this.request<T>({ ...config, method: 'post' })
   }
 
-  put<T = unknown>(config: IRequestConfig) {
-    return this.request<T>({ ...config, method: 'put' })
+  patch<T = unknown>(config: IRequestConfig) {
+    return this.request<T>({ ...config, method: 'patch' })
   }
 
   delete<T = unknown>(config: IRequestConfig) {
