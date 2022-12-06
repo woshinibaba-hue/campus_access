@@ -135,8 +135,6 @@ const initMap = async () => {
   display: flex;
 
   .el-card {
-    height: 100%;
-
     :deep(.el-card__body) {
       padding: 0;
       width: 100%;

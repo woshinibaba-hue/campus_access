@@ -52,17 +52,29 @@ class Request {
         if (response.data) {
           return response.data
         }
-        ElMessage.error('服务器异常')
+        ElNotification({
+          message: '服务器异常',
+          type: 'error'
+        })
       },
       (err: AxiosError<IDataResult>) => {
         if (Array.isArray(err.response?.data.message)) {
           if (err.response?.data.message.length) {
-            ElMessage.error(err.response?.data.message[0])
+            ElNotification({
+              message: err.response?.data.message[0],
+              type: 'error'
+            })
           } else {
-            ElMessage.error(err.response?.data.message)
+            ElNotification({
+              message: err.response?.data.message,
+              type: 'error'
+            })
           }
         } else {
-          ElMessage.error(err.message)
+          ElNotification({
+            message: err.message,
+            type: 'error'
+          })
         }
         return Promise.reject(err)
       }

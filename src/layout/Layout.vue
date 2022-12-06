@@ -1,29 +1,28 @@
 <template>
   <el-container>
-    <el-aside :width="isCollapse ? '60px' : '200px'">
-      <Menu :isCollapse="isCollapse" />
+    <el-aside :width="isCollapse ? '60px' : '260px'">
+      <Menu :isCollapse="isCollapse" @handleFold="handlerCollapse" />
     </el-aside>
-    <el-container>
-      <!-- <Menu :isCollapse="isCollapse" /> -->
+    <el-container class="container-wrap">
       <el-header>
-        <Header :isCollapse="isCollapse" @handleFold="handlerCollapse" />
+        <Header />
       </el-header>
       <el-main>
-        <router-view v-slot="{ Component }">
-          <transition name="view" mode="out-in" appear>
-            <component :is="Component" :key="$route.fullPath" />
-          </transition>
-        </router-view>
+        <el-scrollbar class="scrollbar">
+          <div class="box">
+            <router-view v-slot="{ Component }">
+              <transition name="view" mode="out-in" appear>
+                <component :is="Component" :key="$route.fullPath" />
+              </transition>
+            </router-view>
+            <!-- <el-footer>
+              <Footer />
+            </el-footer> -->
+          </div>
+        </el-scrollbar>
       </el-main>
-      <el-footer>
-        <Footer />
-      </el-footer>
     </el-container>
   </el-container>
-  <!--
-  <div class="layout-btn">
-    <el-icon><IconBiGear /></el-icon>
-  </div> -->
 </template>
 
 <script setup lang="ts">
@@ -37,16 +36,40 @@ const handlerCollapse = () => {
 }
 </script>
 
-<style scoped lang="less">
-.el-main {
-  min-height: calc(100vh - 120px);
+<style>
+body {
   overflow: hidden;
-  background-color: #f5f5f5;
+}
+</style>
+
+<style scoped lang="less">
+.container-wrap {
+  height: 100%;
+}
+.el-main {
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+
+  .box {
+    margin: 16px 16px 60px 16px;
+  }
+}
+
+.scrollbar {
+  height: calc(100vh - 76px);
+  overflow: hidden;
 }
 
 .el-aside {
   transition: width 0.25s;
   overflow-x: hidden;
+  margin: 16px 0 16px 16px;
+  height: calc(100vh - 32px);
+  border-radius: 6px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: var(--el-box-shadow-light);
 }
 
 .view-enter-active {
