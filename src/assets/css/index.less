@@ -5,10 +5,22 @@
 }
 
 body {
-  background-color: #f5f5f5;
+  background-color: var(--el-bg-color-page);
 }
 
 // 修改 nprogress 颜色
 #nprogress .bar {
   background: var(--el-menu-active-color) !important;
+}
+
+:root {
+  --nav-head-color: #fcfcfc;
+  --bg-color-main: #f5f5f5;
+  --bg-switch-color: #fff;
+}
+
+html.dark {
+  --nav-head-color: #1d1e1f;
+  --bg-color-main: #2c2c2c;
+  --bg-switch-color: #141414;
 }

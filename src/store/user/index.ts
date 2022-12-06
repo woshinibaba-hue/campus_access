@@ -12,7 +12,10 @@ export const useUser = defineStore('user', () => {
     user.value = res.data
     storage.set('user', res.data)
     router.push('/')
-    ElMessage.success('登录成功')
+    ElNotification({
+      message: '登录成功',
+      type: 'success'
+    })
   }
 
   const logout = () => {

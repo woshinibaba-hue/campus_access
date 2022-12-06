@@ -15,9 +15,6 @@
                 <component :is="Component" :key="$route.fullPath" />
               </transition>
             </router-view>
-            <!-- <el-footer>
-              <Footer />
-            </el-footer> -->
           </div>
         </el-scrollbar>
       </el-main>
@@ -68,7 +65,7 @@ body {
   height: calc(100vh - 32px);
   border-radius: 6px;
   overflow: hidden;
-  background-color: #fff;
+  background-color: var(--el-bg-color-overlay);
   box-shadow: var(--el-box-shadow-light);
 }
 

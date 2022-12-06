@@ -4,6 +4,7 @@ import './assets/css/index.less'
 
 import { vLoading } from 'element-plus/es/components/loading/src/directive'
 import 'element-plus/theme-chalk/index.css'
+import 'element-plus/theme-chalk/dark/css-vars.css'
 
 
 import 'nprogress/nprogress.css'

@@ -1,7 +1,10 @@
 <template>
   <div class="menu">
     <header>
-      <div class="logo" v-if="!isCollapse">疫情校园出入系统</div>
+      <div class="logo" v-if="!isCollapse">
+        <img src="../../assets/images/logo.svg" alt="" />
+        <span>疫情校园出入系统</span>
+      </div>
       <el-icon @click="handleFold">
         <IconEpFold v-if="!isCollapse" />
         <IconEpExpand v-else />
@@ -16,12 +19,12 @@
         :collapse-transition="false"
       >
         <el-menu-item index="/home">
-          <el-icon><IconAntDesignDashboardFilled /></el-icon>
+          <el-icon><IconBiSpeedometer2 /></el-icon>
           <span>首页</span>
         </el-menu-item>
         <el-sub-menu index="1">
           <template #title>
-            <el-icon><IconEpPlatform /></el-icon>
+            <el-icon><IconEpMonitor /></el-icon>
             <span>系统管理</span>
           </template>
           <el-menu-item index="/user">用户管理</el-menu-item>
@@ -85,17 +88,25 @@ const handleFold = () => emits('handleFold')
     padding: 10px;
     font-size: 22px;
     color: rgb(64, 158, 255);
-    background-color: #fcfcfc;
+    background-color: var(--nav-head-color);
 
     .logo {
+      display: flex;
+      align-items: center;
       white-space: nowrap;
       font-weight: 600;
-      font-size: var(--el-font-size-extra-large);
+      font-size: 16px;
+
+      img {
+        width: 30px;
+        margin-right: 15px;
+      }
     }
   }
   .el-menu {
     user-select: none;
     border-right: 0;
+    background-color: var(--el-bg-color-overlay);
   }
 
   .scrollbar {

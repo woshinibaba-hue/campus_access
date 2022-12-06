@@ -67,8 +67,8 @@
           v-load="loading"
           :columns="columns"
           :data="data?.chinaConfirm ?? []"
-          :width="600"
-          :height="500"
+          :width="585"
+          :height="480"
           fixed
           expand-column-key="children"
         />
@@ -111,7 +111,7 @@ const columns = [
     key: 'children',
     dataKey: '',
     title: '更多',
-    width: 50
+    width: 45
   },
   {
     key: 'name',
@@ -123,7 +123,7 @@ const columns = [
     key: 'value',
     dataKey: 'value',
     title: '现有确诊',
-    width: 120
+    width: 110
   },
   {
     key: 'confirm',
@@ -135,13 +135,13 @@ const columns = [
     key: 'dead',
     dataKey: 'dead',
     title: '累计死亡',
-    width: 110
+    width: 100
   },
   {
     key: 'heal',
     dataKey: 'heal',
     title: '累计治愈',
-    width: 110
+    width: 100
   }
 ]
 
