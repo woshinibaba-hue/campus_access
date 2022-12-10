@@ -28,6 +28,7 @@ import Menu from './components/menu.vue'
 import Footer from './components/footer.vue'
 
 const isCollapse = ref(false)
+
 const handlerCollapse = () => {
   isCollapse.value = !isCollapse.value
 }
@@ -56,6 +57,7 @@ body {
 .scrollbar {
   height: calc(100vh - 76px);
   overflow: hidden;
+  margin-top: 15px;
 }
 
 .el-aside {

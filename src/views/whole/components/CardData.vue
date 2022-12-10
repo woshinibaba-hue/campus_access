@@ -28,7 +28,7 @@ defineProps<{
   .title {
     font-weight: 600;
     font-size: 16px;
-    color: #333;
+    color: var(--el-text-color-primary);
   }
 
   .num {

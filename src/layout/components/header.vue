@@ -1,12 +1,30 @@
 <template>
   <el-row :gutter="20" justify="space-between" align="middle">
-    <el-col :span="12"> <Tab /></el-col>
-    <el-col :span="12">
+    <el-col :span="19">
+      <el-scrollbar>
+        <Tab :isCloseOnterTabs="isCloseOnterTabs" @closeEnd="closeEnd" />
+      </el-scrollbar>
+    </el-col>
+    <el-col :span="5" style="padding-right: 7px">
       <div class="nav-menus">
-        <el-icon class="full menu" @click="toggle">
-          <IconEpFullScreen v-if="!isFullscreen" />
-          <IconBiFullscreenExit v-else />
-        </el-icon>
+        <el-tooltip
+          :content="!isFullscreen ? '全屏' : '退出全屏'"
+          :hide-after="0"
+        >
+          <el-icon class="full menu" @click="toggle">
+            <IconEpFullScreen v-if="!isFullscreen" />
+            <IconBiFullscreenExit v-else />
+          </el-icon>
+        </el-tooltip>
+        <el-tooltip content="关闭其它tab" :hide-after="0">
+          <el-icon
+            class="full menu"
+            :class="{ close: state.tabsRouter.length <= 1 }"
+            @click="closeOther"
+          >
+            <IconEpClose />
+          </el-icon>
+        </el-tooltip>
         <div class="switch" @click="toggleDark()">
           <div class="switch-active">
             <el-icon v-if="!isDark"><IconEpSunny /></el-icon>
@@ -38,22 +56,34 @@
 </template>
 
 <script setup lang="ts">
+import { useTab } from '@/hooks'
 import Tab from './tab.vue'
 import { useFullscreen, useDark, useToggle } from '@vueuse/core'
-import { useUser } from '@/store'
+import { useUser, useTabs } from '@/store'
 
 const userData = useUser()
 const { user } = storeToRefs(userData)
+const { state } = storeToRefs(useTabs())
 
 const { isFullscreen, toggle } = useFullscreen()
 const isDark = useDark()
 const toggleDark = useToggle(isDark)
+
+const isCloseOnterTabs = ref(false)
+const closeOther = () => (isCloseOnterTabs.value = true)
+const closeEnd = () => (isCloseOnterTabs.value = false)
 </script>
 
 <style scoped lang="less">
+.el-scrollbar {
+  height: 100%;
+  :deep(.el-scrollbar__view) {
+    height: 100%;
+  }
+}
 .el-row {
   height: 50px;
-  margin: 16px;
+  margin: 16px 16px 0 16px;
   user-select: none;
 
   .el-col {
@@ -94,6 +124,12 @@ const toggleDark = useToggle(isDark)
       width: 40px;
       font-size: 20px;
       cursor: pointer;
+    }
+
+    .close {
+      pointer-events: none;
+      cursor: not-allowed;
+      opacity: 0.3;
     }
 
     .avatar {

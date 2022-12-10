@@ -6,7 +6,7 @@
         <el-row>
           <el-col :span="8">
             <CardData
-              color="#ffa352"
+              color="--el-color-warning"
               name="境外输入"
               :num="data?.chinaTotal.total.input ?? 0"
               :today-num="data?.chinaTotal.today.input ?? 0"

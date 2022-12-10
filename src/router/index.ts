@@ -10,31 +10,49 @@ const routes: RouteRecordRaw[] = [
       {
         path: '/home',
         name: 'home',
+        meta: {
+          name: '首页'
+        },
         component: () => import('@/views/home/home.vue')
       },
       {
         path: '/range',
         name: 'range',
+        meta: {
+          name: '打卡范围'
+        },
         component: () => import('@/views/range/range.vue')
       },
       {
         path: '/user',
         name: 'user',
+        meta: {
+          name: '用户管理'
+        },
         component: () => import('@/views/users/users.vue')
       },
       {
         path: '/whole',
         name: 'whole',
+        meta: {
+          name: '全国疫情消息'
+        },
         component: () => import('@/views/whole/whole.vue')
       },
       {
         path: '/entering',
         name: 'entering',
+        meta: {
+          name: '健康信息录入'
+        },
         component: () => import('@/views/health/entering/entering.vue')
       },
       {
         path: '/punch',
         name: 'punch',
+        meta: {
+          name: '每日健康打卡'
+        },
         component: () => import('@/views/health/punch/punch.vue')
       },
       {
