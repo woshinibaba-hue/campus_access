@@ -29,15 +29,16 @@ withDefaults(
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 170px;
-  height: 170px;
+  width: 100%;
+  height: 100%;
   color: #fff;
   background: v-bind("isUnusual ? '#F7616D' : '#18D080'");
   box-shadow: var(--el-box-shadow-light);
+  padding: 10px 0;
   border-radius: 12px;
 
   .title {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
     margin-bottom: 5px;
   }
@@ -47,12 +48,12 @@ withDefaults(
   }
 
   .data {
-    font-size: 18px;
+    font-size: 16px;
     margin-bottom: 5px;
   }
 
   .res {
-    font-size: 23px;
+    font-size: 20px;
     font-weight: 700;
   }
 }

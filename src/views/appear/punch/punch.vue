@@ -41,7 +41,6 @@ import PunchCard from './components/punchCard/punchCard.vue'
   .cards {
     display: grid;
     grid-template-columns: repeat(2, 47%);
-    // grid-template-rows: repeat(2, 50%);
     // 不推荐使用
     // grid-column-gap: 20px;
     // grid-row-gap: 20px;

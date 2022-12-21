@@ -1,28 +1,31 @@
 <template>
-  <el-container>
-    <el-aside :width="isCollapse ? '60px' : '260px'">
-      <Menu :isCollapse="isCollapse" @handleFold="handlerCollapse" />
-    </el-aside>
-    <el-container class="container-wrap">
-      <el-header>
-        <Header />
-      </el-header>
-      <el-main>
-        <el-scrollbar class="scrollbar">
-          <div class="box">
-            <router-view v-slot="{ Component }">
-              <transition name="view" mode="out-in" appear>
-                <component :is="Component" :key="$route.fullPath" />
-              </transition>
-            </router-view>
-          </div>
-        </el-scrollbar>
-      </el-main>
+  <el-config-provider :locale="zhCn">
+    <el-container>
+      <el-aside :width="isCollapse ? '60px' : '260px'">
+        <Menu :isCollapse="isCollapse" @handleFold="handlerCollapse" />
+      </el-aside>
+      <el-container class="container-wrap">
+        <el-header>
+          <Header />
+        </el-header>
+        <el-main>
+          <el-scrollbar class="scrollbar">
+            <div class="box">
+              <router-view v-slot="{ Component }">
+                <transition name="view" mode="out-in" appear>
+                  <component :is="Component" :key="$route.fullPath" />
+                </transition>
+              </router-view>
+            </div>
+          </el-scrollbar>
+        </el-main>
+      </el-container>
     </el-container>
-  </el-container>
+  </el-config-provider>
 </template>
 
 <script setup lang="ts">
+import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 import Header from './components/header.vue'
 import Menu from './components/menu.vue'
 import Footer from './components/footer.vue'
@@ -50,7 +53,7 @@ body {
   overflow-x: hidden;
 
   .box {
-    margin: 16px 16px 60px 16px;
+    margin: 0 16px 60px 16px;
   }
 }
 
