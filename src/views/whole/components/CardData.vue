@@ -3,7 +3,7 @@
     <p class="title">{{ name }}</p>
     <p class="num"><Count :num="isNaN(num!) ? 0 : num" /></p>
     <p class="today">
-      <template v-if="todayNum">
+      <template v-if="todayNum === 0 || todayNum !== undefined">
         较昨日<span class="num"> +<Count :num="todayNum" /> </span>
       </template>
       <template v-else>较昨日待公布</template>

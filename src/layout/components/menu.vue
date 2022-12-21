@@ -3,7 +3,7 @@
     <header>
       <div class="logo" v-if="!isCollapse">
         <img src="../../assets/images/logo.svg" alt="" />
-        <span>疫情校园出入系统</span>
+        <span>校园疫情出入系统</span>
       </div>
       <el-icon @click="handleFold">
         <IconEpFold v-if="!isCollapse" />

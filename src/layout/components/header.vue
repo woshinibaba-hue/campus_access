@@ -1,11 +1,11 @@
 <template>
   <el-row :gutter="20" justify="space-between" align="middle">
-    <el-col :span="19">
+    <el-col :span="18">
       <el-scrollbar>
         <Tab :isCloseOnterTabs="isCloseOnterTabs" @closeEnd="closeEnd" />
       </el-scrollbar>
     </el-col>
-    <el-col :span="5" style="padding-right: 7px">
+    <el-col :span="6" style="padding-right: 7px">
       <div class="nav-menus">
         <el-tooltip
           :content="!isFullscreen ? '全屏' : '退出全屏'"
@@ -56,7 +56,6 @@
 </template>
 
 <script setup lang="ts">
-import { useTab } from '@/hooks'
 import Tab from './tab.vue'
 import { useFullscreen, useDark, useToggle } from '@vueuse/core'
 import { useUser, useTabs } from '@/store'

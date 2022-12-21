@@ -48,8 +48,6 @@ const routers = router.getRoutes()
 
 const selectTab = () => {
   nextTick(() => {
-    console.log(tabRefs.value)
-
     const e = tabRefs.value[state.value.activeIndex]
     style.width = e.clientWidth + 'px'
     style.left = e.offsetLeft + 'px'

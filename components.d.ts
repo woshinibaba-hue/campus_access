@@ -7,6 +7,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    Card: typeof import('./src/components/Card/src/Card.vue')['default']
     Count: typeof import('./src/components/Count/Count.vue')['default']
     Echart: typeof import('./src/components/Echart/src/Echart.vue')['default']
     ElAlert: typeof import('element-plus/es')['ElAlert']
@@ -52,9 +53,12 @@ declare module '@vue/runtime-core' {
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
     Form: typeof import('./src/components/Form/src/Form.vue')['default']
     IconAntDesignDashboardFilled: typeof import('~icons/ant-design/dashboard-filled')['default']
+    IconBiExclamationCircleFill: typeof import('~icons/bi/exclamation-circle-fill')['default']
     IconBiFullscreenExit: typeof import('~icons/bi/fullscreen-exit')['default']
     IconBiGear: typeof import('~icons/bi/gear')['default']
     IconBiSpeedometer2: typeof import('~icons/bi/speedometer2')['default']
+    IconEpCheck: typeof import('~icons/ep/check')['default']
+    IconEpCircleCheckFilled: typeof import('~icons/ep/circle-check-filled')['default']
     IconEpClose: typeof import('~icons/ep/close')['default']
     IconEpExpand: typeof import('~icons/ep/expand')['default']
     IconEpF: typeof import('~icons/ep/f')['default']
@@ -64,6 +68,7 @@ declare module '@vue/runtime-core' {
     IconEpFullScre: typeof import('~icons/ep/full-scre')['default']
     IconEpFullScree: typeof import('~icons/ep/full-scree')['default']
     IconEpFullScreen: typeof import('~icons/ep/full-screen')['default']
+    IconEpInfoFilled: typeof import('~icons/ep/info-filled')['default']
     IconEpMonitor: typeof import('~icons/ep/monitor')['default']
     IconEpMoon: typeof import('~icons/ep/moon')['default']
     IconEpPlace: typeof import('~icons/ep/place')['default']

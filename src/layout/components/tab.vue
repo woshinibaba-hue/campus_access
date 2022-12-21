@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import { TabNavs } from '@/components/NavTabs'
+import TabNavs from '@/components/NavTabs'
 defineProps<{
   isCloseOnterTabs: boolean
 }>()

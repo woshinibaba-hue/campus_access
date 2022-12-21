@@ -1,8 +1,7 @@
 <template>
   <el-row :gutter="10">
     <el-col :span="12">
-      <el-card v-load="loading">
-        <p class="title">全国疫情数据(含港澳台)</p>
+      <Card :loading="loading" title="全国疫情数据(含港澳台)">
         <el-row>
           <el-col :span="8">
             <CardData
@@ -60,9 +59,8 @@
           </el-col>
         </el-row>
         <p class="updateDate">截至 {{ data?.lastUpdateTime ?? '出错啦~' }}</p>
-      </el-card>
-      <el-card style="margin-top: 10px">
-        <p class="title">各个省份以及城市的疫情信息</p>
+      </Card>
+      <Card title="各个省份以及城市的疫情信息">
         <el-table-v2
           v-load="loading"
           :columns="columns"
@@ -86,13 +84,12 @@
           <el-table-column prop="dead" label="累计死亡" />
           <el-table-column prop="heal" label="累计治愈" />
         </el-table> -->
-      </el-card>
+      </Card>
     </el-col>
     <el-col :span="12">
-      <el-card v-load="loading">
-        <p class="title">全国疫情图</p>
+      <Card title="全国疫情图">
         <Map :data="data?.chinaConfirm ?? []" />
-      </el-card>
+      </Card>
     </el-col>
   </el-row>
 </template>
@@ -152,13 +149,6 @@ getOutbreak().then((res) => {
 </script>
 
 <style scoped lang="less">
-.title {
-  font-size: 20px;
-  padding-left: 12px;
-  border-left: 4px solid var(--el-color-primary);
-  margin-bottom: 20px;
-}
-
 .updateDate {
   color: #a9a9a9;
   font-size: 16px;

@@ -1,3 +1,3 @@
 import TabNavs from './src/NavTabs.vue'
 
-export { TabNavs }
+export default TabNavs
