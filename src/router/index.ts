@@ -21,7 +21,7 @@ const routes: RouteRecordRaw[] = [
         meta: {
           name: '打卡范围'
         },
-        component: () => import('@/views/range/range.vue')
+        component: () => import('@/views/system/range/range.vue')
       },
       {
         path: '/user',
@@ -29,7 +29,7 @@ const routes: RouteRecordRaw[] = [
         meta: {
           name: '用户管理'
         },
-        component: () => import('@/views/users/users.vue')
+        component: () => import('@/views/system/users/users.vue')
       },
       {
         path: '/whole',
@@ -53,7 +53,15 @@ const routes: RouteRecordRaw[] = [
         meta: {
           name: '每日健康打卡'
         },
-        component: () => import('@/views/health/punch/punch.vue')
+        component: () => import('@/views/appear/punch/punch.vue')
+      },
+      {
+        path: '/inform',
+        name: 'inform',
+        meta: {
+          name: '校园疫情通知'
+        },
+        component: () => import('@/views/appear/inform/inform.vue')
       },
       {
         path: '/404',

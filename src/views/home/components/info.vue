@@ -6,7 +6,6 @@
 
 <script setup lang="ts">
 import { TFormProps } from '@/components/Form/types'
-import { Form } from '@/components/Form'
 
 const formProps: TFormProps = {
   fromItems: [
