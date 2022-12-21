@@ -54,10 +54,18 @@ const initMap = async () => {
     version: '2.0'
   })
 
+  // 初始化中心点位置
+  let initPath = [114.338604, 30.348775]
+
+  // 设置中心点位置
+  if (path.value.length) {
+    initPath = path.value[0]
+  }
+
   const map = new AMap.Map('container', {
     viewMode: '3D',
     zoom: 15.8,
-    center: [114.338604, 30.348775] //初始化地图中心点位置
+    center: initPath //初始化地图中心点位置
   })
 
   // 添加插件
