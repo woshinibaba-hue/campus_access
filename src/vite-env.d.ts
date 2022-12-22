@@ -15,11 +15,14 @@ type TableConfig = {
     label: string
     width?: number
     isTooltip?: boolean
+    slotName?: string
+    align?: 'left' | 'center' | 'right'
+    format?: string
   }[]
   stripe?: boolean
   showHeader?: boolean
   height?: number | string
-  isRadio?: boolean
+  isSelect?: boolean
   isPaging?: boolean
   pagination?: TPagination
 }
@@ -30,4 +33,11 @@ type TPagination = {
   small?: boolean
   pageSizes?: number[]
   layout?: string
+}
+
+// 后端返回数据类型(分页查询)
+type IDataRes<T> = {
+  data: T
+  total: number
+  isMove: boolean
 }

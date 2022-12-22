@@ -19,6 +19,7 @@ specifiers:
   '@vuemap/vue-amap': ^1.1.19
   '@vueuse/core': ^9.6.0
   axios: ^0.27.2
+  dayjs: ^1.11.7
   echarts: ^5.4.0
   element-plus: ^2.2.10
   eslint: ^8.20.0
@@ -44,6 +45,7 @@ dependencies:
   '@vuemap/vue-amap': registry.npmmirror.com/@vuemap/vue-amap/1.1.19_vue@3.2.45
   '@vueuse/core': registry.npmmirror.com/@vueuse/core/9.6.0_vue@3.2.45
   axios: 0.27.2
+  dayjs: registry.npmmirror.com/dayjs/1.11.7
   echarts: 5.4.0
   element-plus: 2.2.21_vue@3.2.45
   nprogress: 0.2.0
@@ -704,10 +706,6 @@ packages:
   /csstype/2.6.21:
     resolution: {integrity: sha512-Z1PhmomIfypOpoMjRQB70jfvy/wxT50qW08YXO5lMIJkrdq4yOTR+AW7FqutScmB9NkLwxo+jU+kZLbofZZq/w==}
 
-  /dayjs/1.11.6:
-    resolution: {integrity: sha512-zZbY5giJAinCG+7AGaw0wIhNZ6J8AhWuSXKvuc1KAyMiRsvGQWqh4L+MomvhdAYjN+lqvVCMq1I41e3YHvXkyQ==}
-    dev: false
-
   /debug/3.2.7:
     resolution: {integrity: sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==}
     peerDependencies:
@@ -775,7 +773,7 @@ packages:
       '@types/lodash-es': 4.17.6
       '@vueuse/core': registry.npmmirror.com/@vueuse/core/9.6.0_vue@3.2.45
       async-validator: 4.2.5
-      dayjs: 1.11.6
+      dayjs: registry.npmmirror.com/dayjs/1.11.7
       escape-html: 1.0.3
       lodash: 4.17.21
       lodash-es: 4.17.21
@@ -2377,6 +2375,12 @@ packages:
     dependencies:
       color-convert: registry.npmmirror.com/color-convert/2.0.1
       color-string: registry.npmmirror.com/color-string/1.9.1
+    dev: false
+
+  registry.npmmirror.com/dayjs/1.11.7:
+    resolution: {integrity: sha512-+Yw9U6YO5TQohxLcIkrXBeY73WP3ejHWVvx8XCk3gxvQDCTEmS48ZrSZCKciI7Bhl/uCMyxYtE9UqRILmFphkQ==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/dayjs/-/dayjs-1.11.7.tgz}
+    name: dayjs
+    version: 1.11.7
     dev: false
 
   registry.npmmirror.com/errno/0.1.8:
