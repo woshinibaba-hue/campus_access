@@ -2,7 +2,7 @@
   <div class="inform">
     <el-row :gutter="15">
       <el-col :span="16">
-        <Card :title="`今日通知 → ${inform?.title ?? '暂无通知'}`">
+        <Card :title="`最新通知 → ${inform?.title ?? '暂无通知'}`">
           <div
             class="content"
             v-if="inform?.content"
@@ -39,6 +39,10 @@ getToDay().then((res) => {
 })
 
 getInformAll().then((res) => {
+  if (!inform.value?.id) {
+    inform.value = res.data.data[0]
+  }
+
   data.value = res.data.data
 })
 

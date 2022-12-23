@@ -15,7 +15,7 @@ export function getToDay() {
 }
 
 export function getInformAll() {
-  return request.get<IDataRes<TInform[]>>({
+  return request.get<IPaging<TInform[]>>({
     url: '/inform',
     params: {
       page: 1,
