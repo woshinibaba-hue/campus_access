@@ -1,7 +1,7 @@
 <template>
   <el-row :gutter="10">
     <el-col :span="12">
-      <Card :loading="loading" title="全国疫情数据(含港澳台)">
+      <Card :loading="isLoading" title="全国疫情数据(含港澳台)">
         <el-row>
           <el-col :span="8">
             <CardData
@@ -62,7 +62,7 @@
       </Card>
       <Card title="各个省份以及城市的疫情信息">
         <el-table-v2
-          v-load="loading"
+          v-load="isLoading"
           :columns="columns"
           :data="data?.chinaConfirm ?? []"
           :width="585"
@@ -87,7 +87,7 @@
       </Card>
     </el-col>
     <el-col :span="12">
-      <Card title="全国疫情图">
+      <Card title="全国疫情图" :loading="isLoading">
         <Map :data="data?.chinaConfirm ?? []" />
       </Card>
     </el-col>
@@ -97,11 +97,8 @@
 <script setup lang="ts">
 import CardData from './components/CardData.vue'
 import { Map } from '@/components/Echart'
+import { useLoading } from '@/hooks'
 import { getOutbreak } from '@/api/outbreak'
-
-const data = ref<any>()
-
-const loading = ref(true)
 
 const columns = [
   {
@@ -142,10 +139,7 @@ const columns = [
   }
 ]
 
-getOutbreak().then((res) => {
-  data.value = res?.data
-  loading.value = false
-})
+const { data, isLoading } = useLoading(getOutbreak)
 </script>
 
 <style scoped lang="less">
