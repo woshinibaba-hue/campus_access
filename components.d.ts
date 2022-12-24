@@ -12,6 +12,7 @@ declare module '@vue/runtime-core' {
     Echart: typeof import('./src/components/Echart/src/Echart.vue')['default']
     ElAgination: typeof import('element-plus/es')['ElAgination']
     ElAlert: typeof import('element-plus/es')['ElAlert']
+    ElArd: typeof import('element-plus/es')['ElArd']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']

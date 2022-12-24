@@ -103,10 +103,16 @@ const handleFold = () => emits('handleFold')
       }
     }
   }
+
   .el-menu {
     user-select: none;
     border-right: 0;
     background-color: var(--el-bg-color-overlay);
+
+    .is-active:not(.is-opened):not(.el-sub-menu),
+    .is-vertical {
+      background-color: var(--el-menu-hover-bg-color);
+    }
   }
 
   .scrollbar {

@@ -1,7 +1,7 @@
 <template>
   <el-config-provider :locale="zhCn">
     <el-container>
-      <el-aside :width="isCollapse ? '60px' : '260px'">
+      <el-aside :width="isCollapse ? '64px' : '260px'">
         <Menu :isCollapse="isCollapse" @handleFold="handlerCollapse" />
       </el-aside>
       <el-container class="container-wrap">
@@ -17,8 +17,12 @@
                 </transition>
               </router-view>
             </div>
+            <Footer />
           </el-scrollbar>
         </el-main>
+        <!-- <el-footer>
+          <Footer />
+        </el-footer> -->
       </el-container>
     </el-container>
   </el-config-provider>
@@ -53,7 +57,8 @@ body {
   overflow-x: hidden;
 
   .box {
-    margin: 0 16px 60px 16px;
+    min-height: calc(100vh - 76px - 80px - 32px);
+    margin: 0 16px;
   }
 }
 

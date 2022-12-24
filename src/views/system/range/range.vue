@@ -1,25 +1,15 @@
 <template>
   <div class="range">
-    <el-card>
+    <Card title="打卡范围" :loading="isLoading">
       <el-alert
         title="打卡范围设定，默认打卡范围为图中高亮区域，如需更改可以双击高亮区域，修改之后，点击结束编辑按钮即可"
         type="warning"
         show-icon
         :closable="false"
       />
-      <el-alert
-        style="margin-top: 10px"
-        title="以下是图中高亮区域的经纬度"
-        type="info"
-        show-icon
-        :closable="false"
-      />
-      <el-table :data="newPath" style="width: 100%" height="380">
-        <el-table-column prop="longitude" label="经度" />
-        <el-table-column prop="latitude" label="维度" />
-      </el-table>
-    </el-card>
-    <el-card>
+      <Table :data="newPath" v-bind="tableConfig" />
+    </Card>
+    <Card :loading="isLoading">
       <div id="container"></div>
       <div class="tool">
         <el-button @click="polyEditor.open()" size="small" plain type="primary">
@@ -35,13 +25,17 @@
           结束编辑
         </el-button>
       </div>
-    </el-card>
+    </Card>
   </div>
 </template>
 
 <script setup lang="ts">
+import Table from '@/components/Table'
 import AMapLoader from '@amap/amap-jsapi-loader'
+import { tableConfig } from './config/table.config'
 import { savePath, getPath } from '@/api/punch'
+import { useLoading } from '@/hooks'
+
 const path = ref([])
 const newPath = ref<{ latitude: number; longitude: number }[]>([])
 
@@ -126,15 +120,19 @@ const initMap = async () => {
   })
 }
 
-;(async () => {
-  const res = await getPath()
-  newPath.value = JSON.parse(res.data.location)
-  path.value = JSON.parse(res.data.location).map((v: any) => [
-    v.longitude,
-    v.latitude
-  ])
-  nextTick(() => initMap())
-})()
+const { data, isLoading } = useLoading(getPath)
+
+watch(
+  () => data.value,
+  () => {
+    newPath.value = JSON.parse(data.value.location)
+    path.value = JSON.parse(data.value.location).map((v: any) => [
+      v.longitude,
+      v.latitude
+    ])
+    nextTick(() => initMap())
+  }
+)
 </script>
 
 <style lang="less" scoped>
