@@ -1,10 +1,8 @@
 import request from '@/server'
 
-export type TInform = {
-  id: number
+export type TInform = TBase & {
   title: string
   content: string
-  createAt: string
 }
 
 // 查询今日通知

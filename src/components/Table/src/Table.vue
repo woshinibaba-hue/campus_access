@@ -3,7 +3,13 @@
     <div class="header" v-if="isHeader">
       <el-row justify="space-between">
         <el-col :span="12">
-          <el-button type="primary" plain size="small" @click="$emit('add')">
+          <el-button
+            type="primary"
+            plain
+            :size="size"
+            @click="$emit('add')"
+            v-if="isAdd"
+          >
             <el-icon class="btn-icon"><IconEpCirclePlus /></el-icon>
             新增
           </el-button>
@@ -11,7 +17,7 @@
         <el-col :span="12" style="display: flex; justify-content: end">
           <el-tooltip content="列筛选" placement="top">
             <el-dropdown trigger="click">
-              <el-icon><IconEpSetting /></el-icon>
+              <el-icon class="icon"><IconEpSetting /></el-icon>
               <template #dropdown>
                 <el-dropdown-menu>
                   <el-checkbox-group
@@ -30,7 +36,11 @@
             </el-dropdown>
           </el-tooltip>
           <el-tooltip content="刷新" placement="top">
-            <el-icon style="margin-left: 10px" @click="$emit('refresh')">
+            <el-icon
+              class="icon"
+              style="margin-left: 10px"
+              @click="$emit('refresh')"
+            >
               <IconEpRefreshLeft />
             </el-icon>
           </el-tooltip>
@@ -46,7 +56,12 @@
       :show-header="showHeader"
       @current-change="(d: any) => $emit('selectData', d)"
     >
-      <el-table-column v-if="isShowIndex" type="index" />
+      <el-table-column
+        v-if="isShowIndex"
+        type="index"
+        label="序号"
+        width="60"
+      />
       <template v-for="i of tableCol" :key="i.prop">
         <el-table-column
           v-if="i.isShow"
@@ -55,6 +70,7 @@
           :width="i.width"
           :show-overflow-tooltip="i.isTooltip ?? true"
           :align="i.align ?? 'left'"
+          :fixed="i.isFixed"
         >
           <template #default="{ row }">
             <template v-if="i.slotName === 'date'">
@@ -79,6 +95,9 @@
               >
                 <el-icon><IconEpDelete /></el-icon>删除
               </el-button>
+            </template>
+            <template v-else-if="i.slotName === 'user'">
+              {{ i.prop && i.field && row[i.prop][i.field] }}
             </template>
             <template v-else>
               {{ i.prop && row[i.prop] }}
@@ -111,16 +130,20 @@ const props = withDefaults(
     isShowIndex?: boolean
     columns: TableColum[]
     isHeader?: boolean
+    isAdd?: boolean
+    size?: 'small' | 'large' | 'default'
   }>(),
   {
     stripe: true,
     showHeader: true,
-    height: 500,
+    height: 400,
     isRadio: false,
     isPaging: true,
     isShowIndex: true,
     isAction: true,
-    isHeader: true
+    isHeader: true,
+    isAdd: true,
+    size: 'default'
   }
 )
 
@@ -178,5 +201,11 @@ const handleChecknox = (col: TableColum) => {
 
 .el-dropdown-menu {
   padding: 0 10px;
+}
+
+.icon {
+  font-size: v-bind(
+    "size === 'default' ? '18px' : size === 'large' ? '24px' : ''"
+  );
 }
 </style>

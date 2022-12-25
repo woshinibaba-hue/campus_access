@@ -24,8 +24,8 @@ withDefaults(
     layout?: string // total, sizes, prev, pager, next, jumper
   }>(),
   {
-    small: true,
     total: 100,
+    small: false,
     layout: 'total, prev, pager, next'
   }
 )

@@ -18,7 +18,13 @@
         </Card>
       </el-col>
       <el-col :span="16">
-        <Card title="打卡记录统计"></Card>
+        <Card title="打卡记录统计" :loading="isLoading">
+          <Table
+            v-bind="tableConfigComputed"
+            :data="data?.data ?? []"
+            :total="data?.total"
+          />
+        </Card>
       </el-col>
     </el-row>
   </div>
@@ -26,6 +32,25 @@
 
 <script setup lang="ts">
 import PunchCard from './components/punchCard/punchCard.vue'
+
+import { useLoading } from '@/hooks'
+import { getUserPunchAll, IPunch } from '@/api/punch'
+
+import { tableConfig } from './config/table.config'
+
+const params = reactive({
+  limit: 1,
+  page: 1
+})
+
+const { data, isLoading } = useLoading<IPaging<IPunch[]>>(getUserPunchAll, {
+  params
+})
+
+const tableConfigComputed = computed(() => ({
+  ...tableConfig,
+  pagination: { total: data.value?.total }
+}))
 </script>
 
 <style scoped lang="less">
