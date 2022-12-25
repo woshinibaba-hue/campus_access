@@ -13,22 +13,30 @@
 </template>
 
 <script setup lang="ts">
-const currentPage = ref(1)
-const pageSize = ref(10)
-
-withDefaults(
+const props = withDefaults(
   defineProps<{
     total: number
     small?: boolean
     sizes?: number[]
     layout?: string // total, sizes, prev, pager, next, jumper
+    limit?: number
+    page?: number
   }>(),
   {
-    total: 100,
+    total: 0,
     small: false,
-    layout: 'total, prev, pager, next'
+    layout: 'total, prev, pager, next',
+    limit: 10,
+    page: 1
   }
 )
+
+const currentPage = ref<number>(props.page)
+const pageSize = ref<number>(props.limit)
+
+watchEffect(() => {
+  currentPage.value = props.page
+})
 
 const emits = defineEmits<{
   (e: 'sizeChange', size: number): void

@@ -7,22 +7,40 @@
       :closable="false"
     />
     <el-row class="row" :gutter="15">
-      <el-col :span="8">
+      <el-col :span="8" v-if="dayData">
         <Card title="今日打卡统计">
           <div class="cards">
-            <PunchCard title="体温" data="36.8" />
-            <PunchCard title="发热" data="是" isUnusual />
-            <PunchCard title="核酸" data="否" isUnusual />
-            <PunchCard title="外出" data="否" />
+            <PunchCard
+              title="体温"
+              :data="dayData?.heat"
+              :isUnusual="+dayData?.heat > 37.2"
+            />
+            <PunchCard
+              title="发热"
+              :data="+dayData?.isFeve ? '是' : '否'"
+              :isUnusual="!!+dayData?.isFeve"
+            />
+            <PunchCard
+              title="核酸"
+              :data="+dayData?.isNowAcid ? '是' : '否'"
+              :isUnusual="!+dayData?.isNowAcid"
+            />
+            <PunchCard
+              title="外出"
+              :data="+dayData?.isOut ? '是' : '否'"
+              :isUnusual="!!+dayData?.isOut"
+            />
           </div>
         </Card>
       </el-col>
       <el-col :span="16">
-        <Card title="打卡记录统计" :loading="isLoading">
+        <Card title="您的全部打卡记录" :loading="isLoading">
           <Table
             v-bind="tableConfigComputed"
             :data="data?.data ?? []"
             :total="data?.total"
+            @currentChange="currentChange"
+            @refresh="refresh"
           />
         </Card>
       </el-col>
@@ -34,23 +52,23 @@
 import PunchCard from './components/punchCard/punchCard.vue'
 
 import { useLoading } from '@/hooks'
-import { getUserPunchAll, IPunch } from '@/api/punch'
+import { getUserToDayPunch, getUserPunchAll, IPunch } from '@/api/punch'
 
 import { tableConfig } from './config/table.config'
 
-const params = reactive({
-  limit: 1,
-  page: 1
-})
+const { data, isLoading, refresh, pages } =
+  useLoading<IPaging<IPunch[]>>(getUserPunchAll)
 
-const { data, isLoading } = useLoading<IPaging<IPunch[]>>(getUserPunchAll, {
-  params
-})
+const { data: dayData } = useLoading(getUserToDayPunch)
 
 const tableConfigComputed = computed(() => ({
   ...tableConfig,
-  pagination: { total: data.value?.total }
+  pagination: { ...tableConfig.pagination, total: data.value?.total, ...pages }
 }))
+
+const currentChange = (page: number) => {
+  pages.page = page
+}
 </script>
 
 <style scoped lang="less">

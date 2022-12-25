@@ -15,7 +15,7 @@ withDefaults(
   defineProps<{
     isUnusual?: boolean
     title: string
-    data: string | number
+    data?: string
   }>(),
   {
     isUnusual: false

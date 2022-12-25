@@ -3,13 +3,13 @@ import request from '@/server'
 import type { IUser } from '../login/type'
 
 export type IPunch = TBase & {
-  isNowAcid: number
-  isFeve: number
-  isOut: number
+  isNowAcid: string
+  isFeve: string
+  isOut: string
   address: string
   longitude: string
   latitude: string
-  heat: number
+  heat: string
   other: string
   user: IUser
 }
@@ -33,5 +33,11 @@ export function getUserPunchAll(params?: Record<string, any>) {
   return request.get<IPaging<IPunch[]>>({
     url: '/punch/user',
     params
+  })
+}
+
+export function getUserToDayPunch() {
+  return request.get<IPunch>({
+    url: '/punch/day'
   })
 }

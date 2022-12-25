@@ -41,10 +41,12 @@ type TableConfig<P extends object> = {
  * layout 参考自element-plus
  */
 type TPagination = {
-  total: number
+  total?: number
   small?: boolean
   pageSizes?: number[]
   layout?: string
+  page?: number
+  limit?: number
 }
 
 // 后端返回数据类型(分页查询类型)

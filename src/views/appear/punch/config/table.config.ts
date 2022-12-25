@@ -3,9 +3,6 @@ import type { IPunch } from '@/api/punch'
 export const tableConfig: TableConfig<IPunch> = {
   isAdd: false,
   isShowIndex: false,
-  pagination: {
-    total: 0
-  },
   columns: [
     {
       label: 'id',
