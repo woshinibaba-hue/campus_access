@@ -14,16 +14,33 @@
             新增
           </el-button>
         </el-col>
-        <el-col :span="12" style="display: flex; justify-content: end">
+        <el-col :span="12" class="justify-end">
           <el-tooltip content="列筛选" placement="top">
             <el-dropdown trigger="click">
               <el-icon class="icon"><IconEpSetting /></el-icon>
               <template #dropdown>
                 <el-dropdown-menu>
-                  <el-checkbox-group
-                    v-model="checkList"
-                    style="display: flex; flex-direction: column"
-                  >
+                  <el-row class="dropdown-head">
+                    <el-col :span="12">
+                      <el-checkbox
+                        label="列展示"
+                        v-model="checkAll"
+                        :indeterminate="isIndeterminate"
+                        @change="handleCheckAllChange"
+                      />
+                    </el-col>
+                    <el-col :span="12" class="justify-end">
+                      <el-link
+                        type="primary"
+                        :underline="false"
+                        @click="resetCheck"
+                        >重置</el-link
+                      >
+                    </el-col>
+                  </el-row>
+                </el-dropdown-menu>
+                <el-dropdown-menu>
+                  <el-checkbox-group v-model="checkList">
                     <el-checkbox
                       v-for="i in columns"
                       :key="i.prop"
@@ -159,6 +176,8 @@ defineEmits<{
 
 const tableCol = ref<TableColum[]>([])
 
+const checkAll = ref(true)
+const isIndeterminate = ref(false)
 const checkList = ref<string[]>([])
 
 watch(
@@ -181,6 +200,35 @@ const handleChecknox = (col: TableColum) => {
       v.isShow = !v.isShow
     }
   })
+
+  isIndeterminate.value = checkList.value.length !== props.columns.length
+}
+
+const handleCheckAllChange = (check: boolean) => {
+  tableCol.value = check
+    ? props.columns.map((v) => ({
+        ...v,
+        isShow: true
+      }))
+    : []
+
+  if (check) {
+    tableCol.value.forEach((v) => checkList.value.push(v.label))
+  } else {
+    checkList.value = []
+  }
+
+  isIndeterminate.value = false
+}
+
+const resetCheck = () => {
+  tableCol.value = props.columns.map((v) => ({
+    ...v,
+    isShow: true
+  }))
+  tableCol.value.forEach((v) => checkList.value.push(v.label))
+  checkAll.value = true
+  isIndeterminate.value = false
 }
 </script>
 
@@ -195,12 +243,22 @@ const handleChecknox = (col: TableColum) => {
   margin-bottom: 5px;
 }
 
+.dropdown-head {
+  border-bottom: 1px solid var(--el-border-color);
+}
+
 .btn-icon {
   margin-right: 4px;
 }
 
 .el-dropdown-menu {
   padding: 0 10px;
+}
+
+.el-checkbox-group {
+  display: flex;
+  flex-direction: column;
+  padding-left: 25px;
 }
 
 .icon {

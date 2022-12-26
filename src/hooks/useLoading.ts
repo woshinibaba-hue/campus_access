@@ -16,7 +16,7 @@ export default function <T = unknown>(
   const data = ref<T>()
 
   const pages = reactive({
-    limit: 1,
+    limit: 10,
     page: 1
   })
 
