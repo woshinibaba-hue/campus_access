@@ -15,43 +15,48 @@
           </el-button>
         </el-col>
         <el-col :span="12" class="justify-end">
-          <el-tooltip content="列筛选" placement="top">
-            <el-dropdown trigger="click">
-              <el-icon class="icon"><IconEpSetting /></el-icon>
-              <template #dropdown>
-                <el-dropdown-menu>
-                  <el-row class="dropdown-head">
-                    <el-col :span="12">
-                      <el-checkbox
-                        label="列展示"
-                        v-model="checkAll"
-                        :indeterminate="isIndeterminate"
-                        @change="handleCheckAllChange"
-                      />
-                    </el-col>
-                    <el-col :span="12" class="justify-end">
-                      <el-link
-                        type="primary"
-                        :underline="false"
-                        @click="resetCheck"
-                        >重置</el-link
-                      >
-                    </el-col>
-                  </el-row>
-                </el-dropdown-menu>
-                <el-dropdown-menu>
-                  <el-checkbox-group v-model="checkList">
+          <el-dropdown trigger="click">
+            <i>
+              <el-tooltip content="列筛选" placement="top">
+                <el-icon class="icon">
+                  <IconEpSetting />
+                </el-icon>
+              </el-tooltip>
+            </i>
+            <template #dropdown>
+              <el-dropdown-menu>
+                <el-row class="dropdown-head">
+                  <el-col :span="12">
                     <el-checkbox
-                      v-for="i in columns"
-                      :key="i.prop"
-                      :label="i.label"
-                      @change="handleChecknox(i)"
+                      label="列筛选"
+                      v-model="checkAll"
+                      :indeterminate="isIndeterminate"
+                      @change="handleCheckAllChange"
                     />
-                  </el-checkbox-group>
-                </el-dropdown-menu>
-              </template>
-            </el-dropdown>
-          </el-tooltip>
+                  </el-col>
+                  <el-col :span="12" class="justify-end">
+                    <el-link
+                      type="primary"
+                      :underline="false"
+                      @click="resetCheck"
+                      >重置</el-link
+                    >
+                  </el-col>
+                </el-row>
+              </el-dropdown-menu>
+              <el-dropdown-menu>
+                <el-checkbox-group v-model="checkList">
+                  <el-checkbox
+                    v-for="i in columns"
+                    :key="i.prop"
+                    :label="i.label"
+                    @change="handleChecknox(i)"
+                  />
+                </el-checkbox-group>
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
+
           <el-tooltip content="刷新" placement="top">
             <el-icon
               class="icon"
@@ -205,16 +210,14 @@ const handleChecknox = (col: TableColum) => {
 }
 
 const handleCheckAllChange = (check: boolean) => {
-  tableCol.value = check
-    ? props.columns.map((v) => ({
-        ...v,
-        isShow: true
-      }))
-    : []
-
   if (check) {
+    tableCol.value = props.columns.map((v) => ({
+      ...v,
+      isShow: true
+    }))
     tableCol.value.forEach((v) => checkList.value.push(v.label))
   } else {
+    tableCol.value = []
     checkList.value = []
   }
 
