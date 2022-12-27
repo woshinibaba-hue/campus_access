@@ -31,16 +31,17 @@
                       label="列筛选"
                       v-model="checkAll"
                       :indeterminate="isIndeterminate"
-                      @change="handleCheckAllChange"
+                      @change="handleCheckChange"
                     />
                   </el-col>
                   <el-col :span="12" class="justify-end">
                     <el-link
                       type="primary"
                       :underline="false"
-                      @click="resetCheck"
-                      >重置</el-link
+                      @click="handleCheckChange(true, true)"
                     >
+                      重置
+                    </el-link>
                   </el-col>
                 </el-row>
               </el-dropdown-menu>
@@ -205,32 +206,22 @@ const handleChecknox = (col: TableColum) => {
       v.isShow = !v.isShow
     }
   })
-
   isIndeterminate.value = checkList.value.length !== props.columns.length
 }
 
-const handleCheckAllChange = (check: boolean) => {
+const handleCheckChange = (check: boolean, isReset = false) => {
   if (check) {
     tableCol.value = props.columns.map((v) => ({
       ...v,
       isShow: true
     }))
     tableCol.value.forEach((v) => checkList.value.push(v.label))
+    isReset && (checkAll.value = true)
   } else {
     tableCol.value = []
     checkList.value = []
   }
 
-  isIndeterminate.value = false
-}
-
-const resetCheck = () => {
-  tableCol.value = props.columns.map((v) => ({
-    ...v,
-    isShow: true
-  }))
-  tableCol.value.forEach((v) => checkList.value.push(v.label))
-  checkAll.value = true
   isIndeterminate.value = false
 }
 </script>
