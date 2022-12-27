@@ -55,7 +55,7 @@ export const tableConfig: TableConfig<IPunch> = {
     },
     {
       label: '打卡时间',
-      width: 130,
+      width: 120,
       prop: 'createAt',
       slotName: 'date',
       isFixed: 'right'

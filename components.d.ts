@@ -8,6 +8,7 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     Card: typeof import('./src/components/Card/src/Card.vue')['default']
+    Colums: typeof import('./src/components/Table/src/Colums.vue')['default']
     Count: typeof import('./src/components/Count/Count.vue')['default']
     Echart: typeof import('./src/components/Echart/src/Echart.vue')['default']
     ElAgination: typeof import('element-plus/es')['ElAgination']

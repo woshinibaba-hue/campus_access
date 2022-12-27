@@ -12,55 +12,11 @@
       :show-header="showHeader"
       @current-change="(d: any) => $emit('selectData', d)"
     >
-      <el-table-column
-        v-if="isShowIndex"
-        type="index"
-        label="序号"
-        width="60"
+      <TableColumn
+        :isShowIndex="isShowIndex"
+        @edit="data => $emit('edit', data)"
+        @delete="data => $emit('delete', data)"
       />
-      <template v-for="i of tableCol" :key="i.prop">
-        <el-table-column
-          v-if="i.isShow"
-          :prop="i.prop"
-          :label="i.label"
-          :width="i.width"
-          :show-overflow-tooltip="i.isTooltip ?? true"
-          :align="i.align ?? 'left'"
-          :fixed="i.isFixed"
-        >
-          <template #default="{ row }">
-            <template v-if="i.slotName === 'date'">
-              {{ i.prop && format.formatTime(row[i.prop], i.format) }}
-            </template>
-            <template v-else-if="i.slotName === 'action'">
-              <el-button
-                class="btn-icon"
-                type="primary"
-                plain
-                size="small"
-                @click.stop="$emit('edit', row)"
-              >
-                <el-icon><IconEpEdit /></el-icon>编辑
-              </el-button>
-              <el-button
-                class="btn-icon"
-                type="danger"
-                plain
-                size="small"
-                @click.stop="$emit('delete', row)"
-              >
-                <el-icon><IconEpDelete /></el-icon>删除
-              </el-button>
-            </template>
-            <template v-else-if="i.slotName === 'user'">
-              {{ i.prop && i.field && row[i.prop][i.field] }}
-            </template>
-            <template v-else>
-              {{ i.prop && row[i.prop] }}
-            </template>
-          </template>
-        </el-table-column>
-      </template>
     </el-table>
     <Pagination
       v-if="isPaging"
@@ -73,7 +29,7 @@
 
 <script setup lang="ts">
 import TableHeader from './Header.vue'
-import format from '@/utils/format'
+import TableColumn from './Colums.vue'
 
 import { useTable } from '@/store'
 
@@ -116,10 +72,8 @@ defineEmits<{
   (e: 'refresh'): void
 }>()
 
-const table = useTable()
-const { tableCol } = storeToRefs(table)
-
-table.init(props.columns)
+const { init } = useTable()
+init(props.columns)
 </script>
 
 <style lang="less" scoped>
@@ -127,6 +81,10 @@ table.init(props.columns)
   &::before {
     height: 0;
   }
+}
+
+:deep(.el-table__row) {
+  height: 40px;
 }
 
 .btn-icon {
