@@ -1,74 +1,7 @@
 <template>
   <div class="table">
     <div class="header" v-if="isHeader">
-      <el-row justify="space-between">
-        <el-col :span="12">
-          <el-button
-            type="primary"
-            plain
-            :size="size"
-            @click="$emit('add')"
-            v-if="isAdd"
-          >
-            <el-icon class="btn-icon"><IconEpCirclePlus /></el-icon>
-            新增
-          </el-button>
-        </el-col>
-        <el-col :span="12" class="justify-end">
-          <el-dropdown trigger="click">
-            <i>
-              <el-tooltip content="列筛选" placement="top">
-                <el-icon class="icon">
-                  <IconEpSetting />
-                </el-icon>
-              </el-tooltip>
-            </i>
-            <template #dropdown>
-              <el-dropdown-menu>
-                <el-row class="dropdown-head">
-                  <el-col :span="12">
-                    <el-checkbox
-                      label="列筛选"
-                      v-model="checkAll"
-                      :indeterminate="isIndeterminate"
-                      @change="handleCheckChange"
-                    />
-                  </el-col>
-                  <el-col :span="12" class="justify-end">
-                    <el-link
-                      type="primary"
-                      :underline="false"
-                      @click="handleCheckChange(true, true)"
-                    >
-                      重置
-                    </el-link>
-                  </el-col>
-                </el-row>
-              </el-dropdown-menu>
-              <el-dropdown-menu>
-                <el-checkbox-group v-model="checkList">
-                  <el-checkbox
-                    v-for="i in columns"
-                    :key="i.prop"
-                    :label="i.label"
-                    @change="handleChecknox(i)"
-                  />
-                </el-checkbox-group>
-              </el-dropdown-menu>
-            </template>
-          </el-dropdown>
-
-          <el-tooltip content="刷新" placement="top">
-            <el-icon
-              class="icon"
-              style="margin-left: 10px"
-              @click="$emit('refresh')"
-            >
-              <IconEpRefreshLeft />
-            </el-icon>
-          </el-tooltip>
-        </el-col>
-      </el-row>
+      <TableHeader :size="size" :columns="columns" :isAdd="isAdd" />
     </div>
     <el-table
       :data="data"
@@ -139,7 +72,10 @@
 </template>
 
 <script setup lang="ts">
+import TableHeader from './Header.vue'
 import format from '@/utils/format'
+
+import { useTable } from '@/store'
 
 const props = withDefaults(
   defineProps<{
@@ -180,50 +116,10 @@ defineEmits<{
   (e: 'refresh'): void
 }>()
 
-const tableCol = ref<TableColum[]>([])
+const table = useTable()
+const { tableCol } = storeToRefs(table)
 
-const checkAll = ref(true)
-const isIndeterminate = ref(false)
-const checkList = ref<string[]>([])
-
-watch(
-  () => props.columns,
-  () => {
-    tableCol.value = props.columns.map((v) => ({
-      ...v,
-      isShow: true
-    }))
-    tableCol.value.forEach((v) => checkList.value.push(v.label))
-  },
-  {
-    immediate: true
-  }
-)
-
-const handleChecknox = (col: TableColum) => {
-  tableCol.value.forEach((v) => {
-    if (v.label === col.label) {
-      v.isShow = !v.isShow
-    }
-  })
-  isIndeterminate.value = checkList.value.length !== props.columns.length
-}
-
-const handleCheckChange = (check: boolean, isReset = false) => {
-  if (check) {
-    tableCol.value = props.columns.map((v) => ({
-      ...v,
-      isShow: true
-    }))
-    tableCol.value.forEach((v) => checkList.value.push(v.label))
-    isReset && (checkAll.value = true)
-  } else {
-    tableCol.value = []
-    checkList.value = []
-  }
-
-  isIndeterminate.value = false
-}
+table.init(props.columns)
 </script>
 
 <style lang="less" scoped>
@@ -233,31 +129,7 @@ const handleCheckChange = (check: boolean, isReset = false) => {
   }
 }
 
-.header {
-  margin-bottom: 5px;
-}
-
-.dropdown-head {
-  border-bottom: 1px solid var(--el-border-color);
-}
-
 .btn-icon {
   margin-right: 4px;
-}
-
-.el-dropdown-menu {
-  padding: 0 10px;
-}
-
-.el-checkbox-group {
-  display: flex;
-  flex-direction: column;
-  padding-left: 25px;
-}
-
-.icon {
-  font-size: v-bind(
-    "size === 'default' ? '18px' : size === 'large' ? '24px' : ''"
-  );
 }
 </style>

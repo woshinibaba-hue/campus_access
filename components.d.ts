@@ -57,6 +57,7 @@ declare module '@vue/runtime-core' {
     ElTimePicker: typeof import('element-plus/es')['ElTimePicker']
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
     Form: typeof import('./src/components/Form/src/Form.vue')['default']
+    Header: typeof import('./src/components/Table/src/Header.vue')['default']
     IconAntDesignDashboardFilled: typeof import('~icons/ant-design/dashboard-filled')['default']
     IconBiExclamationCircleFill: typeof import('~icons/bi/exclamation-circle-fill')['default']
     IconBiFullscreenExit: typeof import('~icons/bi/fullscreen-exit')['default']
