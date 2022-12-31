@@ -137,8 +137,8 @@ watch(
 
 <style lang="less" scoped>
 .range {
-  height: 100%;
   display: flex;
+  justify-content: space-around;
 
   .el-card {
     :deep(.el-card__body) {
@@ -149,12 +149,12 @@ watch(
 
     &:last-child {
       position: relative;
-      flex: 1;
+      width: 875px;
       margin-left: 20px;
     }
 
     &:first-child {
-      width: 300px;
+      width: 330px;
       padding: 10px;
 
       :deep(.el-card__body) {
@@ -166,7 +166,7 @@ watch(
 
     .tool {
       position: absolute;
-      top: 245px;
+      top: 215px;
       right: 20px;
       background-color: #fff;
       background-clip: border-box;
