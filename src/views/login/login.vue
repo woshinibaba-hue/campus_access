@@ -11,9 +11,11 @@
 </template>
 
 <script setup lang="ts">
+import { useDark } from '@vueuse/core'
 import Login from './components/login/login.vue'
 
 const activeName = ref('account')
+useDark()
 </script>
 
 <style scoped lang="less">
@@ -25,7 +27,7 @@ const activeName = ref('account')
   width: 350px;
   padding: 20px;
   border-radius: 6px;
-  background-color: #fff;
+  background-color: var(--el-bg-color-overlay);
 
   .bg {
     position: absolute;
