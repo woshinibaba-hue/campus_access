@@ -21,3 +21,10 @@ export function getInformAll() {
     }
   })
 }
+
+export function issueInform(data: OmitBase<TInform>) {
+  return request.post({
+    url: '/inform',
+    data
+  })
+}

@@ -32,6 +32,14 @@ const routes: RouteRecordRaw[] = [
         component: () => import('@/views/system/users/users.vue')
       },
       {
+        path: '/issue',
+        name: 'issue',
+        meta: {
+          name: '发布通知'
+        },
+        component: () => import('@/views/system/issue/issue.vue')
+      },
+      {
         path: '/whole',
         name: 'whole',
         meta: {

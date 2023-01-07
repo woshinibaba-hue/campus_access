@@ -3,6 +3,11 @@
  */
 
 /**
+ * 将泛型T转换为 T 或者 T数组类型
+ */
+type Arrayable<T> = T | T[]
+
+/**
  * table column类型
  */
 type TableColum<P = any> = {
@@ -36,6 +41,35 @@ type TableConfig<P extends object> = {
 }
 
 /**
+ * form 配置选项类型
+ */
+
+type Type = 'input' | 'password' | 'select' | 'textarea'
+
+type TFromItem<K = any> = {
+  field: keyof OmitBase<K>
+  type: Type
+  lable: string
+  placeholder?: string
+  options?: { label: string; value: string | number }[]
+  isHide?: boolean
+  isDisabled?: boolean
+  rows?: number
+}
+
+type FormConfig<K = any> = {
+  columns: TFromItem<K>[]
+  rules?: Partial<
+    Record<keyof OmitBase<K>, Arrayable<import('element-plus').FormItemRule>>
+  >
+  labelWidth?: string
+  submitText?: string
+  clearText?: string
+  isAction?: boolean
+  actionplace?: 'center' | 'start' | 'end'
+}
+
+/**
  * 分页器类型
  *
  * layout 参考自element-plus
@@ -64,3 +98,8 @@ type TBase = {
   createAt: string
   updateAt: string
 }
+
+/**
+ * 剔除基础类型
+ */
+type OmitBase<T> = Partial<Omit<T, keyof TBase>>
