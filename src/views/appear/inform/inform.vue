@@ -18,7 +18,11 @@
       </el-col>
       <el-col :span="8">
         <Card title="历来通知">
-          <Table :data="data" v-bind="tableCondfig" @selectData="selectData" />
+          <Table
+            :data="data?.data"
+            v-bind="tableCondfig"
+            @selectData="selectData"
+          />
         </Card>
       </el-col>
     </el-row>
@@ -26,24 +30,23 @@
 </template>
 
 <script setup lang="ts">
+import { useLoading } from '@/hooks'
 import format from '@/utils/format'
 import { getToDay, getInformAll } from '@/api/inform'
 import type { TInform } from '@/api/inform'
 
 import { tableCondfig } from './config/table.config'
-const data = ref<TInform[]>([])
 
 const inform = ref<TInform>()
-getToDay().then((res) => {
-  inform.value = res.data[0]
+
+const { data } = useLoading(getInformAll, {
+  pages: { page: 1, limit: 5000 }
 })
 
-getInformAll().then((res) => {
-  if (!inform.value?.id) {
-    inform.value = res.data.data[0]
+useLoading(getToDay, {
+  after(data) {
+    inform.value = data[0]
   }
-
-  data.value = res.data.data
 })
 
 const selectData = (d: TInform) => {

@@ -29,7 +29,7 @@
           </template>
           <el-menu-item index="/user">用户管理</el-menu-item>
           <el-menu-item index="/range">打卡范围</el-menu-item>
-          <el-menu-item index="/issue">发布通知</el-menu-item>
+          <el-menu-item index="/issue">通知管理</el-menu-item>
         </el-sub-menu>
         <el-sub-menu index="7">
           <template #title>

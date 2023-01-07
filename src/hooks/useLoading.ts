@@ -7,21 +7,24 @@ import type { IDataResult } from '@/server/request/type'
  */
 
 export default function <T = unknown>(
-  fn: (params?: Record<string, any>) => Promise<IDataResult<T>>,
+  fn: (params?: any) => Promise<IDataResult<T>>,
   options?: {
     after?: (data: T) => void
+    pages?: IPage
   }
 ) {
   const isLoading = ref(true)
   const data = ref<T>()
 
-  const pages = reactive({
-    limit: 10,
-    page: 1
-  })
+  const pages = reactive(
+    options?.pages ?? {
+      limit: 10,
+      page: 1
+    }
+  )
 
   const getData = () =>
-    fn(pages).then((res) => {
+    fn(pages).then(res => {
       isLoading.value = false
       options?.after?.(res.data)
       data.value = res.data

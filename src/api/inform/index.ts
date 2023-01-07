@@ -12,13 +12,10 @@ export function getToDay() {
   })
 }
 
-export function getInformAll() {
+export function getInformAll(params: IPage) {
   return request.get<IPaging<TInform[]>>({
     url: '/inform',
-    params: {
-      page: 1,
-      limit: 1000
-    }
+    params
   })
 }
 

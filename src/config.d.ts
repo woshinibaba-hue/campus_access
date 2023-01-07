@@ -90,6 +90,11 @@ type IPaging<T> = {
   isMove: boolean
 }
 
+type IPage = {
+  page: number
+  limit: number
+}
+
 /**
  * 基础类型
  */
@@ -103,3 +108,5 @@ type TBase = {
  * 剔除基础类型
  */
 type OmitBase<T> = Partial<Omit<T, keyof TBase>>
+
+type ReturnTypeNotPromist<F extends Function> = any

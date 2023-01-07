@@ -35,7 +35,7 @@ import { useTable } from '@/store'
 
 const props = withDefaults(
   defineProps<{
-    data: any[]
+    data?: any[]
     height?: string | number
     stripe?: boolean
     showHeader?: boolean
