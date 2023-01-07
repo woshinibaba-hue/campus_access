@@ -20,5 +20,7 @@ export const formConfig: FormConfig<TInform> = {
     title: [{ required: true, message: '标题不能为空' }],
     content: [{ required: true, message: '内容不能为空' }]
   },
-  actionplace: 'start'
+  actionplace: 'start',
+  isAction: false,
+  labelWidth: '60'
 }

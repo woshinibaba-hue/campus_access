@@ -6,6 +6,7 @@
         :columns="columns"
         :isAdd="isAdd"
         @refresh="$emit('refresh')"
+        @add="$emit('add')"
       />
     </div>
     <el-table

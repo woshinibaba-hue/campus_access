@@ -44,12 +44,13 @@ type TFormProps = {
   modelValue: any
 }
 
-withDefaults(defineProps<TFormProps>(), {
+const props = withDefaults(defineProps<TFormProps>(), {
   labelWidth: '120px',
   submitText: '提交',
   clearText: '清空',
   isAction: true,
-  actionplace: 'center'
+  actionplace: 'center',
+  modelValue: {}
 })
 
 const emits = defineEmits<{

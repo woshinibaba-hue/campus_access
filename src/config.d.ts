@@ -71,6 +71,19 @@ type FormConfig<K = any> = {
 }
 
 /**
+ * dialog 配置类型
+ */
+
+type DialogType = {
+  form?: FormConfig
+  closeText?: string
+  submitText?: string
+  title?: string
+  width?: string
+  isFooter?: boolean
+}
+
+/**
  * 分页器类型
  *
  * layout 参考自element-plus
