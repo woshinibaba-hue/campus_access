@@ -32,6 +32,7 @@ const formRef = ref<InstanceType<typeof Form>>()
 
 const tableConfigComputed = computed<TableConfig<TInform>>(() => ({
   ...tableConfig,
+  isLoading: isLoading.value,
   pagination: {
     total: data.value?.total,
     ...pages

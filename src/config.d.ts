@@ -38,6 +38,7 @@ type TableConfig<P extends object> = {
   isHeader?: boolean
   isAdd?: boolean
   size?: 'small' | 'large' | 'default'
+  isLoading?: boolean
 }
 
 /**

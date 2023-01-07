@@ -5,13 +5,11 @@ export const tableConfig: TableConfig<TInform> = {
   columns: [
     {
       prop: 'title',
-      label: '标题',
-      width: 150
+      label: '标题'
     },
     {
       prop: 'content',
-      label: '通知内容',
-      width: 200
+      label: '通知内容'
     },
     {
       prop: 'createAt',

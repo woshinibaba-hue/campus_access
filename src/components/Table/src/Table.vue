@@ -9,6 +9,7 @@
       />
     </div>
     <el-table
+      v-load="isLoading"
       :data="data"
       :stripe="stripe"
       style="width: 100%"
@@ -52,6 +53,7 @@ const props = withDefaults(
     isHeader?: boolean
     isAdd?: boolean
     size?: 'small' | 'large' | 'default'
+    isLoading?: boolean
   }>(),
   {
     stripe: true,
@@ -63,7 +65,8 @@ const props = withDefaults(
     isAction: true,
     isHeader: true,
     isAdd: true,
-    size: 'default'
+    size: 'default',
+    isLoading: false
   }
 )
 
