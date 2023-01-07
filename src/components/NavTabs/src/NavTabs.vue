@@ -58,9 +58,9 @@ watch(
   () => route.path,
   () => {
     if (route.path === '/404') return
-    const r = routers.find((r) => r.path === route.path)
+    const r = routers.find(r => r.path === route.path)
     if (!r) return
-    let i = state.value.tabsRouter.findIndex((r) => r.path === route.path)
+    let i = state.value.tabsRouter.findIndex(r => r.path === route.path)
     if (i === -1) {
       state.value.tabsRouter.push(r)
       state.value.activeIndex = state.value.tabsRouter.length - 1
@@ -83,7 +83,10 @@ const closeTab = (i: number) => {
     router.push(state.value.tabsRouter[i])
   } else if (i === 0 && ai === 0) {
     router.push(state.value.tabsRouter[0])
-  } else if ((i !== 0 && ai !== 0) || (i === 0 && ai !== 0)) {
+  } else if (
+    ai > i ||
+    (i === ai && ((i !== 0 && ai !== 0) || (i === 0 && ai !== 0)))
+  ) {
     state.value.activeIndex = state.value.activeIndex - 1
     selectTab()
   } else {
@@ -100,7 +103,7 @@ watch(
   () => {
     const i = state.value.activeIndex
     const rs = state.value.tabsRouter
-    state.value.tabsRouter = rs.filter((v) => v.path === rs[i].path)
+    state.value.tabsRouter = rs.filter(v => v.path === rs[i].path)
     state.value.activeIndex = 0
     selectTab()
     emits('closeEnd')
