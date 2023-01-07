@@ -1,7 +1,12 @@
 <template>
   <div class="table">
     <div class="header" v-if="isHeader">
-      <TableHeader :size="size" :columns="columns" :isAdd="isAdd" />
+      <TableHeader
+        :size="size"
+        :columns="columns"
+        :isAdd="isAdd"
+        @refresh="$emit('refresh')"
+      />
     </div>
     <el-table
       :data="data"

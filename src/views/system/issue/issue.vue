@@ -1,6 +1,6 @@
 <template>
   <div class="issue">
-    <Card title="通知管理">
+    <Card title="通知管理" :isLoading="isLoading">
       <!-- <Form
         ref="formRef"
         v-bind="formConfig"
@@ -11,36 +11,32 @@
         v-bind="tableConfigComputed"
         :data="data?.data"
         @current-change="handleCurrentChange"
+        @refresh="refresh"
       />
     </Card>
   </div>
 </template>
 
 <script setup lang="ts">
+import { useLoading } from '@/hooks'
 import Tabel from '@/components/Table'
 import Form from '@/components/Form'
 import { tableConfig } from './config/table.config'
 import { formConfig } from './config/form.config'
 import { TInform, issueInform, getInformAll } from '@/api/inform'
 
-const data = ref<IPaging<TInform[]>>()
+const { data, isLoading, pages, refresh } = useLoading(getInformAll)
+
 const formData = ref<OmitBase<TInform>>({})
 const formRef = ref<InstanceType<typeof Form>>()
-const pages = ref<IPage>({ page: 1, limit: 10 })
 
 const tableConfigComputed = computed<TableConfig<TInform>>(() => ({
   ...tableConfig,
   pagination: {
     total: data.value?.total,
-    ...pages.value
+    ...pages
   }
 }))
-
-const getData = () => {
-  getInformAll(pages.value).then(res => (data.value = res.data))
-}
-
-getData()
 
 const handleSubmit = () => {
   issueInform(formData.value).then(() => {
@@ -49,12 +45,13 @@ const handleSubmit = () => {
       type: 'success'
     })
     formRef.value?.clear()
+    refresh()
   })
 }
 
 const handleCurrentChange = (page: number) => {
-  pages.value.page = page
-  getData()
+  pages.page = page
+  refresh()
 }
 </script>
 
