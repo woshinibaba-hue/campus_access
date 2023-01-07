@@ -7,7 +7,7 @@
       :closable="false"
     />
     <el-row class="row" :gutter="15">
-      <el-col :span="8" v-if="dayData">
+      <el-col :span="8" v-if="dayData?.id">
         <Card title="今日打卡统计">
           <div class="cards">
             <PunchCard
@@ -33,6 +33,14 @@
           </div>
         </Card>
       </el-col>
+      <el-col :span="8" v-else>
+        <Card title="请前往小程序内进行打卡">
+          <p>
+            请打卡小程序打卡功能，填完信息之后进行扫描下方二维码即可打卡成功
+          </p>
+          <img :src="url" alt="" class="code" />
+        </Card>
+      </el-col>
       <el-col :span="16">
         <Card title="您的全部打卡记录" :loading="isLoading">
           <Table
@@ -52,14 +60,29 @@
 import PunchCard from './components/punchCard/punchCard.vue'
 
 import { useLoading } from '@/hooks'
-import { getUserToDayPunch, getUserPunchAll, IPunch } from '@/api/punch'
+import {
+  getUserToDayPunch,
+  getUserPunchAll,
+  IPunch,
+  getCode
+} from '@/api/punch'
 
 import { tableConfig } from './config/table.config'
+
+const url = ref<string>()
 
 const { data, isLoading, refresh, pages } =
   useLoading<IPaging<IPunch[]>>(getUserPunchAll)
 
-const { data: dayData } = useLoading(getUserToDayPunch)
+const { data: dayData } = useLoading(getUserToDayPunch, {
+  after(res) {
+    if (!res.id) {
+      getCode().then(res => {
+        url.value = res.data
+      })
+    }
+  }
+})
 
 const tableConfigComputed = computed(() => ({
   ...tableConfig,
@@ -90,6 +113,10 @@ const currentChange = (page: number) => {
     // 推荐如下
     column-gap: 20px;
     row-gap: 20px;
+  }
+
+  .code {
+    width: 100%;
   }
 }
 </style>

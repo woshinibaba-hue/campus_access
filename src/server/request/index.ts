@@ -33,7 +33,7 @@ class Request {
 
     // 给所有的axios实例添加拦截器
     this.instance.interceptors.request.use(
-      (config) => {
+      config => {
         // 如果有token，则添加到请求头
         const user = storage.get<any>('user')
 
@@ -42,13 +42,13 @@ class Request {
         }
         return config
       },
-      (err) => {
+      err => {
         return Promise.reject(err)
       }
     )
 
     this.instance.interceptors.response.use(
-      (response) => {
+      response => {
         if (response.data) {
           return response.data
         }
@@ -72,7 +72,7 @@ class Request {
           }
         } else {
           ElNotification({
-            message: err.message,
+            message: err.response?.data.message,
             type: 'error'
           })
         }
@@ -88,10 +88,10 @@ class Request {
     return new Promise<IDataResult<T>>((resolve, reject) => {
       this.instance
         .request<unknown, IDataResult<T>>(requestConfig)
-        .then((res) => {
+        .then(res => {
           resolve(res)
         })
-        .catch((err) => {
+        .catch(err => {
           reject(err)
         })
         .finally(() => {

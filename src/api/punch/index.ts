@@ -41,3 +41,8 @@ export function getUserToDayPunch() {
     url: '/punch/day'
   })
 }
+export function getCode() {
+  return request.get<string>({
+    url: '/punch/code'
+  })
+}
