@@ -31,7 +31,7 @@ export default function <T = unknown>(
       data.value = res.data
     })
 
-  const refresh = useDebounceFn(getData, 1000)
+  const refresh = useDebounceFn(getData, 300)
 
   // 利用watch监听参数变化，之后重新请求数据
   watch(

@@ -18,7 +18,6 @@
             <el-button
               class="btn-icon"
               type="primary"
-              plain
               size="small"
               @click.stop="$emit('edit', row)"
             >
@@ -27,7 +26,6 @@
             <el-button
               class="btn-icon"
               type="danger"
-              plain
               size="small"
               @click.stop="$emit('delete', row)"
             >

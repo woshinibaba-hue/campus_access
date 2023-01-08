@@ -6,7 +6,7 @@
         :data="data?.data"
         @current-change="handleCurrentChange"
         @refresh="refresh"
-        @add="handleAdd"
+        @add="dialogVisible = true"
       />
 
       <Dialog
@@ -22,15 +22,12 @@
 import { useLoading } from '@/hooks'
 import Tabel from '@/components/Table'
 import Dialog from '@/components/Dialog'
-import Form from '@/components/Form'
 import { tableConfig } from './config/table.config'
 import { dialogConfig } from './config/dialog.config'
 import { TInform, issueInform, getInformAll } from '@/api/inform'
 
 const { data, isLoading, pages, refresh } = useLoading(getInformAll)
 
-const formData = ref<OmitBase<TInform>>({})
-const formRef = ref<InstanceType<typeof Form>>()
 const dialogVisible = ref(false)
 
 const tableConfigComputed = computed<TableConfig<TInform>>(() => ({
@@ -42,28 +39,20 @@ const tableConfigComputed = computed<TableConfig<TInform>>(() => ({
   }
 }))
 
-const handleSubmit = () => {
-  issueInform(formData.value).then(() => {
-    ElNotification({
-      message: '发布成功',
-      type: 'success'
-    })
-    formRef.value?.clear()
-    refresh()
-  })
-}
-
 const handleCurrentChange = (page: number) => {
   pages.page = page
   refresh()
 }
 
-const handleAdd = () => {
-  dialogVisible.value = true
-}
-
-const confirm = () => {
-  dialogVisible.value = false
+const confirm = (formData: OmitBase<TInform>) => {
+  issueInform(formData).then(() => {
+    ElNotification({
+      message: '发布成功',
+      type: 'success'
+    })
+    refresh()
+    dialogVisible.value = false
+  })
 }
 </script>
 

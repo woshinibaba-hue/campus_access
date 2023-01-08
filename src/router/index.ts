@@ -35,7 +35,7 @@ const routes: RouteRecordRaw[] = [
         path: '/issue',
         name: 'issue',
         meta: {
-          name: '发布通知'
+          name: '通知管理'
         },
         component: () => import('@/views/system/issue/issue.vue')
       },

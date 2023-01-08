@@ -122,5 +122,3 @@ type TBase = {
  * 剔除基础类型
  */
 type OmitBase<T> = Partial<Omit<T, keyof TBase>>
-
-type ReturnTypeNotPromist<F extends Function> = any

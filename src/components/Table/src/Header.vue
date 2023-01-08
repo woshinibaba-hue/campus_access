@@ -3,13 +3,12 @@
     <el-col :span="12">
       <el-button
         type="primary"
-        plain
         :size="size"
         @click="$emit('add')"
         v-if="isAdd"
+        class="addBtn"
       >
-        <el-icon class="btn-icon"><IconEpCirclePlus /></el-icon>
-        新增
+        <el-icon class="btn-icon"><IconEpCirclePlus /></el-icon> 新增
       </el-button>
     </el-col>
     <el-col :span="12" class="justify-end">
@@ -90,6 +89,18 @@ const { columnList, checkList, checkAll, isIndeterminate } = storeToRefs(table)
 
 .el-dropdown-menu {
   padding: 0 10px;
+}
+
+.addBtn {
+  > span {
+    margin-top: -2px;
+
+    .btn-icon {
+      font-size: 1.2em;
+      margin-right: 2px;
+      margin-bottom: 2px;
+    }
+  }
 }
 
 .header {

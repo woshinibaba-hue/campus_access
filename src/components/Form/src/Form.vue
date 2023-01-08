@@ -44,13 +44,12 @@ type TFormProps = {
   modelValue: any
 }
 
-const props = withDefaults(defineProps<TFormProps>(), {
+withDefaults(defineProps<TFormProps>(), {
   labelWidth: '120px',
   submitText: '提交',
   clearText: '清空',
   isAction: true,
-  actionplace: 'center',
-  modelValue: {}
+  actionplace: 'center'
 })
 
 const emits = defineEmits<{
@@ -67,8 +66,7 @@ const handleSubmit = () => {
 }
 
 const clear = () => {
-  emits('update:modelValue', {})
-  setTimeout(() => formRef.value?.clearValidate())
+  formRef.value?.resetFields()
 }
 
 defineExpose({

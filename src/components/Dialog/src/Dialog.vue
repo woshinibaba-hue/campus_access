@@ -3,7 +3,7 @@
     <el-dialog v-model="visible" :title="title" :width="width" @close="close">
       <slot name="content">
         <template v-if="form">
-          <Form v-bind="form" v-model="data" ref="formRef" />
+          <Form v-bind="form" v-model="formData" ref="formRef" />
         </template>
       </slot>
       <template v-if="isFooter" #footer>
@@ -11,7 +11,7 @@
           <el-button @click="close">
             {{ closeText }}
           </el-button>
-          <el-button type="primary" @click="$emit('confirm')">
+          <el-button type="primary" @click="$emit('confirm', formData)">
             {{ submitText }}
           </el-button>
         </span>
@@ -31,7 +31,6 @@ type Props = {
   width?: string
   isFooter?: boolean
   form?: FormConfig
-  formData?: any
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -45,21 +44,21 @@ const props = withDefaults(defineProps<Props>(), {
 
 const emits = defineEmits<{
   (e: 'update:modelValue', data: boolean): void
+  (e: 'confirm', formData: any): void
 }>()
 
 const formRef = ref<InstanceType<typeof Form>>()
 
 const visible = ref()
-const data = ref()
+const formData = ref<any>({})
 
 const close = () => {
-  formRef.value?.clear()
   emits('update:modelValue', false)
+  formRef.value?.clear()
 }
 
 watchEffect(() => {
   visible.value = props.modelValue
-  data.value = props.formData
 })
 </script>
 
