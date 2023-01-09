@@ -63,7 +63,6 @@ const props = withDefaults(
     isRadio: false,
     isPaging: true,
     isShowIndex: true,
-    isAction: true,
     isHeader: true,
     isAdd: true,
     size: 'default',
@@ -94,6 +93,10 @@ init(props.columns)
 
 :deep(.el-table__row) {
   height: 40px;
+}
+
+:deep(th) {
+  color: var(--el-text-color-primary);
 }
 
 .btn-icon {

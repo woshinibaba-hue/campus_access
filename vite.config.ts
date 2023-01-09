@@ -63,7 +63,7 @@ export default defineConfig({
         // 将请求地址改为代理地址
         changeOrigin: true,
         // 重写请求路径
-        rewrite: (path) => path.replace(/^\/api/, '')
+        rewrite: path => path.replace(/^\/api/, '')
       }
     }
   }

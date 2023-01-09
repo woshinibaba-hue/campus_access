@@ -1,6 +1,11 @@
 <template>
   <div class="dialog">
-    <el-dialog v-model="visible" :title="title" :width="width" @close="close">
+    <el-dialog
+      v-model="visible"
+      :title="`${edit?.id ? '编辑' : '新增'}${title}`"
+      :width="width"
+      @close="close"
+    >
       <slot name="content">
         <template v-if="form">
           <Form v-bind="form" v-model="formData" ref="formRef" />
@@ -31,34 +36,38 @@ type Props = {
   width?: string
   isFooter?: boolean
   form?: FormConfig
+  edit?: Record<string, any>
 }
 
 const props = withDefaults(defineProps<Props>(), {
   modelValue: false,
   closeText: '关闭',
   submitText: '确认',
-  title: '我是默认标题',
   width: '50%',
-  isFooter: true
+  isFooter: true,
+  title: ''
 })
 
 const emits = defineEmits<{
   (e: 'update:modelValue', data: boolean): void
+  (e: 'update:edit', formData: any): void
   (e: 'confirm', formData: any): void
 }>()
 
 const formRef = ref<InstanceType<typeof Form>>()
 
 const visible = ref()
-const formData = ref<any>({})
+const formData = ref<any>()
 
 const close = () => {
   emits('update:modelValue', false)
+  emits('update:edit', {})
   formRef.value?.clear()
 }
 
 watchEffect(() => {
   visible.value = props.modelValue
+  formData.value = { ...props.edit }
 })
 </script>
 

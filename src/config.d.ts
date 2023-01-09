@@ -8,6 +8,11 @@
 type Arrayable<T> = T | T[]
 
 /**
+ * 剔除基础类型
+ */
+type OmitBase<T> = Partial<Omit<T, keyof TBase>>
+
+/**
  * table column类型
  */
 type TableColum<P = any> = {
@@ -58,7 +63,7 @@ type TFromItem<K = any> = {
   rows?: number
 }
 
-type FormConfig<K = any> = {
+type FormConfig<K extends object> = {
   columns: TFromItem<K>[]
   rules?: Partial<
     Record<keyof OmitBase<K>, Arrayable<import('element-plus').FormItemRule>>
@@ -75,12 +80,12 @@ type FormConfig<K = any> = {
  */
 
 type DialogType = {
-  form?: FormConfig
   closeText?: string
   submitText?: string
   title?: string
   width?: string
   isFooter?: boolean
+  form?: FormConfig
 }
 
 /**
@@ -117,8 +122,3 @@ type TBase = {
   createAt: string
   updateAt: string
 }
-
-/**
- * 剔除基础类型
- */
-type OmitBase<T> = Partial<Omit<T, keyof TBase>>

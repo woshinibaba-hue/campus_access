@@ -40,12 +40,13 @@ import { tableCondfig } from './config/table.config'
 const inform = ref<TInform>()
 
 const { data } = useLoading(getInformAll, {
-  pages: { page: 1, limit: 5000 }
-})
-
-useLoading(getToDay, {
-  after(data) {
-    inform.value = data[0]
+  pages: { page: 1, limit: 5000 },
+  after() {
+    useLoading(getToDay, {
+      after(res) {
+        inform.value = res[0] ?? data.value?.data[0]
+      }
+    })
   }
 })
 

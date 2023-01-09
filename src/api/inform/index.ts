@@ -25,3 +25,9 @@ export function issueInform(data: OmitBase<TInform>) {
     data
   })
 }
+
+export function deleteById(id: number) {
+  return request.delete({
+    url: `/inform/${id}`
+  })
+}

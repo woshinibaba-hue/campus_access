@@ -5,11 +5,13 @@ export const tableConfig: TableConfig<TInform> = {
   columns: [
     {
       prop: 'title',
-      label: '标题'
+      label: '标题',
+      width: 140
     },
     {
       prop: 'content',
-      label: '通知内容'
+      label: '通知内容',
+      width: 350
     },
     {
       prop: 'createAt',
@@ -26,7 +28,9 @@ export const tableConfig: TableConfig<TInform> = {
     {
       slotName: 'action',
       label: '操作',
-      width: 160
+      width: 120,
+      align: 'center',
+      isFixed: 'right'
     }
   ]
 }

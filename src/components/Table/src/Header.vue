@@ -92,9 +92,7 @@ const { columnList, checkList, checkAll, isIndeterminate } = storeToRefs(table)
 }
 
 .addBtn {
-  > span {
-    margin-top: -2px;
-
+  span {
     .btn-icon {
       font-size: 1.2em;
       margin-right: 2px;

@@ -7,11 +7,14 @@
         @current-change="handleCurrentChange"
         @refresh="refresh"
         @add="dialogVisible = true"
+        @delete="handleDelete"
+        @edit="handleEdit"
       />
 
       <Dialog
         v-bind="dialogConfig"
         v-model="dialogVisible"
+        v-model:edit="editItem"
         @confirm="confirm"
       />
     </Card>
@@ -24,13 +27,13 @@ import Tabel from '@/components/Table'
 import Dialog from '@/components/Dialog'
 import { tableConfig } from './config/table.config'
 import { dialogConfig } from './config/dialog.config'
-import { TInform, issueInform, getInformAll } from '@/api/inform'
+import * as inform from '@/api/inform'
 
-const { data, isLoading, pages, refresh } = useLoading(getInformAll)
+const { data, isLoading, pages, refresh } = useLoading(inform.getInformAll)
 
 const dialogVisible = ref(false)
 
-const tableConfigComputed = computed<TableConfig<TInform>>(() => ({
+const tableConfigComputed = computed<TableConfig<inform.TInform>>(() => ({
   ...tableConfig,
   isLoading: isLoading.value,
   pagination: {
@@ -41,11 +44,10 @@ const tableConfigComputed = computed<TableConfig<TInform>>(() => ({
 
 const handleCurrentChange = (page: number) => {
   pages.page = page
-  refresh()
 }
 
-const confirm = (formData: OmitBase<TInform>) => {
-  issueInform(formData).then(() => {
+const confirm = (formData: OmitBase<inform.TInform>) => {
+  inform.issueInform(formData).then(() => {
     ElNotification({
       message: '发布成功',
       type: 'success'
@@ -54,6 +56,27 @@ const confirm = (formData: OmitBase<TInform>) => {
     dialogVisible.value = false
   })
 }
+
+const handleDelete = async (data: inform.TInform) => {
+  await inform.deleteById(data.id)
+  ElNotification({
+    message: '删除成功',
+    type: 'success'
+  })
+  refresh()
+}
+
+const editItem = ref<OmitBase<inform.TInform>>({})
+const handleEdit = (data: inform.TInform) => {
+  editItem.value = data
+  dialogVisible.value = true
+}
 </script>
 
-<style scoped lang="less"></style>
+<style scoped lang="less">
+.issue {
+  // display: flex;
+  // justify-content: center;
+  // width: 1220px;
+}
+</style>

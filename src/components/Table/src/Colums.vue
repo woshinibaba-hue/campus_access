@@ -4,7 +4,7 @@
     <el-table-column
       :prop="i.prop"
       :label="i.isShow ? i.label : ''"
-      :width="i.isShow ? i.width : 0"
+      :width="i.width"
       :show-overflow-tooltip="i.isTooltip ?? true"
       :align="i.align ?? 'left'"
       :fixed="i.isShow && i.isFixed"
@@ -21,16 +21,18 @@
               size="small"
               @click.stop="$emit('edit', row)"
             >
-              <el-icon><IconEpEdit /></el-icon>编辑
+              <el-icon><IconEpEditPen /></el-icon>
             </el-button>
-            <el-button
-              class="btn-icon"
-              type="danger"
-              size="small"
-              @click.stop="$emit('delete', row)"
+            <el-popconfirm
+              title="确认永久删除该数据？"
+              @confirm="$emit('delete', row)"
             >
-              <el-icon><IconEpDelete /></el-icon>删除
-            </el-button>
+              <template #reference>
+                <el-button class="btn-icon" type="danger" size="small">
+                  <el-icon><IconAntDesignDeleteFilled /></el-icon>
+                </el-button>
+              </template>
+            </el-popconfirm>
           </template>
           <template v-else-if="i.slotName === 'user'">
             {{ i.prop && i.field && row[i.prop][i.field] }}
@@ -50,7 +52,7 @@ import format from '@/utils/format'
 import { useTable } from '@/store'
 
 defineProps<{
-  isShowIndex: boolean
+  isShowIndex?: boolean
 }>()
 
 defineEmits<{
