@@ -30,12 +30,8 @@
 </template>
 
 <script setup lang="ts">
-import Table from '@/components/Table'
 import AMapLoader from '@amap/amap-jsapi-loader'
 import { tableConfig } from './config/table.config'
-import { savePath, getPath } from '@/api/punch'
-import { useLoading } from '@/hooks'
-
 const path = ref([])
 const newPath = ref<{ latitude: number; longitude: number }[]>([])
 

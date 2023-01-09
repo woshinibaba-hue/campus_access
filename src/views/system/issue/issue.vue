@@ -1,7 +1,7 @@
 <template>
   <div class="issue">
     <Card title="通知管理" :isLoading="isLoading">
-      <Tabel
+      <Table
         v-bind="tableConfigComputed"
         :data="data?.data"
         @current-change="handleCurrentChange"
@@ -22,18 +22,15 @@
 </template>
 
 <script setup lang="ts">
-import { useLoading } from '@/hooks'
-import Tabel from '@/components/Table'
-import Dialog from '@/components/Dialog'
+import type { TInform } from '@/api/inform/inform'
 import { tableConfig } from './config/table.config'
 import { dialogConfig } from './config/dialog.config'
-import * as inform from '@/api/inform'
 
-const { data, isLoading, pages, refresh } = useLoading(inform.getInformAll)
+const { data, isLoading, pages, refresh } = useLoading(getInformAll)
 
 const dialogVisible = ref(false)
 
-const tableConfigComputed = computed<TableConfig<inform.TInform>>(() => ({
+const tableConfigComputed = computed<tableConfig<TInform>>(() => ({
   ...tableConfig,
   isLoading: isLoading.value,
   pagination: {
@@ -46,8 +43,8 @@ const handleCurrentChange = (page: number) => {
   pages.page = page
 }
 
-const confirm = (formData: OmitBase<inform.TInform>) => {
-  inform.issueInform(formData).then(() => {
+const confirm = (formData: OmitBase<TInform>) => {
+  issueInform(formData).then(() => {
     ElNotification({
       message: '发布成功',
       type: 'success'
@@ -57,8 +54,8 @@ const confirm = (formData: OmitBase<inform.TInform>) => {
   })
 }
 
-const handleDelete = async (data: inform.TInform) => {
-  await inform.deleteById(data.id)
+const handleDelete = async (data: TInform) => {
+  await deleteById(data.id)
   ElNotification({
     message: '删除成功',
     type: 'success'
@@ -66,8 +63,8 @@ const handleDelete = async (data: inform.TInform) => {
   refresh()
 }
 
-const editItem = ref<OmitBase<inform.TInform>>({})
-const handleEdit = (data: inform.TInform) => {
+const editItem = ref<OmitBase<TInform>>({})
+const handleEdit = (data: TInform) => {
   editItem.value = data
   dialogVisible.value = true
 }

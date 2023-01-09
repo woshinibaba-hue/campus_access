@@ -11,7 +11,7 @@
           <div class="footer" v-if="inform?.id">
             <p class="name">武汉工程科技学院防疫部</p>
             <p class="time">
-              {{ format.formatTime(inform.createAt, 'YYYY年MM月DD日') }}
+              {{ format?.formatTime(inform.createAt, 'YYYY年MM月DD日') }}
             </p>
           </div>
         </Card>
@@ -30,11 +30,8 @@
 </template>
 
 <script setup lang="ts">
-import { useLoading } from '@/hooks'
 import format from '@/utils/format'
-import { getToDay, getInformAll } from '@/api/inform'
-import type { TInform } from '@/api/inform'
-
+import type { TInform } from '@/api/inform/inform'
 import { tableCondfig } from './config/table.config'
 
 const inform = ref<TInform>()

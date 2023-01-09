@@ -1,4 +1,4 @@
-import type { TInform } from '@/api/inform'
+import type { TInform } from '@/api/inform/inform'
 
 export const tableConfig: TableConfig<TInform> = {
   height: 358,

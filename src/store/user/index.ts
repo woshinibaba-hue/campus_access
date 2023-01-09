@@ -1,4 +1,3 @@
-import { userLogin } from '@/api/login'
 import { IUser } from '@/api/login/type'
 import storage from '@/utils/storage'
 

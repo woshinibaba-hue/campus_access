@@ -96,9 +96,6 @@
 
 <script setup lang="ts">
 import CardData from './components/CardData.vue'
-import { Map } from '@/components/Echart'
-import { useLoading } from '@/hooks'
-import { getOutbreak } from '@/api/outbreak'
 
 const columns = [
   {

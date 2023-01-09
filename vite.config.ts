@@ -19,7 +19,15 @@ export default defineConfig({
         /\.vue$/,
         /\.vue\?vue/ // .vue
       ],
-      imports: ['vue', 'vue-router', 'pinia'],
+      imports: ['vue', 'vue-router', 'pinia', '@vueuse/core'],
+      // 导入自定义模块
+      // dirs 默认情况下只会扫描第一层文件，如果需要扫描前台，需要加上 /** (坑点)
+      dirs: [
+        './src/api/**',
+        './src/hooks',
+        './src/store',
+        './src/components/**'
+      ],
       // 解决eslint报错，无法找到
       eslintrc: {
         enabled: false, // 若没此json文件，先开启，生成后在关闭

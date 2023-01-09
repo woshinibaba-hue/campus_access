@@ -57,8 +57,6 @@
 
 <script setup lang="ts">
 import Tab from './tab.vue'
-import { useFullscreen, useDark, useToggle } from '@vueuse/core'
-import { useUser, useTabs } from '@/store'
 
 const userData = useUser()
 const { user } = storeToRefs(userData)

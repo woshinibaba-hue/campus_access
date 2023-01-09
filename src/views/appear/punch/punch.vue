@@ -57,17 +57,8 @@
 </template>
 
 <script setup lang="ts">
-import PunchCard from './components/punchCard/punchCard.vue'
-
-import { useLoading } from '@/hooks'
-import {
-  getUserToDayPunch,
-  getUserPunchAll,
-  IPunch,
-  getCode
-} from '@/api/punch'
-
 import { tableConfig } from './config/table.config'
+import PunchCard from './components/punchCard/punchCard.vue'
 
 const url = ref<string>()
 
@@ -86,7 +77,11 @@ const { data: dayData } = useLoading(getUserToDayPunch, {
 
 const tableConfigComputed = computed(() => ({
   ...tableConfig,
-  pagination: { ...tableConfig.pagination, total: data.value?.total, ...pages }
+  pagination: {
+    ...tableConfig.pagination,
+    total: data.value?.total,
+    ...pages
+  }
 }))
 
 const currentChange = (page: number) => {

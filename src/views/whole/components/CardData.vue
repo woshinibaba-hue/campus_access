@@ -12,6 +12,7 @@
 </template>
 
 <script setup lang="ts">
+import Count from './Count/Count.vue'
 defineProps<{
   color: string
   name: string

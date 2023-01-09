@@ -1,4 +1,4 @@
-import type { TInform } from '@/api/inform'
+import type { TInform } from '@/api/inform/inform'
 
 export const tableCondfig: TableConfig<TInform> = {
   showHeader: false,

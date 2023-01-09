@@ -4,6 +4,7 @@
     :rules="rules"
     ref="formRef"
     :model="modelValue"
+    :label-position="labelPosition"
   >
     <el-form-item
       v-for="item in columns"
@@ -18,6 +19,7 @@
         :disabled="item.isDisabled"
         :rows="item.rows"
         v-model="modelValue[item.field]"
+        clearable
       />
     </el-form-item>
     <el-form-item v-if="isAction" class="action">
@@ -41,6 +43,7 @@ type TFormProps = {
   clearText?: string
   isAction?: boolean
   actionplace?: 'center' | 'start' | 'end'
+  labelPosition?: 'right' | 'left' | 'top'
   modelValue: any
 }
 
@@ -49,7 +52,8 @@ withDefaults(defineProps<TFormProps>(), {
   submitText: '提交',
   clearText: '清空',
   isAction: true,
-  actionplace: 'center'
+  actionplace: 'center',
+  labelPosition: 'left'
 })
 
 const emits = defineEmits<{

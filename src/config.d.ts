@@ -55,7 +55,7 @@ type Type = 'input' | 'password' | 'select' | 'textarea'
 type TFromItem<K = any> = {
   field: keyof OmitBase<K>
   type: Type
-  lable: string
+  lable?: string
   placeholder?: string
   options?: { label: string; value: string | number }[]
   isHide?: boolean
@@ -68,11 +68,12 @@ type FormConfig<K extends object> = {
   rules?: Partial<
     Record<keyof OmitBase<K>, Arrayable<import('element-plus').FormItemRule>>
   >
-  labelWidth?: string
+  labelWidth?: string | number
   submitText?: string
   clearText?: string
   isAction?: boolean
   actionplace?: 'center' | 'start' | 'end'
+  labelPosition?: 'right' | 'left' | 'top'
 }
 
 /**
