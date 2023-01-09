@@ -21,7 +21,7 @@ export default defineConfig({
       ],
       imports: ['vue', 'vue-router', 'pinia', '@vueuse/core'],
       // 导入自定义模块
-      // dirs 默认情况下只会扫描第一层文件，如果需要扫描前台，需要加上 /** (坑点)
+      // dirs 默认情况下只会扫描第一层文件，如果需要扫描更深层次的文件，需要加上 /** (坑点)
       dirs: [
         './src/api/**',
         './src/hooks',

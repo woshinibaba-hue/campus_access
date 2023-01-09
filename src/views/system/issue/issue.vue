@@ -43,15 +43,17 @@ const handleCurrentChange = (page: number) => {
   pages.page = page
 }
 
-const confirm = (formData: OmitBase<TInform>) => {
-  issueInform(formData).then(() => {
-    ElNotification({
-      message: '发布成功',
-      type: 'success'
-    })
-    refresh()
-    dialogVisible.value = false
+const confirm = async (formData: TInform) => {
+  console.log(formData)
+  if (!formData.id) await issueInform(formData)
+  else await updateIssue(formData)
+
+  ElNotification({
+    message: '成功',
+    type: 'success'
   })
+  refresh()
+  dialogVisible.value = false
 }
 
 const handleDelete = async (data: TInform) => {

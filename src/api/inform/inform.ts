@@ -31,3 +31,10 @@ export function deleteById(id: number) {
     url: `/inform/${id}`
   })
 }
+
+export function updateIssue(data: TInform) {
+  return request.patch({
+    url: `/inform/${data.id}`,
+    data
+  })
+}
