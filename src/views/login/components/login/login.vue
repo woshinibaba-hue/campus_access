@@ -9,7 +9,6 @@ import { formConfig } from './config/form.config'
 
 const form = reactive({ email: 'zz@qq.com', password: '123' })
 
-const formRef = ref<InstanceType<typeof ElForm>>()
 const store = useUser()
 </script>
 

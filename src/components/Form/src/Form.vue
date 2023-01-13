@@ -33,12 +33,11 @@
 
 <script setup lang="ts">
 import { ElForm } from 'element-plus'
-import { FormRules } from 'element-plus'
 
 type TFormProps = {
   columns: TFromItem[]
   rules?: FormRules
-  labelWidth?: string
+  labelWidth?: string | number
   submitText?: string
   clearText?: string
   isAction?: boolean

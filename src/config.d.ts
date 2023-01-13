@@ -63,17 +63,20 @@ type TFromItem<K = any> = {
   rows?: number
 }
 
+type FormRules = Partial<
+  Record<keyof OmitBase<K>, Arrayable<import('element-plus').FormItemRule>>
+>
+
 type FormConfig<K extends object> = {
   columns: TFromItem<K>[]
-  rules?: Partial<
-    Record<keyof OmitBase<K>, Arrayable<import('element-plus').FormItemRule>>
-  >
+  rules?: FormRules
   labelWidth?: string | number
   submitText?: string
   clearText?: string
   isAction?: boolean
   actionplace?: 'center' | 'start' | 'end'
   labelPosition?: 'right' | 'left' | 'top'
+  modelValue?: any
 }
 
 /**

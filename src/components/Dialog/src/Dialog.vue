@@ -35,7 +35,7 @@ type Props = {
   title?: string
   width?: string
   isFooter?: boolean
-  form?: FormConfig
+  form?: FormConfig<Record<string, any>>
   edit?: Record<string, any>
 }
 

@@ -10,7 +10,8 @@
     "plugin:vue/vue3-essential",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
-    "./.eslintrc-auto-import.json" //导入全局导入的vue，vue-router等相关api，解决eslint报错
+    "./.eslintrc-auto-import.json", //导入全局导入的vue，vue-router等相关api，解决eslint报错
+    "./auto-imports.d.ts" // 解决全局导入eslint报无法找到错误
   ],
   "parserOptions": {
     "ecmaVersion": "latest",

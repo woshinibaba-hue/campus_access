@@ -64,6 +64,14 @@ const routes: RouteRecordRaw[] = [
         component: () => import('@/views/appear/punch/punch.vue')
       },
       {
+        path: '/nucleate',
+        name: 'nucleate',
+        meta: {
+          name: '每日核酸上报'
+        },
+        component: () => import('@/views/appear/nucleates/nucleates.vue')
+      },
+      {
         path: '/inform',
         name: 'inform',
         meta: {
