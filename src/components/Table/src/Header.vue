@@ -43,14 +43,16 @@
             </el-row>
           </el-dropdown-menu>
           <el-dropdown-menu>
-            <el-checkbox-group v-model="checkList">
-              <el-checkbox
-                v-for="i in columnList"
-                :key="i.prop"
-                :label="i.label"
-                @change="table.updateTableCol(i)"
-              />
-            </el-checkbox-group>
+            <el-scrollbar height="400px">
+              <el-checkbox-group v-model="checkList">
+                <el-checkbox
+                  v-for="i in columnList"
+                  :key="i.prop"
+                  :label="i.label"
+                  @change="table.updateTableCol(i)"
+                />
+              </el-checkbox-group>
+            </el-scrollbar>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
