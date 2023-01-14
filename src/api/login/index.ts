@@ -12,7 +12,7 @@ export function userLogin(data: any) {
 
 // 查询用户
 export function getUserAll(params: IPage) {
-  return request.get<IUserAndHealth[]>({
+  return request.get<IPaging<IUserAndHealth[]>>({
     url: '/user',
     params
   })

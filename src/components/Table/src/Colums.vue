@@ -35,7 +35,7 @@
             </el-popconfirm>
           </template>
           <template v-else-if="i.type === 'object'">
-            {{ i.prop && i.field && row[i.prop][i.field] }}
+            {{ i.prop && i.field && row[i.prop]?.[i.field] }}
           </template>
           <template v-else-if="i.type === 'url'">
             <el-link type="primary" :href="row[i.prop!]" target="_blank">
