@@ -30,7 +30,7 @@ const { data, isLoading, pages, refresh } = useLoading(getInformAll)
 
 const dialogVisible = ref(false)
 
-const tableConfigComputed = computed<tableConfig<TInform>>(() => ({
+const tableConfigComputed = computed<TableConfig<TInform>>(() => ({
   ...tableConfig,
   isLoading: isLoading.value,
   pagination: {
