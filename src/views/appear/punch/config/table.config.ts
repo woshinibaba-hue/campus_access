@@ -11,7 +11,7 @@ export const tableConfig: TableConfig<IPunch> = {
     {
       label: '昵称',
       prop: 'user',
-      type: 'user',
+      type: 'object',
       field: 'nickName'
     },
     {

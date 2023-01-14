@@ -20,7 +20,7 @@ type TableColum<P = any> = {
   label: string
   width?: number
   isTooltip?: boolean
-  type?: 'url' | 'user' | 'action' | 'date'
+  type?: 'url' | 'object' | 'action' | 'date'
   field?: string
   align?: 'left' | 'center' | 'right'
   format?: string

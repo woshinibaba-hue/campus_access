@@ -7,14 +7,14 @@ export const tableCondfig: TableConfig<TNucleate> = {
       prop: 'user',
       label: '用户昵称',
       field: 'nickName',
-      type: 'user',
+      type: 'object',
       width: 80
     },
     {
       prop: 'user',
       label: '个性签名',
       field: 'referral',
-      type: 'user',
+      type: 'object',
       width: 150
     },
     {

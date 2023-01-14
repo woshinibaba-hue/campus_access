@@ -34,7 +34,7 @@
               </template>
             </el-popconfirm>
           </template>
-          <template v-else-if="i.type === 'user'">
+          <template v-else-if="i.type === 'object'">
             {{ i.prop && i.field && row[i.prop][i.field] }}
           </template>
           <template v-else-if="i.type === 'url'">
