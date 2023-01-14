@@ -9,11 +9,13 @@ export const tableConfig: TableConfig<IUserAndHealth> = {
     {
       label: '邮箱',
       prop: 'email',
-      width: 120
+      width: 130
     },
     {
       label: '头像',
-      prop: 'avatar'
+      prop: 'avatar',
+      type: 'image',
+      width: 150
     },
     {
       label: '真实姓名',

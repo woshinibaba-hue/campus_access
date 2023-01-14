@@ -42,6 +42,15 @@
               {{ row[i.prop!] }}
             </el-link>
           </template>
+          <template v-else-if="i.type === 'image'">
+            <el-image
+              v-if="row[i.prop!]"
+              style="width: 100px; height: 130px"
+              fit="cover"
+              :url="row[i.prop!]"
+            />
+            <span v-else>暂无头像</span>
+          </template>
           <template v-else>
             {{ i.prop && row[i.prop] }}
           </template>

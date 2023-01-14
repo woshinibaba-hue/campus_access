@@ -43,7 +43,7 @@
             </el-row>
           </el-dropdown-menu>
           <el-dropdown-menu>
-            <el-scrollbar height="400px">
+            <el-scrollbar max-height="400px">
               <el-checkbox-group v-model="checkList">
                 <el-checkbox
                   v-for="i in columnList"
@@ -83,6 +83,10 @@ const { columnList, checkList, checkAll, isIndeterminate } = storeToRefs(table)
 </script>
 
 <style lang="less" scoped>
+.el-row {
+  border-bottom: 1px solid var(--el-border-color);
+  padding-bottom: 15px;
+}
 .el-checkbox-group {
   display: flex;
   flex-direction: column;
