@@ -7,16 +7,16 @@ export const useTable = defineStore('table', () => {
 
   const init = (columns: TableColum[]) => {
     columnList.value = columns
-    tableCol.value = columns.map((v) => ({
+    tableCol.value = columns.map(v => ({
       ...v,
       isShow: true
     }))
-    tableCol.value.forEach((v) => checkList.value.push(v.label))
+    tableCol.value.forEach(v => checkList.value.push(v.label))
   }
 
   const updateTableCol = (col: TableColum) => {
-    tableCol.value.forEach((t) => {
-      if (t.prop === col.prop) {
+    tableCol.value.forEach(t => {
+      if (t.field === col.field && t.prop === col.prop) {
         t.isShow = !t.isShow
       }
     })
@@ -30,14 +30,14 @@ export const useTable = defineStore('table', () => {
     checkList.value = []
 
     if (check) {
-      tableCol.value = columnList.value.map((v) => ({
+      tableCol.value = columnList.value.map(v => ({
         ...v,
         isShow: true
       }))
-      tableCol.value.forEach((v) => checkList.value.push(v.label))
+      tableCol.value.forEach(v => checkList.value.push(v.label))
       isReset && (checkAll.value = true)
     } else {
-      tableCol.value.forEach((t) => (t.isShow = false))
+      tableCol.value.forEach(t => (t.isShow = false))
     }
 
     isIndeterminate.value = false

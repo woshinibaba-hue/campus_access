@@ -47,7 +47,7 @@
               <el-checkbox-group v-model="checkList">
                 <el-checkbox
                   v-for="i in columnList"
-                  :key="i.prop"
+                  :key="i.field ?? i.prop"
                   :label="i.label"
                   @change="table.updateTableCol(i)"
                 />
