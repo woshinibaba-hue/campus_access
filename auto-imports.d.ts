@@ -43,6 +43,7 @@ declare global {
   const getOutbreak: typeof import('./src/api/outbreak/index')['getOutbreak']
   const getPath: typeof import('./src/api/punch/index')['getPath']
   const getToDay: typeof import('./src/api/inform/inform')['getToDay']
+  const getUserNucleate: typeof import('./src/api/nucleates/index')['getUserNucleate']
   const getUserPunchAll: typeof import('./src/api/punch/index')['getUserPunchAll']
   const getUserToDayPunch: typeof import('./src/api/punch/index')['getUserToDayPunch']
   const h: typeof import('vue')['h']

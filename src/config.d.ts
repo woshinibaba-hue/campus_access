@@ -20,7 +20,7 @@ type TableColum<P = any> = {
   label: string
   width?: number
   isTooltip?: boolean
-  slotName?: string
+  type?: string
   field?: string
   align?: 'left' | 'center' | 'right'
   format?: string

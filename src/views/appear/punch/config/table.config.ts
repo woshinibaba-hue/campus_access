@@ -11,7 +11,7 @@ export const tableConfig: TableConfig<IPunch> = {
     {
       label: '昵称',
       prop: 'user',
-      slotName: 'user',
+      type: 'user',
       field: 'nickName'
     },
     {
@@ -57,7 +57,7 @@ export const tableConfig: TableConfig<IPunch> = {
       label: '打卡时间',
       width: 120,
       prop: 'createAt',
-      slotName: 'date',
+      type: 'date',
       isFixed: 'right'
     }
   ]

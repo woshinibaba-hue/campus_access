@@ -16,7 +16,7 @@ export const tableCondfig: TableConfig<TInform> = {
     {
       label: '发布时间',
       prop: 'createAt',
-      slotName: 'date',
+      type: 'date',
       align: 'right',
       format: 'YYYY年MM月DD日'
     }

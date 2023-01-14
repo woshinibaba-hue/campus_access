@@ -16,17 +16,17 @@ export const tableConfig: TableConfig<TInform> = {
     {
       prop: 'createAt',
       label: '发布时间',
-      slotName: 'date',
+      type: 'date',
       format: 'YYYY-MM-DD HH:mm:DD'
     },
     {
       prop: 'updateAt',
       label: '更新时间',
-      slotName: 'date',
+      type: 'date',
       format: 'YYYY-MM-DD HH:mm:DD'
     },
     {
-      slotName: 'action',
+      type: 'action',
       label: '操作',
       width: 120,
       align: 'center',

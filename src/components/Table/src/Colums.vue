@@ -11,10 +11,10 @@
     >
       <template #default="{ row }">
         <template v-if="i.isShow">
-          <template v-if="i.slotName === 'date'">
+          <template v-if="i.type === 'date'">
             {{ i.prop && format.formatTime(row[i.prop], i.format) }}
           </template>
-          <template v-else-if="i.slotName === 'action'">
+          <template v-else-if="i.type === 'action'">
             <el-button
               class="btn-icon"
               type="primary"
@@ -34,8 +34,13 @@
               </template>
             </el-popconfirm>
           </template>
-          <template v-else-if="i.slotName === 'user'">
+          <template v-else-if="i.type === 'user'">
             {{ i.prop && i.field && row[i.prop][i.field] }}
+          </template>
+          <template v-else-if="i.type === 'url'">
+            <el-link type="primary" :href="row[i.prop!]" target="_blank">
+              {{ row[i.prop!] }}
+            </el-link>
           </template>
           <template v-else>
             {{ i.prop && row[i.prop] }}
