@@ -29,12 +29,6 @@ export const formConfig: FormConfig<IRegister> = {
       placeholder: '请输入用户名'
     },
     {
-      lable: '头像',
-      field: 'avatar',
-      placeholder: '请输入头像',
-      type: 'upload'
-    },
-    {
       lable: '个人签名',
       field: 'referral',
       type: 'textarea',

@@ -12,7 +12,9 @@
       :label="item.lable"
       :prop="item.field"
     >
-      <template v-if="item.type === 'upload'"></template>
+      <template v-if="item.type === 'upload'">
+        <Upload />
+      </template>
       <el-input
         v-else
         :type="item.type"
