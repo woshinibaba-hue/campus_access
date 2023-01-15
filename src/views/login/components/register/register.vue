@@ -16,8 +16,13 @@ import type { IRegister } from '@/api/login/type'
 const formRef = ref<InstanceType<typeof Form>>()
 const formData = ref<IRegister>({})
 
-const handleSubmit = () => {
-  console.log(formData.value)
+const handleSubmit = async () => {
+  await register(formData.value)
+  ElNotification({
+    message: '注册成功',
+    type: 'success'
+  })
+  formRef.value?.clear()
 }
 
 defineExpose({
