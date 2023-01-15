@@ -33,3 +33,7 @@ type health = {
 export type IUserAndHealth = {
   health: health
 } & IUser
+
+export type IRegister = Partial<
+  Record<'email' | 'password' | 'nickName' | 'avatar' | 'referral', string>
+>

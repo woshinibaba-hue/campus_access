@@ -12,7 +12,9 @@
       :label="item.lable"
       :prop="item.field"
     >
+      <template v-if="item.type === 'upload'"></template>
       <el-input
+        v-else
         :type="item.type"
         :placeholder="item.placeholder"
         :show-password="item.type === 'password'"
@@ -82,6 +84,7 @@ defineExpose({
   :deep(.el-form-item__content) {
     display: flex;
     justify-content: v-bind(actionplace);
+    margin-left: 0 !important;
   }
 }
 </style>

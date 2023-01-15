@@ -72,10 +72,4 @@ const handleEdit = (data: TInform) => {
 }
 </script>
 
-<style scoped lang="less">
-.issue {
-  // display: flex;
-  // justify-content: center;
-  // width: 1220px;
-}
-</style>
+<style scoped lang="less"></style>

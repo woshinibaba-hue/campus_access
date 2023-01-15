@@ -5,7 +5,9 @@
       <el-tab-pane label="账号密码登录" name="account">
         <Login />
       </el-tab-pane>
-      <el-tab-pane label="账号注册" name="register">敬请期待...</el-tab-pane>
+      <el-tab-pane label="账号注册" name="register">
+        <Register ref="RegisterRef" />
+      </el-tab-pane>
     </el-tabs>
   </div>
 </template>
@@ -13,9 +15,18 @@
 <script setup lang="ts">
 import { useDark } from '@vueuse/core'
 import Login from './components/login/login.vue'
+import Register from './components/register/register.vue'
 
 const activeName = ref('account')
 useDark()
+
+const RegisterRef = ref<InstanceType<typeof Register>>()
+
+watch(activeName, (newName: string) => {
+  if (newName === 'account') {
+    RegisterRef.value?.formRef?.clear()
+  }
+})
 </script>
 
 <style scoped lang="less">

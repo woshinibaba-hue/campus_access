@@ -26,6 +26,8 @@ type TableColum<P = any> = {
   format?: string
   isShow?: boolean
   isFixed?: boolean | 'right' | 'left'
+  isEdit?: boolean
+  isDelete?: boolean
 }
 
 /**
@@ -50,11 +52,11 @@ type TableConfig<P extends object> = {
  * form 配置选项类型
  */
 
-type Type = 'input' | 'password' | 'select' | 'textarea'
+type Type = 'input' | 'password' | 'select' | 'textarea' | 'upload'
 
 type TFromItem<K = any> = {
   field: keyof OmitBase<K>
-  type: Type
+  type?: Type
   lable?: string
   placeholder?: string
   options?: { label: string; value: string | number }[]
@@ -83,13 +85,13 @@ type FormConfig<K extends object> = {
  * dialog 配置类型
  */
 
-type DialogType = {
+type DialogType<K extends object = any> = {
   closeText?: string
   submitText?: string
   title?: string
   width?: string
   isFooter?: boolean
-  form?: FormConfig
+  form?: FormConfig<K>
 }
 
 /**

@@ -19,6 +19,7 @@
               class="btn-icon"
               type="primary"
               size="small"
+              v-if="i.isEdit ?? true"
               @click.stop="$emit('edit', row)"
             >
               <el-icon><IconEpEditPen /></el-icon>
@@ -26,6 +27,7 @@
             <el-popconfirm
               title="确认永久删除该数据？"
               @confirm="$emit('delete', row)"
+              v-if="i.isDelete ?? true"
             >
               <template #reference>
                 <el-button class="btn-icon" type="danger" size="small">
