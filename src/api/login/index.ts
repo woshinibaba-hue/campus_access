@@ -25,3 +25,10 @@ export function register(data: IRegister) {
     data
   })
 }
+
+// 删除用户
+export function deleteUserById(id: number) {
+  return request.delete({
+    url: `/user/${id}`
+  })
+}

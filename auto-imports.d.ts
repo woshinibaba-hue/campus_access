@@ -30,6 +30,7 @@ declare global {
   const defineComponent: typeof import('vue')['defineComponent']
   const defineStore: typeof import('pinia')['defineStore']
   const deleteById: typeof import('./src/api/inform/inform')['deleteById']
+  const deleteUserById: typeof import('./src/api/login/index')['deleteUserById']
   const dialog: typeof import('./src/components/Dialog/index')['default']
   const eagerComputed: typeof import('@vueuse/core')['eagerComputed']
   const effectScope: typeof import('vue')['effectScope']

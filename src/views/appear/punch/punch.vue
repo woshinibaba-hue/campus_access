@@ -59,6 +59,7 @@
 <script setup lang="ts">
 import { tableConfig } from './config/table.config'
 import PunchCard from './components/punchCard/punchCard.vue'
+import { IPunch } from '@/api/punch';
 
 const url = ref<string>()
 
