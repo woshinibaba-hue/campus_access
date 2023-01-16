@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import VitePluginCompression from 'vite-plugin-compression'
 
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
@@ -54,7 +55,8 @@ export default defineConfig({
       // defaultStyle: '', // 默认样式
       autoInstall: true // 自动下载
       // jsx: 'react' // jsx支持
-    })
+    }),
+    VitePluginCompression()
   ],
   // 配置别名
   resolve: {
