@@ -40,6 +40,14 @@ const routes: RouteRecordRaw[] = [
         component: () => import('@/views/system/issue/issue.vue')
       },
       {
+        path: '/menu',
+        name: 'menu',
+        meta: {
+          name: '菜单管理'
+        },
+        component: () => import('@/views/system/menu/menu.vue')
+      },
+      {
         path: '/whole',
         name: 'whole',
         meta: {

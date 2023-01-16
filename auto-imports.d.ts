@@ -2,7 +2,6 @@
 export {}
 declare global {
   const EffectScope: typeof import('vue')['EffectScope']
-  const ElNotification: typeof import('element-plus/es')['ElNotification']
   const Map: typeof import('./src/components/Echart/index')['Map']
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
@@ -41,6 +40,7 @@ declare global {
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const getInformAll: typeof import('./src/api/inform/inform')['getInformAll']
+  const getMenuList: typeof import('./src/api/menu/index')['getMenuList']
   const getOutbreak: typeof import('./src/api/outbreak/index')['getOutbreak']
   const getPath: typeof import('./src/api/punch/index')['getPath']
   const getToDay: typeof import('./src/api/inform/inform')['getToDay']

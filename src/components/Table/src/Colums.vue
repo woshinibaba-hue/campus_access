@@ -18,7 +18,7 @@
             <el-button
               class="btn-icon"
               type="primary"
-              size="small"
+              :size="size"
               v-if="i.isEdit ?? true"
               @click.stop="$emit('edit', row)"
             >
@@ -30,7 +30,7 @@
               v-if="i.isDelete ?? true"
             >
               <template #reference>
-                <el-button class="btn-icon" type="danger" size="small">
+                <el-button class="btn-icon" type="danger" :size="size">
                   <el-icon><IconAntDesignDeleteFilled /></el-icon>
                 </el-button>
               </template>
@@ -67,9 +67,15 @@
 import format from '@/utils/format'
 import { useTable } from '@/store'
 
-defineProps<{
-  isShowIndex?: boolean
-}>()
+withDefaults(
+  defineProps<{
+    isShowIndex?: boolean
+    size?: 'small' | 'large' | 'default'
+  }>(),
+  {
+    size: 'default'
+  }
+)
 
 defineEmits<{
   (e: 'edit', data: any): void

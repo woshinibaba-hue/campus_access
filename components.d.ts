@@ -9,7 +9,6 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     Card: typeof import('./src/components/Card/src/Card.vue')['default']
     Colums: typeof import('./src/components/Table/src/Colums.vue')['default']
-    Count: typeof import('./src/components/Count/Count.vue')['default']
     Dialog: typeof import('./src/components/Dialog/src/Dialog.vue')['default']
     Echart: typeof import('./src/components/Echart/src/Echart.vue')['default']
     ElAlert: typeof import('element-plus/es')['ElAlert']
@@ -77,6 +76,5 @@ declare module '@vue/runtime-core' {
     RouterView: typeof import('vue-router')['RouterView']
     Table: typeof import('./src/components/Table/src/Table.vue')['default']
     Upload: typeof import('./src/components/Upload/Upload.vue')['default']
-    VueCountTo: typeof import('./src/components/Count/vue-countTo.vue')['default']
   }
 }

@@ -28,7 +28,7 @@ export const tableConfig: TableConfig<TInform> = {
     {
       type: 'action',
       label: '操作',
-      width: 120,
+      width: 150,
       align: 'center',
       isFixed: 'right'
     }

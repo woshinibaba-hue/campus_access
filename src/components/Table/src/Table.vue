@@ -10,6 +10,7 @@
       />
     </div>
     <el-table
+      :size="size"
       v-load="isLoading"
       :data="data"
       :stripe="stripe"
