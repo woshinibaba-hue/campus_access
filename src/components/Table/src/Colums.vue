@@ -40,7 +40,11 @@
             {{ i.prop && i.field && row[i.prop]?.[i.field] }}
           </template>
           <template v-else-if="i.type === 'url'">
-            <el-link type="primary" :href="row[i.prop!]" target="_blank">
+            <el-link
+              type="primary"
+              :href="format.formatUrl(row[i.prop!])"
+              target="_blank"
+            >
               {{ row[i.prop!] }}
             </el-link>
           </template>
@@ -51,7 +55,7 @@
               fit="cover"
               :url="row[i.prop!]"
             />
-            <span v-else>暂无头像</span>
+            <span v-else>暂无{{ row[i.prop!] }}</span>
           </template>
           <template v-else>
             {{ i.prop && row[i.prop] }}
