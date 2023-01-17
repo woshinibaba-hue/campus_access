@@ -44,10 +44,8 @@ const handleCurrentChange = (page: number) => {
 }
 
 const confirm = async (formData: TInform) => {
-  console.log(formData)
   if (!formData.id) await issueInform(formData)
   else await updateIssue(formData)
-
   ElNotification({
     message: '成功',
     type: 'success'

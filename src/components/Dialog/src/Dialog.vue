@@ -16,7 +16,7 @@
           <el-button @click="close">
             {{ closeText }}
           </el-button>
-          <el-button type="primary" @click="$emit('confirm', formData)">
+          <el-button type="primary" @click="confirm">
             {{ submitText }}
           </el-button>
         </span>
@@ -56,13 +56,18 @@ const emits = defineEmits<{
 
 const formRef = ref<InstanceType<typeof Form>>()
 
-const visible = ref()
+const visible = ref<boolean>()
 const formData = ref<any>()
 
 const close = () => {
+  console.log(111)
   emits('update:modelValue', false)
   emits('update:edit', {})
   formRef.value?.clear()
+}
+
+const confirm = () => {
+  emits('confirm', formData.value)
 }
 
 watchEffect(() => {

@@ -68,7 +68,9 @@ const formRef = ref<InstanceType<typeof ElForm>>()
 
 const handleSubmit = () => {
   formRef.value?.validate(isValid => {
-    if (isValid) emits('submit')
+    if (isValid) {
+      emits('submit')
+    }
   })
 }
 
@@ -77,7 +79,8 @@ const clear = () => {
 }
 
 defineExpose({
-  clear
+  clear,
+  handleSubmit
 })
 </script>
 
