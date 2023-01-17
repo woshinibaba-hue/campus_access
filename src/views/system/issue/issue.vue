@@ -30,6 +30,14 @@ const { data, isLoading, pages, refresh } = useLoading(getInformAll)
 
 const dialogVisible = ref(false)
 
+const { confirm, handleDelete } = useTable({
+  refresh,
+  editFn: updateIssue,
+  addFn: issueInform,
+  dialogVisible,
+  deleteFn: deleteById
+})
+
 const tableConfigComputed = computed<TableConfig<TInform>>(() => ({
   ...tableConfig,
   isLoading: isLoading.value,
@@ -43,25 +51,25 @@ const handleCurrentChange = (page: number) => {
   pages.page = page
 }
 
-const confirm = async (formData: TInform) => {
-  if (!formData.id) await issueInform(formData)
-  else await updateIssue(formData)
-  ElNotification({
-    message: '成功',
-    type: 'success'
-  })
-  refresh()
-  dialogVisible.value = false
-}
+// const confirm = async (formData: TInform) => {
+//   if (!formData.id) await issueInform(formData)
+//   else await updateIssue(formData)
+//   ElNotification({
+//     message: '成功',
+//     type: 'success'
+//   })
+//   refresh()
+//   dialogVisible.value = false
+// }
 
-const handleDelete = async (data: TInform) => {
-  await deleteById(data.id)
-  ElNotification({
-    message: '删除成功',
-    type: 'success'
-  })
-  refresh()
-}
+// const handleDelete = async (data: TInform) => {
+//   await deleteById(data.id)
+//   ElNotification({
+//     message: '删除成功',
+//     type: 'success'
+//   })
+//   refresh()
+// }
 
 const editItem = ref<OmitBase<TInform>>({})
 const handleEdit = (data: TInform) => {
