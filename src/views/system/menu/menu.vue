@@ -9,7 +9,11 @@
       @delete="handleDelete"
     />
 
-    <Dialog v-bind="dialogConfig" v-model="dialogVisible" @confirm="confirm" />
+    <Dialog
+      v-bind="computedDialogConfig"
+      v-model="dialogVisible"
+      @confirm="confirm"
+    />
   </Card>
 </template>
 
@@ -27,7 +31,40 @@ const { confirm, handleDelete } = useTable({
   deleteFn: deleteMenu
 })
 
+const parentList = ref<any[]>([])
+
+const computedDialogConfig = computed(() => ({
+  ...dialogConfig,
+  form: {
+    ...dialogConfig.form,
+    columns: [
+      ...dialogConfig.form!.columns,
+      {
+        lable: '父级菜单',
+        field: 'parentId',
+        placeholder: '请选择父级菜单',
+        type: 'select',
+        options: parentList.value
+      }
+    ]
+  }
+}))
+
 const handleCurrentChange = (page: number) => (pages.page = page)
+
+watchEffect(() => {
+  if (dialogVisible.value) {
+    getMenuList({
+      page: 1,
+      limit: 500
+    }).then(res => {
+      parentList.value = res.data.data.map(i => ({
+        label: `${i.type} → ${i.name}`,
+        value: i.id
+      }))
+    })
+  }
+})
 </script>
 
 <style scoped lang="less"></style>

@@ -10,7 +10,7 @@ export type Menu = {
   parent: Menu | null
 } & TBase
 
-export function getMenuList(params: IPage) {
+export function getMenuList(params: Partial<IPage & Menu>) {
   return request.get<IPaging<Menu[]>>({
     url: '/menu',
     params

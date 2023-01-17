@@ -14,13 +14,6 @@ export const dialogConfig: DialogType<Menu> = {
         placeholder: '请输入菜单图标'
       },
       {
-        lable: '父级菜单',
-        field: 'parentId',
-        placeholder: '请选择父级菜单',
-        type: 'select',
-        options: []
-      },
-      {
         lable: '菜单权限',
         field: 'permission',
         type: 'select',

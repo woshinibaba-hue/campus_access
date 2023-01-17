@@ -15,6 +15,20 @@
       <template v-if="item.type === 'upload'">
         <Upload />
       </template>
+      <template v-else-if="item.type === 'select'">
+        <el-select
+          v-model="modelValue[item.field]"
+          :placeholder="item.placeholder"
+          clearable
+        >
+          <el-option
+            v-for="i in item.options"
+            :key="i.value"
+            :label="i.label"
+            :value="i.value"
+          />
+        </el-select>
+      </template>
       <el-input
         v-else
         :type="item.type"
