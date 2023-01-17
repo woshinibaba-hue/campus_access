@@ -16,3 +16,16 @@ export function getMenuList(params: IPage) {
     params
   })
 }
+
+export function createMenu(data: Menu) {
+  return request.post({
+    url: '/menu',
+    data
+  })
+}
+
+export function deleteMenu(id: number) {
+  return request.delete({
+    url: `/menu/${id}`
+  })
+}
