@@ -51,6 +51,7 @@
 
 <script setup lang="ts">
 import { ElForm } from 'element-plus'
+import { setTimeout } from 'timers/promises'
 
 type TFormProps = {
   columns: TFromItem[]
@@ -89,12 +90,13 @@ const handleSubmit = () => {
 }
 
 const clear = () => {
-  formRef.value?.resetFields()
+  window.setTimeout(() => formRef.value?.resetFields())
 }
 
 defineExpose({
   clear,
-  handleSubmit
+  handleSubmit,
+  formRef
 })
 </script>
 

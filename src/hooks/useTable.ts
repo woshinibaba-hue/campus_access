@@ -4,18 +4,20 @@
 
 import { Ref } from 'vue'
 
-export function useTable({
+export function useTableUtil({
   refresh,
   dialogVisible,
   editFn,
   addFn,
-  deleteFn
+  deleteFn,
+  deleteFields
 }: {
   refresh?: () => any
   dialogVisible: Ref<boolean>
   deleteFn?: (...args: any[]) => any
   editFn?: (...args: any[]) => any
   addFn?: (...args: any[]) => any
+  deleteFields?: string[]
 }) {
   const confirm = async (formData: any) => {
     if (!formData.id) await addFn?.(formData)
@@ -37,8 +39,19 @@ export function useTable({
     refresh?.()
   }
 
+  const editItem = ref<Record<string, any>>({})
+  const handleEdit = (data: Record<string, any>) => {
+    deleteFields?.forEach(k => {
+      Reflect.deleteProperty(data, k)
+    })
+    editItem.value = data
+    dialogVisible.value = true
+  }
+
   return {
     confirm,
-    handleDelete
+    handleDelete,
+    handleEdit,
+    editItem
   }
 }

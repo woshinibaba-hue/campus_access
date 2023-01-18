@@ -29,3 +29,10 @@ export function deleteMenu(id: number) {
     url: `/menu/${id}`
   })
 }
+
+export const editMenuById = (data: Menu) => {
+  return request.patch({
+    url: `/menu/${data.id}`,
+    data
+  })
+}

@@ -13,6 +13,15 @@ type Arrayable<T> = T | T[]
 type OmitBase<T> = Partial<Omit<T, keyof TBase>>
 
 /**
+ * 验证规则函数类型
+ */
+type TRuleFun = (
+  rule: any,
+  value: string,
+  cb: (m?: string | Error | undefined) => void
+) => void
+
+/**
  * table column类型
  */
 type TableColum<P = any> = {

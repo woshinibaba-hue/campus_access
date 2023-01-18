@@ -7,11 +7,13 @@
       @add="dialogVisible = true"
       @currentChange="handleCurrentChange"
       @delete="handleDelete"
+      @edit="handleEdit"
     />
 
     <Dialog
       v-bind="computedDialogConfig"
       v-model="dialogVisible"
+      v-model:edit="editItem"
       @confirm="confirm"
     />
   </Card>
@@ -24,10 +26,11 @@ import { dialogConfig } from './config/dialog.config'
 const dialogVisible = ref(false)
 const { data, isLoading, pages, refresh } = useLoading(getMenuList)
 
-const { confirm, handleDelete } = useTable({
+const { confirm, handleDelete, editItem, handleEdit } = useTableUtil({
   dialogVisible,
   refresh,
   addFn: createMenu,
+  editFn: editMenuById,
   deleteFn: deleteMenu
 })
 

@@ -30,7 +30,7 @@ const { data, isLoading, pages, refresh } = useLoading(getInformAll)
 
 const dialogVisible = ref(false)
 
-const { confirm, handleDelete } = useTable({
+const { confirm, handleDelete, editItem, handleEdit } = useTableUtil({
   refresh,
   editFn: updateIssue,
   addFn: issueInform,
@@ -71,11 +71,11 @@ const handleCurrentChange = (page: number) => {
 //   refresh()
 // }
 
-const editItem = ref<OmitBase<TInform>>({})
-const handleEdit = (data: TInform) => {
-  editItem.value = data
-  dialogVisible.value = true
-}
+// const editItem = ref<OmitBase<TInform>>({})
+// const handleEdit = (data: TInform) => {
+//   editItem.value = data
+//   dialogVisible.value = true
+// }
 </script>
 
 <style scoped lang="less"></style>

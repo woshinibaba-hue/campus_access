@@ -60,14 +60,15 @@ const visible = ref<boolean>()
 const formData = ref<any>()
 
 const close = () => {
-  console.log(111)
   emits('update:modelValue', false)
   emits('update:edit', {})
   formRef.value?.clear()
 }
 
 const confirm = () => {
-  emits('confirm', formData.value)
+  formRef.value?.formRef?.validate(isVal => {
+    if (isVal) emits('confirm', formData.value)
+  })
 }
 
 watchEffect(() => {
