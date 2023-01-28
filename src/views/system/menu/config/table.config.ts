@@ -8,7 +8,9 @@ export const tableCondig: TableConfig<Menu> = {
     },
     {
       label: '菜单图标',
-      prop: 'icon'
+      prop: 'icon',
+      type: 'icon',
+      align: 'center'
     },
     {
       label: '父级菜单名称',

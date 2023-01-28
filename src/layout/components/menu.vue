@@ -25,7 +25,7 @@
         <el-sub-menu v-for="menu in menuList" :index="menu.id + ''">
           <template #title>
             <el-icon>
-              <component :is="menu.icon"></component>
+              <component :is="icons[menu.icon!]"></component>
             </el-icon>
             <span>{{ menu.name }}</span>
           </template>
@@ -80,6 +80,20 @@
 </template>
 
 <script setup lang="ts">
+import IconEpMonitor from '~icons/ep/monitor'
+import IconIcSharpDiversity1 from '~icons/ic/sharp-diversity1'
+import IconMingcuteEbikeFill from '~icons/mingcute/ebike-fill'
+import IconEpPlace from '~icons/ep/place'
+import IconIcOutlineEditLocation from '~icons/ic/outline-edit-location'
+
+const icons: any = {
+  IconEpMonitor,
+  IconIcSharpDiversity1,
+  IconMingcuteEbikeFill,
+  IconEpPlace,
+  IconIcOutlineEditLocation
+}
+
 defineProps<{
   isCollapse: boolean
 }>()

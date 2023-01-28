@@ -57,6 +57,11 @@
             />
             <span v-else>暂无{{ row[i.prop!] }}</span>
           </template>
+          <template v-else-if="i.type === 'icon'">
+            <el-icon>
+              <component :is="icons[row[i.prop!]]"></component>
+            </el-icon>
+          </template>
           <template v-else>
             {{ i.prop && row[i.prop] }}
           </template>
@@ -70,6 +75,20 @@
 <script setup lang="ts">
 import format from '@/utils/format'
 import { useTable } from '@/store'
+
+import IconEpMonitor from '~icons/ep/monitor'
+import IconIcSharpDiversity1 from '~icons/ic/sharp-diversity1'
+import IconMingcuteEbikeFill from '~icons/mingcute/ebike-fill'
+import IconEpPlace from '~icons/ep/place'
+import IconIcOutlineEditLocation from '~icons/ic/outline-edit-location'
+
+const icons: any = {
+  IconEpMonitor,
+  IconIcSharpDiversity1,
+  IconMingcuteEbikeFill,
+  IconEpPlace,
+  IconIcOutlineEditLocation
+}
 
 withDefaults(
   defineProps<{
