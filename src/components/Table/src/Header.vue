@@ -8,7 +8,8 @@
         v-if="isAdd"
         class="addBtn"
       >
-        <el-icon class="btn-icon"><IconEpCirclePlus /></el-icon> 新增
+        <el-icon class="btn-icon"><IconEpCirclePlus /></el-icon>
+        {{ addText ?? '新增' }}
       </el-button>
     </el-col>
     <el-col :span="12" class="justify-end">
@@ -76,6 +77,7 @@ import { useTable } from '@/store'
 defineProps<{
   isAdd?: boolean
   size?: 'small' | 'large' | 'default'
+  addText?: string
 }>()
 
 const table = useTable()

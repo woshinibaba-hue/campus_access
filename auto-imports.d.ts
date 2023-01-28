@@ -40,6 +40,7 @@ declare global {
   const extendRef: typeof import('@vueuse/core')['extendRef']
   const form: typeof import('./src/components/Form/index')['default']
   const getActivePinia: typeof import('pinia')['getActivePinia']
+  const getAskingAll: typeof import('./src/api/asking/index')['getAskingAll']
   const getCode: typeof import('./src/api/punch/index')['getCode']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']

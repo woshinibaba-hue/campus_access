@@ -37,7 +37,8 @@
             </el-popconfirm>
           </template>
           <template v-else-if="i.type === 'object'">
-            {{ i.prop && i.field && row[i.prop]?.[i.field] }}
+            <!-- {{ i.prop && i.field && row[i.prop]?.[i.field] }} -->
+            {{ i.prop && i.field && getObj(row[i.prop], i.field) }}
           </template>
           <template v-else-if="i.type === 'url'">
             <el-link
@@ -107,4 +108,17 @@ defineEmits<{
 
 const table = useTable()
 const { tableCol } = storeToRefs(table)
+
+const getObj = (obj: any, field: string) => {
+  if (field.includes('.')) {
+    const arr = field.split('.')
+    let value = obj
+    arr.forEach(k => {
+      value = value[k]
+    })
+    return value
+  } else {
+    return obj[field]
+  }
+}
 </script>

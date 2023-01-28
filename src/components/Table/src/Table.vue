@@ -5,6 +5,7 @@
         :size="size"
         :columns="columns"
         :isAdd="isAdd"
+        :add-text="addText"
         @refresh="$emit('refresh')"
         @add="$emit('add')"
       />
@@ -56,6 +57,7 @@ const props = withDefaults(
     isAdd?: boolean
     size?: 'small' | 'large' | 'default'
     isLoading?: boolean
+    addText?: string
   }>(),
   {
     stripe: true,

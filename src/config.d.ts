@@ -30,7 +30,7 @@ type TableColum<P = any> = {
   width?: number
   isTooltip?: boolean
   type?: 'url' | 'object' | 'action' | 'date' | 'image' | 'icon'
-  field?: string
+  field?: string | string[]
   align?: 'left' | 'center' | 'right'
   format?: string
   isShow?: boolean
@@ -55,6 +55,7 @@ type TableConfig<P extends object> = {
   isAdd?: boolean
   size?: 'small' | 'large' | 'default'
   isLoading?: boolean
+  addText?: string
 }
 
 /**
