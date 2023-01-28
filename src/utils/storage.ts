@@ -1,4 +1,4 @@
-type keys = 'user'
+type keys = 'user' | 'menuList'
 
 class Storage {
   set(key: keys, value: any) {

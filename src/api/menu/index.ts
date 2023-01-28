@@ -8,6 +8,7 @@ export type Menu = {
   type: number
   permission?: string
   parent: Menu | null
+  children?: Menu[]
 } & TBase
 
 export function getMenuList(params: Partial<IPage & Menu>) {

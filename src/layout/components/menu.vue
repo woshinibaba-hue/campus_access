@@ -22,7 +22,18 @@
           <el-icon><IconBiSpeedometer2 /></el-icon>
           <span>首页</span>
         </el-menu-item>
-        <el-sub-menu index="1">
+        <el-sub-menu v-for="menu in menuList" :index="menu.id + ''">
+          <template #title>
+            <el-icon>
+              <component :is="menu.icon"></component>
+            </el-icon>
+            <span>{{ menu.name }}</span>
+          </template>
+          <el-menu-item v-for="sub in menu.children" :index="sub.url">
+            {{ sub.name }}
+          </el-menu-item>
+        </el-sub-menu>
+        <!-- <el-sub-menu index="1">
           <template #title>
             <el-icon><IconEpMonitor /></el-icon>
             <span>系统管理</span>
@@ -62,20 +73,24 @@
             <span>疫情防控信息</span>
           </template>
           <el-menu-item index="/whole">全国疫情信息</el-menu-item>
-        </el-sub-menu>
+        </el-sub-menu> -->
       </el-menu>
     </el-scrollbar>
   </div>
 </template>
 
 <script setup lang="ts">
-const route = useRoute()
-
 defineProps<{
   isCollapse: boolean
 }>()
 
 const emits = defineEmits<{ (event: 'handleFold'): void }>()
+
+const route = useRoute()
+
+const { menuList } = storeToRefs(useUser())
+
+console.log(menuList.value)
 
 const handleFold = () => emits('handleFold')
 </script>
