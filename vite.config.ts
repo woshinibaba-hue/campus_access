@@ -26,7 +26,7 @@ export default defineConfig({
       dirs: [
         './src/api/**',
         './src/hooks',
-        './src/store',
+        './src/store/**',
         './src/components/**'
       ],
       // 解决eslint报错，无法找到

@@ -88,9 +88,7 @@ const emits = defineEmits<{ (event: 'handleFold'): void }>()
 
 const route = useRoute()
 
-const { menuList } = storeToRefs(useUser())
-
-console.log(menuList.value)
+const { menuList } = storeToRefs(useMenu())
 
 const handleFold = () => emits('handleFold')
 </script>
