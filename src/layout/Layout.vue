@@ -39,9 +39,6 @@ const isCollapse = ref(false)
 const handlerCollapse = () => {
   isCollapse.value = !isCollapse.value
 }
-
-const menu = useMenu()
-menu.initMenu()
 </script>
 
 <style>

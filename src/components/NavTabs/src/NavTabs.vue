@@ -21,6 +21,7 @@
 <script setup lang="ts">
 import { useTabs } from '@/store'
 import { useTemplateRefsList } from '@vueuse/core'
+import { RouteRecordNormalized } from 'vue-router'
 
 const props = withDefaults(
   defineProps<{
@@ -30,6 +31,9 @@ const props = withDefaults(
     isCloseOnterTabs: false
   }
 )
+
+const menu = useMenu()
+menu.initMenu()
 
 const router = useRouter()
 const route = useRoute()
@@ -44,8 +48,6 @@ const style = reactive({
   left: ''
 })
 
-const routers = router.getRoutes()
-
 const selectTab = () => {
   nextTick(() => {
     const e = tabRefs.value[state.value.activeIndex]
@@ -54,23 +56,38 @@ const selectTab = () => {
   })
 }
 
-watch(
-  () => route.path,
-  () => {
-    if (route.path === '/404') return
-    const r = routers.find(r => r.path === route.path)
-    if (!r) return
-    let i = state.value.tabsRouter.findIndex(r => r.path === route.path)
-    if (i === -1) {
-      state.value.tabsRouter.push(r)
-      state.value.activeIndex = state.value.tabsRouter.length - 1
-    } else {
-      state.value.activeIndex = i
-    }
-    selectTab()
-  },
-  { immediate: true }
-)
+watchEffect(() => {
+  const routers = router.getRoutes()
+  if (route.path === '/404') return
+  const r = routers.find(r => r.path === route.path)
+  if (!r) return
+  let i = state.value.tabsRouter.findIndex(r => r.path === route.path)
+  if (i === -1) {
+    state.value.tabsRouter.push(r)
+    state.value.activeIndex = state.value.tabsRouter.length - 1
+  } else {
+    state.value.activeIndex = i
+  }
+  selectTab()
+})
+
+// watch(
+//   () => route.path,
+//   () => {
+//     if (route.path === '/404') return
+//     const r = routers.value.find(r => r.path === route.path)
+//     if (!r) return
+//     let i = state.value.tabsRouter.findIndex(r => r.path === route.path)
+//     if (i === -1) {
+//       state.value.tabsRouter.push(r)
+//       state.value.activeIndex = state.value.tabsRouter.length - 1
+//     } else {
+//       state.value.activeIndex = i
+//     }
+//     selectTab()
+//   },
+//   { immediate: true }
+// )
 
 const closeTab = (i: number) => {
   const l = state.value.tabsRouter.length - 1

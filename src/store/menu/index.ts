@@ -3,11 +3,12 @@ import storage from '@/utils/storage'
 import mapRouters from '@/utils/mapRouters'
 
 export const useMenu = defineStore('menu', () => {
-  const menuList = ref<Menu[]>(storage.get('menuList') ?? [])
   const router = useRouter()
-  router.push('/')
+
+  const menuList = ref<Menu[]>(storage.get('menuList') ?? [])
 
   const initMenu = async () => {
+    router.push('/')
     const menus = await getMenuList({ page: 1, limit: 500 })
 
     const routers = import.meta.glob('@/router/routers/*.ts')
