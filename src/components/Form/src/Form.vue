@@ -29,6 +29,14 @@
           />
         </el-select>
       </template>
+      <template v-else-if="item.type === 'datetime'">
+        <el-date-picker
+          v-model="modelValue[item.field]"
+          type="datetime"
+          :placeholder="item.placeholder"
+          format="YYYY-MM-DD HH:mm:ss"
+        />
+      </template>
       <el-input
         v-else
         :type="item.type"

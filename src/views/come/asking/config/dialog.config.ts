@@ -5,7 +5,8 @@ export const dialogConfig: DialogType<TAsking> = {
     columns: [
       {
         field: 'address',
-        lable: '外出地址'
+        lable: '外出地址',
+        placeholder: '请输入外出地址'
       },
       {
         field: 'isLeaveCchool',
@@ -24,16 +25,21 @@ export const dialogConfig: DialogType<TAsking> = {
       },
       {
         field: 'startDate',
-        lable: '请假开始时间'
+        lable: '请假开始时间',
+        type: 'datetime',
+        placeholder: '请选择请假开始时间'
       },
       {
         field: 'endDate',
-        lable: '请假结束时间'
+        lable: '请假结束时间',
+        type: 'datetime',
+        placeholder: '请选择请假结束时间'
       },
       {
         field: 'reason',
         lable: '请假理由',
-        type: 'textarea'
+        type: 'textarea',
+        placeholder: '请输入请假理由'
       }
     ],
     isAction: false,

@@ -18,3 +18,10 @@ export function getAskingAll(params: IPage) {
     params
   })
 }
+
+export function createAsking(data: TAsking) {
+  return request.post({
+    url: '/asking',
+    data
+  })
+}

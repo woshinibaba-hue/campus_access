@@ -4,8 +4,10 @@
       v-bind="tableConfigComputed"
       @add="dialogVisible = true"
       :data="data?.data"
+      @refresh="refresh"
+      @currentChange="handleCurrent"
     />
-    <Dialog v-bind="dialogConfig" v-model="dialogVisible" />
+    <Dialog v-bind="dialogConfig" v-model="dialogVisible" @confirm="confirm" />
   </Card>
 </template>
 
@@ -23,6 +25,20 @@ const tableConfigComputed = computed(() => ({
 }))
 
 const { data, isLoading, pages, refresh } = useLoading(getAskingAll)
+
+const handleCurrent = (page: number) => {
+  pages.page = page
+}
+
+const confirm = async (formData: any) => {
+  await createAsking(formData)
+  ElNotification({
+    message: '成功',
+    type: 'success'
+  })
+  refresh()
+  dialogVisible.value = false
+}
 </script>
 
 <style lang="less" scoped></style>

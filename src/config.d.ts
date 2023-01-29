@@ -62,7 +62,7 @@ type TableConfig<P extends object> = {
  * form 配置选项类型
  */
 
-type Type = 'input' | 'password' | 'select' | 'textarea' | 'upload'
+type Type = 'input' | 'password' | 'select' | 'textarea' | 'upload' | 'datetime'
 
 type TFromItem<K = any> = {
   field: keyof OmitBase<K>
