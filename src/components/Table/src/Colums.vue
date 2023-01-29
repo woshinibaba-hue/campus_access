@@ -118,7 +118,7 @@ const getObj = (obj: any, field: string) => {
     })
     return value
   } else {
-    return obj[field]
+    return obj?.[field]
   }
 }
 </script>
