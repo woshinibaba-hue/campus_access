@@ -51,6 +51,7 @@ declare global {
   const getMenuList: typeof import('./src/api/menu/index')['getMenuList']
   const getOutbreak: typeof import('./src/api/outbreak/index')['getOutbreak']
   const getPath: typeof import('./src/api/punch/index')['getPath']
+  const getRole: typeof import('./src/api/role/index')['getRole']
   const getToDay: typeof import('./src/api/inform/inform')['getToDay']
   const getUserAll: typeof import('./src/api/login/index')['getUserAll']
   const getUserNucleate: typeof import('./src/api/nucleates/index')['getUserNucleate']
