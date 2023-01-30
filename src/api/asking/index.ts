@@ -25,3 +25,17 @@ export function createAsking(data: TAsking) {
     data
   })
 }
+
+export function auditAsking(id: number, data: Record<string, any>) {
+  return request.post({
+    url: `/asking/audit/${id}`,
+    data
+  })
+}
+
+export function getAskingList(params: IPage) {
+  return request.get<IPaging<TAsking[]>>({
+    url: '/asking/audit',
+    params
+  })
+}

@@ -37,7 +37,6 @@
             </el-popconfirm>
           </template>
           <template v-else-if="i.type === 'object'">
-            <!-- {{ i.prop && i.field && row[i.prop]?.[i.field] }} -->
             {{ i.prop && i.field && getObj(row[i.prop], i.field) }}
           </template>
           <template v-else-if="i.type === 'url'">
@@ -62,6 +61,27 @@
             <el-icon>
               <component :is="icons[row[i.prop!]]"></component>
             </el-icon>
+          </template>
+          <template v-else-if="i.type === 'audit'">
+            <el-button
+              type="primary"
+              :size="size"
+              @click.stop="$emit('consent', row)"
+              :disabled="row[i.field!] !== 0"
+            >
+              同意
+            </el-button>
+            <el-button
+              type="danger"
+              :size="size"
+              @click.stop="$emit('refuse', row)"
+              :disabled="row[i.field!] !== 0"
+            >
+              拒绝
+            </el-button>
+          </template>
+          <template v-else-if="i.type === 'select'">
+            {{ getVlaue(i.options!, row[i.prop!]) }}
           </template>
           <template v-else>
             {{ i.prop && row[i.prop] }}
@@ -104,6 +124,8 @@ withDefaults(
 defineEmits<{
   (e: 'edit', data: any): void
   (e: 'delete', data: any): void
+  (e: 'consent', data: any): void
+  (e: 'refuse', data: any): void
 }>()
 
 const table = useTable()
@@ -120,5 +142,9 @@ const getObj = (obj: any, field: string) => {
   } else {
     return obj?.[field]
   }
+}
+
+const getVlaue = (options: any[], value: any) => {
+  return options.filter(v => v.value === value)[0].label
 }
 </script>

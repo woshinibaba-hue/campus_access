@@ -35,15 +35,55 @@ export const tableConfig: TableConfig<TAsking> = {
     },
     {
       prop: 'isLeaveCchool',
-      label: '是否离校'
+      label: '是否离校',
+      type: 'select',
+      align: 'center',
+      options: [
+        {
+          label: '是',
+          value: 1
+        },
+        {
+          label: '否',
+          value: 0
+        }
+      ]
     },
     {
       prop: 'isAudit',
-      label: '是否审批'
+      label: '是否审批',
+      type: 'select',
+      align: 'center',
+      options: [
+        {
+          label: '是',
+          value: 1
+        },
+        {
+          label: '否',
+          value: 0
+        }
+      ]
     },
     {
       prop: 'isScanCode',
-      label: '请假状态'
+      label: '在校状态',
+      type: 'select',
+      align: 'center',
+      options: [
+        {
+          label: '已返校',
+          value: 2
+        },
+        {
+          label: '离校',
+          value: 1
+        },
+        {
+          label: '在校',
+          value: 0
+        }
+      ]
     },
     {
       prop: 'reason',

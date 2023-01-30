@@ -25,6 +25,8 @@
         :isShowIndex="isShowIndex"
         @edit="data => $emit('edit', data)"
         @delete="data => $emit('delete', data)"
+        @consent="data => $emit('consent', data)"
+        @refuse="data => $emit('refuse', data)"
       />
     </el-table>
     <Pagination
@@ -79,6 +81,8 @@ defineEmits<{
   (e: 'currentChange', page: number): void
   (e: 'edit', data: any): void
   (e: 'delete', data: any): void
+  (e: 'consent', data: any): void
+  (e: 'refuse', data: any): void
   (e: 'add'): void
   (e: 'refresh'): void
 }>()
