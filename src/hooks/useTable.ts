@@ -10,7 +10,8 @@ export function useTableUtil({
   editFn,
   addFn,
   deleteFn,
-  deleteFields
+  deleteFields,
+  options
 }: {
   refresh?: () => any
   dialogVisible: Ref<boolean>
@@ -18,6 +19,7 @@ export function useTableUtil({
   editFn?: (...args: any[]) => any
   addFn?: (...args: any[]) => any
   deleteFields?: string[]
+  options?: Record<string, any>
 }) {
   const confirm = async (formData: any) => {
     if (!formData.id) await addFn?.(formData)

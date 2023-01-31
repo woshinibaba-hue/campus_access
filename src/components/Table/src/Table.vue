@@ -22,6 +22,7 @@
       @current-change="(d: any) => $emit('selectData', d)"
     >
       <TableColumn
+        :isFixedIndex="isFixedIndex"
         :isShowIndex="isShowIndex"
         @edit="data => $emit('edit', data)"
         @delete="data => $emit('delete', data)"
@@ -60,6 +61,7 @@ const props = withDefaults(
     size?: 'small' | 'large' | 'default'
     isLoading?: boolean
     addText?: string
+    isFixedIndex?: boolean
   }>(),
   {
     stripe: true,

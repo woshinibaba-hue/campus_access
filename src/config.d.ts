@@ -65,13 +65,21 @@ type TableConfig<P extends object> = {
   size?: 'small' | 'large' | 'default'
   isLoading?: boolean
   addText?: string
+  isFixedIndex?: boolean
 }
 
 /**
  * form 配置选项类型
  */
 
-type Type = 'input' | 'password' | 'select' | 'textarea' | 'upload' | 'datetime'
+type Type =
+  | 'input'
+  | 'password'
+  | 'select'
+  | 'textarea'
+  | 'upload'
+  | 'datetime'
+  | 'tree'
 
 type TFromItem<K = any> = {
   field: keyof OmitBase<K>
@@ -79,6 +87,7 @@ type TFromItem<K = any> = {
   lable?: string
   placeholder?: string
   options?: { label: string; value: string | number }[]
+  treeData?: any[]
   isHide?: boolean
   isDisabled?: boolean
   rows?: number

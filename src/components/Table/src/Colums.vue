@@ -1,5 +1,11 @@
 <template>
-  <el-table-column v-if="isShowIndex" type="index" label="序号" :width="60" />
+  <el-table-column
+    v-if="isShowIndex"
+    type="index"
+    label="序号"
+    :width="60"
+    :fixed="isFixedIndex"
+  />
   <template v-for="i of tableCol" :key="i.prop">
     <el-table-column
       :prop="i.prop"
@@ -114,6 +120,7 @@ const icons: any = {
 withDefaults(
   defineProps<{
     isShowIndex?: boolean
+    isFixedIndex?: boolean
     size?: 'small' | 'large' | 'default'
   }>(),
   {

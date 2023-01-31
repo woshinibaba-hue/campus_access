@@ -5,7 +5,8 @@ export const tableConfig: TableConfig<TAsking> = {
       prop: 'user',
       label: '姓名',
       type: 'object',
-      field: 'health.name'
+      field: 'health.name',
+      isFixed: 'left'
     },
     {
       prop: 'user',
@@ -93,15 +94,22 @@ export const tableConfig: TableConfig<TAsking> = {
     {
       prop: 'startDate',
       label: '请假开始时间',
-      width: 150,
-      isFixed: 'right'
+      width: 180,
+      align: 'center',
+      isFixed: 'right',
+      type: 'date',
+      format: 'YYYY-MM-DD HH:mm:ss'
     },
     {
       prop: 'endDate',
       label: '请假结束时间',
-      width: 150,
-      isFixed: 'right'
+      width: 180,
+      isFixed: 'right',
+      align: 'center',
+      type: 'date',
+      format: 'YYYY-MM-DD HH:mm:ss'
     }
   ],
-  addText: '请假'
+  addText: '请假',
+  isFixedIndex: true
 }

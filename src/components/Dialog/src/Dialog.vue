@@ -5,10 +5,12 @@
       :title="`${edit?.id ? '编辑' : '新增'}${title}`"
       :width="width"
       @close="close"
+      @open="open"
     >
       <slot name="content">
         <template v-if="form">
           <Form v-bind="form" v-model="formData" ref="formRef" />
+          <slot />
         </template>
       </slot>
       <template v-if="isFooter" #footer>
@@ -52,6 +54,8 @@ const emits = defineEmits<{
   (e: 'update:modelValue', data: boolean): void
   (e: 'update:edit', formData: any): void
   (e: 'confirm', formData: any): void
+  (e: 'close'): void
+  (e: 'open'): void
 }>()
 
 const formRef = ref<InstanceType<typeof Form>>()
@@ -62,8 +66,11 @@ const formData = ref<any>()
 const close = () => {
   emits('update:modelValue', false)
   emits('update:edit', {})
+  emits('close')
   formRef.value?.clear()
 }
+
+const open = () => emits('open')
 
 const confirm = () => {
   formRef.value?.formRef?.validate(isVal => {
