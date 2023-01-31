@@ -5,6 +5,7 @@ export type IUser = {
   avatar?: null | string
   referral?: string
   password?: string
+  rolesId: number
 } & TBase
 
 type health = {

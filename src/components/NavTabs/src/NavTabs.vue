@@ -21,7 +21,8 @@
 <script setup lang="ts">
 import { useTabs } from '@/store'
 import { useTemplateRefsList } from '@vueuse/core'
-import { RouteRecordNormalized } from 'vue-router'
+
+const { user } = storeToRefs(useUser())
 
 const props = withDefaults(
   defineProps<{
@@ -33,7 +34,7 @@ const props = withDefaults(
 )
 
 const menu = useMenu()
-menu.initMenu()
+menu.initMenu(user.value!.rolesId)
 
 const router = useRouter()
 const route = useRoute()

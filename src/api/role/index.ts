@@ -35,3 +35,9 @@ export function deleteRole(id: number) {
     url: `/role/${id}`
   })
 }
+
+export function getRoleMenu(id: number) {
+  return request.get<TRole>({
+    url: `/role/${id}`
+  })
+}

@@ -11,11 +11,10 @@ export const useUser = defineStore('user', () => {
   const login = async (data: any) => {
     const res = await userLogin(data)
 
-    menu.initMenu()
+    menu.initMenu(res.data.rolesId)
 
     user.value = res.data
     storage.set('user', res.data)
-    router.push('/')
     ElNotification({
       message: '登录成功',
       type: 'success'

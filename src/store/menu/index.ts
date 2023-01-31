@@ -7,9 +7,10 @@ export const useMenu = defineStore('menu', () => {
 
   const menuList = ref<Menu[]>(storage.get('menuList') ?? [])
 
-  const initMenu = async () => {
+  const initMenu = async (id: number) => {
     router.push('/')
-    const menus = await getMenuList({ page: 1, limit: 500 })
+    const menus = await getRoleMenu(id)
+    // const menus = await getMenuList({ page: 1, limit: 500 })
 
     const routers = import.meta.glob('@/router/routers/*.ts')
     const routerList: any[] = []
@@ -20,7 +21,7 @@ export const useMenu = defineStore('menu', () => {
       router.addRoute('Layout', res.default)
     }
 
-    const m = mapRouters.transformTreeData(menus.data.data)
+    const m = mapRouters.transformTreeData(menus.data.menu!, 'menuId')
 
     menuList.value = m
     storage.set('menuList', m)
