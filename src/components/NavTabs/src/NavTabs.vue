@@ -57,20 +57,41 @@ const selectTab = () => {
   })
 }
 
-watchEffect(() => {
-  const routers = router.getRoutes()
-  if (route.path === '/404') return
-  const r = routers.find(r => r.path === route.path)
-  if (!r) return
-  let i = state.value.tabsRouter.findIndex(r => r.path === route.path)
-  if (i === -1) {
-    state.value.tabsRouter.push(r)
-    state.value.activeIndex = state.value.tabsRouter.length - 1
-  } else {
-    state.value.activeIndex = i
+watch(
+  () => route.path,
+  () => {
+    const routers = router.getRoutes()
+    if (route.path === '/404' || route.path === '/login') return
+    const r = routers.find(r => r.path === route.path)
+    if (!r) return
+    let i = state.value.tabsRouter.findIndex(r => r.path === route.path)
+    if (i === -1) {
+      state.value.tabsRouter.push(r)
+      state.value.activeIndex = state.value.tabsRouter.length - 1
+    } else {
+      state.value.activeIndex = i
+    }
+    selectTab()
+  },
+  {
+    immediate: true
   }
-  selectTab()
-})
+)
+
+// watchEffect(() => {
+//   const routers = router.getRoutes()
+//   if (route.path === '/404' || route.path === '/login') return
+//   const r = routers.find(r => r.path === route.path)
+//   if (!r) return
+//   let i = state.value.tabsRouter.findIndex(r => r.path === route.path)
+//   if (i === -1) {
+//     state.value.tabsRouter.push(r)
+//     state.value.activeIndex = state.value.tabsRouter.length - 1
+//   } else {
+//     state.value.activeIndex = i
+//   }
+//   selectTab()
+// })
 
 // watch(
 //   () => route.path,

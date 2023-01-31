@@ -12,14 +12,15 @@ export const useMenu = defineStore('menu', () => {
     const menus = await getRoleMenu(id)
     // const menus = await getMenuList({ page: 1, limit: 500 })
 
-    const routers = import.meta.glob('@/router/routers/*.ts')
-    const routerList: any[] = []
+    const routerList = await mapRouters.filterRouter(menus.data.menu!, 'menuId')
 
-    for (const r in routers) {
-      const res: any = await routers[r]()
-      routerList.push(res.default)
-      router.addRoute('Layout', res.default)
-    }
+    router.getRoutes().forEach(r => {
+      if (!r.meta.init) {
+        router.removeRoute(r.name!)
+      }
+    })
+
+    routerList.forEach(r => router.addRoute('Layout', r))
 
     const m = mapRouters.transformTreeData(menus.data.menu!, 'menuId')
 

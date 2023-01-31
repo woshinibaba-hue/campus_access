@@ -5,19 +5,26 @@ const routes: RouteRecordRaw[] = [
     path: '/',
     name: 'Layout',
     redirect: '/home',
+    meta: {
+      init: true
+    },
     component: () => import('@/layout/Layout.vue'),
     children: [
       {
         path: '/home',
         name: 'home',
         meta: {
-          name: '首页'
+          name: '首页',
+          init: true
         },
         component: () => import('@/views/home/home.vue')
       },
       {
         path: '/404',
         name: '404',
+        meta: {
+          init: true
+        },
         component: () => import('@/views/404/404.vue')
       }
     ]
@@ -25,11 +32,17 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/login',
     name: 'login',
+    meta: {
+      init: true
+    },
     component: () => import('@/views/login/login.vue')
   },
   {
     path: '/:pathMatch(.*)',
-    redirect: '/404'
+    redirect: '/404',
+    meta: {
+      init: true
+    }
   }
 ]
 

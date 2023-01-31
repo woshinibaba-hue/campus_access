@@ -33,6 +33,26 @@ class MapRouter {
 
     return keys
   }
+
+  async filterRouter(menu: Menu[], field = 'id') {
+    const routers = import.meta.glob('@/router/routers/*.ts')
+    const routerAll: any[] = []
+    const routerList: any[] = []
+
+    for (const r in routers) {
+      const res: any = await routers[r]()
+      routerAll.push(res.default)
+    }
+
+    menu.forEach(r => {
+      if (r.url) {
+        const router = routerAll.find(v => v.path === r.url)
+        router && routerList.push(router)
+      }
+    })
+
+    return routerList
+  }
 }
 
 export default new MapRouter()

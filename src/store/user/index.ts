@@ -7,6 +7,7 @@ export const useUser = defineStore('user', () => {
   const router = useRouter()
 
   const menu = useMenu()
+  const { state } = storeToRefs(useTabs())
 
   const login = async (data: any) => {
     const res = await userLogin(data)
@@ -23,6 +24,8 @@ export const useUser = defineStore('user', () => {
 
   const logout = () => {
     user.value = null
+    state.value.activeIndex = 0
+    state.value.tabsRouter = []
     storage.remove('user')
     storage.remove('menuList')
     router.push('/login')
