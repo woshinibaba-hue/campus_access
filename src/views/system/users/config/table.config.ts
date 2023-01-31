@@ -148,8 +148,8 @@ export const tableConfig: TableConfig<IUserAndHealth> = {
       label: '操作',
       type: 'action',
       isFixed: 'right',
-      width: 80,
-      isEdit: false
+      width: 150,
+      align: 'center'
     }
   ],
   pagination: {},

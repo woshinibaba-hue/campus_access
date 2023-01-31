@@ -143,6 +143,7 @@ declare global {
   const until: typeof import('@vueuse/core')['until']
   const updateIssue: typeof import('./src/api/inform/inform')['updateIssue']
   const updateRole: typeof import('./src/api/role/index')['updateRole']
+  const updateUser: typeof import('./src/api/login/index')['updateUser']
   const useActiveElement: typeof import('@vueuse/core')['useActiveElement']
   const useArrayEvery: typeof import('@vueuse/core')['useArrayEvery']
   const useArrayFilter: typeof import('@vueuse/core')['useArrayFilter']

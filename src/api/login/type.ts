@@ -36,5 +36,14 @@ export type IUserAndHealth = {
 } & IUser
 
 export type IRegister = Partial<
-  Record<'email' | 'password' | 'nickName' | 'avatar' | 'referral', string>
+  Record<
+    | 'email'
+    | 'password'
+    | 'nickName'
+    | 'avatar'
+    | 'referral'
+    | 'rolesId'
+    | 'id',
+    string
+  >
 >

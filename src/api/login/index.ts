@@ -32,3 +32,11 @@ export function deleteUserById(id: number) {
     url: `/user/${id}`
   })
 }
+
+// 编辑用户
+export function updateUser(data: IRegister) {
+  return request.patch({
+    url: `/user/${data.id}`,
+    data
+  })
+}
