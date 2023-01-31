@@ -6,6 +6,7 @@
       @add="dialogVisible = true"
       @delete="handleDelete"
       @edit="handleEdit"
+      @refresh="refresh"
     />
 
     <Dialog
@@ -21,7 +22,7 @@
           :data="menuList"
           style="flex: 1"
           ref="treeRef"
-          node-key="id"
+          node-key="menuId"
           :props="{
             children: 'children',
             label: 'name'
@@ -68,6 +69,7 @@ const { confirm, handleDelete, handleEdit, editItem } = useTableUtil({
   },
   editFn: async (formData: any) => {
     const menu = formData.menu.map((v: any) => v.menuId)
+
     const menuList = Array.from(new Set([...menu, ...checkList.value]))
     await updateRole({
       menuList,
@@ -83,7 +85,9 @@ const close = () => treeRef.value?.setCheckedKeys([])
 const open = () => {
   const nodes = mapRouters.transformTreeData(editItem.value.menu, 'menuId')
   const checkKeys = mapRouters.checkTreeKeys(nodes, 'menuId')
-  treeRef.value?.setCheckedKeys(checkKeys)
+  nextTick(() => {
+    treeRef.value?.setCheckedKeys(checkKeys)
+  })
 }
 </script>
 
