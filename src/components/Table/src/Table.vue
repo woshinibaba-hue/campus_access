@@ -24,11 +24,16 @@
       <TableColumn
         :isFixedIndex="isFixedIndex"
         :isShowIndex="isShowIndex"
+        :is-show-expand="isShowExpand"
         @edit="data => $emit('edit', data)"
         @delete="data => $emit('delete', data)"
         @consent="data => $emit('consent', data)"
         @refuse="data => $emit('refuse', data)"
-      />
+      >
+        <template #default="{ row }">
+          <slot :row="row" />
+        </template>
+      </TableColumn>
     </el-table>
     <Pagination
       v-if="isPaging"
@@ -62,6 +67,7 @@ const props = withDefaults(
     isLoading?: boolean
     addText?: string
     isFixedIndex?: boolean
+    isShowExpand?: boolean
   }>(),
   {
     stripe: true,

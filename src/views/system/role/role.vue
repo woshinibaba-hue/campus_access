@@ -7,7 +7,11 @@
       @delete="handleDelete"
       @edit="handleEdit"
       @refresh="refresh"
-    />
+    >
+      <template v-slot="{ row }">
+        {{ row }}
+      </template>
+    </Table>
 
     <Dialog
       v-bind="dialogConfig"

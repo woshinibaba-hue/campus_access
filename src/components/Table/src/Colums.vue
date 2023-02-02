@@ -1,4 +1,9 @@
 <template>
+  <el-table-column label="展开" width="80" type="expand" v-if="isShowExpand">
+    <template #default="{ row }">
+      <slot :row="row" />
+    </template>
+  </el-table-column>
   <el-table-column
     v-if="isShowIndex"
     type="index"
@@ -121,6 +126,7 @@ withDefaults(
   defineProps<{
     isShowIndex?: boolean
     isFixedIndex?: boolean
+    isShowExpand?: boolean
     size?: 'small' | 'large' | 'default'
   }>(),
   {

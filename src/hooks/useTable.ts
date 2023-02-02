@@ -2,7 +2,7 @@
  * Table 组件逻辑封装
  */
 
-import { Ref } from 'vue'
+import type { Ref } from 'vue'
 
 export function useTableUtil({
   refresh,

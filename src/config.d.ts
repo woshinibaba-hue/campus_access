@@ -66,6 +66,7 @@ type TableConfig<P extends object> = {
   isLoading?: boolean
   addText?: string
   isFixedIndex?: boolean
+  isShowExpand?: boolean
 }
 
 /**
