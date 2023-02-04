@@ -2,6 +2,15 @@
 export {}
 declare global {
   const EffectScope: typeof import('vue')['EffectScope']
+  const ElB: typeof import('element-plus/es')['ElB']
+  const ElBu: typeof import('element-plus/es')['ElBu']
+  const ElBuT: typeof import('element-plus/es')['ElBuT']
+  const ElBuTT: typeof import('element-plus/es')['ElBuTT']
+  const ElBuTTO: typeof import('element-plus/es')['ElBuTTO']
+  const ElBut: typeof import('element-plus/es')['ElBut']
+  const ElButt: typeof import('element-plus/es')['ElButt']
+  const ElButto: typeof import('element-plus/es')['ElButto']
+  const ElButton: typeof import('element-plus/es')['ElButton']
   const ElDatePicker: typeof import('element-plus/es')['ElDatePicker']
   const ElForm: typeof import('element-plus/es')['ElForm']
   const ElFormItem: typeof import('element-plus/es')['ElFormItem']

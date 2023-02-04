@@ -105,10 +105,7 @@ defineExpose({
 </script> -->
 
 <script lang="ts">
-// import { ElForm, ElFormItem, ElInput, } from 'element-plus'
 import Upload from '@/components/Upload/Upload.vue'
-
-import format from '@/utils/format'
 
 type TFormProps = {
   columns: TFromItem[]
@@ -142,7 +139,8 @@ export default {
     ElDatePicker,
     Upload,
     ElSelect,
-    ElOption
+    ElOption,
+    ElButton
   },
   setup(props: TFormProps, { emit, expose }) {
     const formRef = ref<InstanceType<typeof ElForm>>()
@@ -168,14 +166,14 @@ export default {
         resolveComponent('el-form'),
         {
           rules: props.rules,
-          'label-width': props.labelWidth,
-          'label-position': props.labelPosition,
+          'label-width': props.labelWidth ?? '120px',
+          'label-position': props.labelPosition ?? 'left',
           model: props.modelValue,
           ref: formRef,
           class: 'form'
         },
-        () =>
-          props.columns.map(v =>
+        () => [
+          ...props.columns.map(v =>
             h(
               resolveComponent('el-form-item'),
               {
@@ -229,7 +227,21 @@ export default {
                     )
                 )
             )
-          )
+          ),
+          (props.isAction ?? true) &&
+            h(resolveComponent('el-form-item'), { class: 'action' }, () => [
+              h(
+                resolveComponent('el-button'),
+                { type: 'primary', onClick: handleSubmit },
+                props.submitText ?? '提交'
+              ),
+              h(
+                resolveComponent('el-button'),
+                { onClick: clear },
+                props.clearText ?? '清空'
+              )
+            ])
+        ]
       )
   }
 }
@@ -239,7 +251,7 @@ export default {
 .action {
   :deep(.el-form-item__content) {
     display: flex;
-    justify-content: v-bind('actionplace');
+    justify-content: v-bind('actionplace ?? ' center '');
     margin-left: 0 !important;
   }
 }

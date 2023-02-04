@@ -7,7 +7,7 @@
 <script setup lang="ts">
 import { formConfig } from './config/form.config'
 
-const form = reactive({ email: 'zz2011358693@163.com', password: '123' })
+const form = ref({ email: 'zz2011358693@163.com', password: '123' })
 
 const store = useUser()
 </script>

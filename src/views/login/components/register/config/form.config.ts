@@ -20,7 +20,7 @@ export const formConfig: FormConfig<IRegister> = {
     {
       lable: '密码',
       field: 'password',
-      type: 'password',
+      itemType: 'password',
       placeholder: '请输入密码'
     },
     {
@@ -31,7 +31,7 @@ export const formConfig: FormConfig<IRegister> = {
     {
       lable: '个人签名',
       field: 'referral',
-      type: 'textarea',
+      itemType: 'textarea',
       rows: 3,
       placeholder: '请输入个人签名'
     }

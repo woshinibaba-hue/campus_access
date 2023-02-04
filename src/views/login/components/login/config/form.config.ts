@@ -4,13 +4,11 @@ export const formConfig: FormConfig<OmitBase<IUser>> = {
     {
       field: 'email',
       lable: '用户名',
-      type: 'input',
       placeholder: '请输入用户名'
     },
     {
       field: 'password',
       lable: '密码',
-      type: 'password',
       placeholder: '请输入密码'
     }
   ],
