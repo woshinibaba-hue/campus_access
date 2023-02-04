@@ -49,7 +49,7 @@ const computedDialogConfig = computed(() => ({
       {
         field: 'rolesId',
         lable: '用户角色',
-        type: 'select',
+        type: 'el-select',
         options: roles.value
       }
     ],

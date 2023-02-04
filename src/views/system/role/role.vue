@@ -8,9 +8,6 @@
       @edit="handleEdit"
       @refresh="refresh"
     >
-      <template v-slot="{ row }">
-        {{ row }}
-      </template>
     </Table>
 
     <Dialog
@@ -52,7 +49,7 @@ const { menuList } = storeToRefs(useMenu())
 
 const { data, isLoading, refresh } = useLoading(getRole)
 
-const tableConfigComputed = computed(() => ({
+const tableConfigComputed = computed<TableConfig<any>>(() => ({
   ...tableConfig,
   pagination: {
     total: data.value?.total
@@ -87,7 +84,8 @@ const { confirm, handleDelete, handleEdit, editItem } = useTableUtil({
 
 const close = () => treeRef.value?.setCheckedKeys([])
 const open = () => {
-  const nodes = mapRouters.transformTreeData(editItem.value.menu, 'menuId')
+  const nodes =
+    mapRouters.transformTreeData(editItem.value.menu, 'menuId') ?? []
   const checkKeys = mapRouters.checkTreeKeys(nodes, 'menuId')
   nextTick(() => {
     treeRef.value?.setCheckedKeys(checkKeys)

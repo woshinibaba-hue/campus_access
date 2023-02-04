@@ -11,7 +11,7 @@ export const dialogConfig: DialogType<TAsking> = {
       {
         field: 'isLeaveCchool',
         lable: '是否离校',
-        type: 'select',
+        type: 'el-select',
         options: [
           {
             value: 1,
@@ -26,19 +26,21 @@ export const dialogConfig: DialogType<TAsking> = {
       {
         field: 'startDate',
         lable: '请假开始时间',
-        type: 'datetime',
-        placeholder: '请选择请假开始时间'
+        type: 'input',
+        itemType: 'datetime-local',
+        placeholder: '请选择请假时间'
       },
       {
         field: 'endDate',
         lable: '请假结束时间',
-        type: 'datetime',
-        placeholder: '请选择请假结束时间'
+        type: 'input',
+        itemType: 'datetime-local',
+        placeholder: '请选择请假时间'
       },
       {
         field: 'reason',
         lable: '请假理由',
-        type: 'textarea',
+        itemType: 'textarea',
         placeholder: '请输入请假理由'
       }
     ],

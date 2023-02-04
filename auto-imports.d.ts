@@ -2,7 +2,13 @@
 export {}
 declare global {
   const EffectScope: typeof import('vue')['EffectScope']
+  const ElDatePicker: typeof import('element-plus/es')['ElDatePicker']
+  const ElForm: typeof import('element-plus/es')['ElForm']
+  const ElFormItem: typeof import('element-plus/es')['ElFormItem']
+  const ElInput: typeof import('element-plus/es')['ElInput']
   const ElNotification: typeof import('element-plus/es')['ElNotification']
+  const ElOption: typeof import('element-plus/es')['ElOption']
+  const ElSelect: typeof import('element-plus/es')['ElSelect']
   const Map: typeof import('./src/components/Echart/index')['Map']
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
@@ -42,7 +48,7 @@ declare global {
   const editMenuById: typeof import('./src/api/menu/index')['editMenuById']
   const effectScope: typeof import('vue')['effectScope']
   const extendRef: typeof import('@vueuse/core')['extendRef']
-  const form: typeof import('./src/components/Form/index')['default']
+  const form: typeof import('./src/components/Form/src/Form.vue')['default']
   const getActivePinia: typeof import('pinia')['getActivePinia']
   const getAskingAll: typeof import('./src/api/asking/index')['getAskingAll']
   const getAskingList: typeof import('./src/api/asking/index')['getAskingList']

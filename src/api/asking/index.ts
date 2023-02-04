@@ -7,6 +7,7 @@ export type TAsking = {
   isAudit: number
   startDate: string
   endDate: string
+  date: string
   reason: string
   isScanCode: number
   user: IUserAndHealth

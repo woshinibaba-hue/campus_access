@@ -16,7 +16,7 @@ export const dialogConfig: DialogType<Menu> = {
       {
         lable: '菜单权限',
         field: 'permission',
-        type: 'select',
+        type: 'el-select',
         placeholder: '请选择菜单权限',
         options: [
           {

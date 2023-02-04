@@ -73,14 +73,7 @@ type TableConfig<P extends object> = {
  * form 配置选项类型
  */
 
-type Type =
-  | 'input'
-  | 'password'
-  | 'select'
-  | 'textarea'
-  | 'upload'
-  | 'datetime'
-  | 'tree'
+type Type = 'el-input' | 'el-select' | 'Upload' | 'el-date-picker' | 'input'
 
 type TFromItem<K = any> = {
   field: keyof OmitBase<K>
@@ -92,6 +85,7 @@ type TFromItem<K = any> = {
   isHide?: boolean
   isDisabled?: boolean
   rows?: number
+  itemType?: string
 }
 
 type FormRules<K = any> = Partial<

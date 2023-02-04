@@ -13,15 +13,14 @@ export const formConfig: FormConfig<TInform> = {
     {
       field: 'title',
       lable: '标题',
-      type: 'input',
       placeholder: '请输入标题'
     },
     {
       field: 'content',
       lable: '内容',
-      type: 'textarea',
       placeholder: '请输入内容',
-      rows: 10
+      rows: 10,
+      itemType: 'textarea'
     }
   ],
   rules: {

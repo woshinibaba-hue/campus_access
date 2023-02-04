@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <el-form
     :label-width="labelWidth"
     :rules="rules"
@@ -55,9 +55,8 @@
       <el-button @click="clear">{{ clearText }}</el-button>
     </el-form-item>
   </el-form>
-</template>
-
-<script setup lang="ts">
+</template> -->
+<!-- <script setup lang="ts">
 import { ElForm } from 'element-plus'
 
 type TFormProps = {
@@ -103,14 +102,158 @@ defineExpose({
   handleSubmit,
   formRef
 })
+</script> -->
+
+<script lang="ts">
+// import { ElForm, ElFormItem, ElInput, } from 'element-plus'
+import Upload from '@/components/Upload/Upload.vue'
+
+import format from '@/utils/format'
+
+type TFormProps = {
+  columns: TFromItem[]
+  rules?: FormRules
+  labelWidth?: string | number
+  submitText?: string
+  clearText?: string
+  isAction?: boolean
+  actionplace?: 'center' | 'start' | 'end'
+  labelPosition?: 'right' | 'left' | 'top'
+  modelValue: any
+}
+
+export default {
+  props: [
+    'columns',
+    'rules',
+    'labelWidth',
+    'submitText',
+    'clearText',
+    'isAction',
+    'actionplace',
+    'labelPosition',
+    'modelValue'
+  ],
+  emits: ['submit', 'update:modelValue'],
+  components: {
+    ElFormItem,
+    ElForm,
+    ElInput,
+    ElDatePicker,
+    Upload,
+    ElSelect,
+    ElOption
+  },
+  setup(props: TFormProps, { emit, expose }) {
+    const formRef = ref<InstanceType<typeof ElForm>>()
+
+    const handleSubmit = () => {
+      formRef.value?.validate(isValid => {
+        if (isValid) {
+          emit('submit')
+        }
+      })
+    }
+
+    const clear = () => formRef.value?.resetFields()
+
+    expose({
+      clear,
+      handleSubmit,
+      formRef
+    })
+
+    return () =>
+      h(
+        resolveComponent('el-form'),
+        {
+          rules: props.rules,
+          'label-width': props.labelWidth,
+          'label-position': props.labelPosition,
+          model: props.modelValue,
+          ref: formRef,
+          class: 'form'
+        },
+        () =>
+          props.columns.map(v =>
+            h(
+              resolveComponent('el-form-item'),
+              {
+                key: v.field,
+                label: v.lable,
+                prop: v.field
+              },
+              () =>
+                h(
+                  resolveComponent(v.type ?? 'el-input'),
+                  {
+                    type: v.itemType,
+                    rows: v.rows,
+                    placeholder: v.placeholder,
+                    format: 'YYYY-MM-DD',
+                    'range-separator': '至',
+                    modelValue: props.modelValue[v.field],
+                    onInput($event: any) {
+                      let value = ''
+                      if (typeof $event !== 'object') {
+                        value = $event
+                      } else {
+                        value = $event.target.value
+                      }
+                      emit('update:modelValue', {
+                        ...props.modelValue,
+                        [v.field]: value
+                      })
+                    },
+                    onChange($event: any) {
+                      let value = ''
+                      if (typeof $event !== 'object') {
+                        value = $event
+                      } else {
+                        value = $event.target.value
+                      }
+
+                      emit('update:modelValue', {
+                        ...props.modelValue,
+                        [v.field]: value
+                      })
+                    }
+                  },
+                  () =>
+                    v.options?.map(option =>
+                      h(resolveComponent('el-option'), {
+                        key: option.label,
+                        label: option.label,
+                        value: option.value
+                      })
+                    )
+                )
+            )
+          )
+      )
+  }
+}
 </script>
 
 <style lang="less" scoped>
 .action {
   :deep(.el-form-item__content) {
     display: flex;
-    justify-content: v-bind(actionplace);
+    justify-content: v-bind('actionplace');
     margin-left: 0 !important;
   }
+}
+
+input[type='datetime-local'] {
+  width: 100%;
+  padding: 1px 11px;
+  background-color: var(--el-input-bg-color);
+  border-radius: var(--el-input-border-radius, var(--el-border-radius-base));
+  line-height: 32px;
+  font-size: var(--el-font-size-base);
+  border: 0;
+  box-shadow: 0 0 0 1px var(--el-input-border-color, var(--el-border-color))
+    inset;
+  color: var(--el-input-text-color, var(--el-text-color-regular));
 }
 </style>

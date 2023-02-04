@@ -46,7 +46,7 @@ const computedDialogConfig = computed(() => ({
         lable: '父级菜单',
         field: 'parentId',
         placeholder: '请选择父级菜单',
-        type: 'select',
+        type: 'el-select',
         options: parentList.value
       }
     ]

@@ -11,6 +11,7 @@
       />
     </div>
     <el-table
+      row-key="id"
       :size="size"
       v-load="isLoading"
       :data="data"

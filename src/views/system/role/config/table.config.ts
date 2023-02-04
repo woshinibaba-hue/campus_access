@@ -25,6 +25,5 @@ export const tableConfig: TableConfig<TRole> = {
       type: 'action',
       isFixed: 'right'
     }
-  ],
-  isShowExpand: true
+  ]
 }
