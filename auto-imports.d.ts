@@ -2,14 +2,6 @@
 export {}
 declare global {
   const EffectScope: typeof import('vue')['EffectScope']
-  const ElB: typeof import('element-plus/es')['ElB']
-  const ElBu: typeof import('element-plus/es')['ElBu']
-  const ElBuT: typeof import('element-plus/es')['ElBuT']
-  const ElBuTT: typeof import('element-plus/es')['ElBuTT']
-  const ElBuTTO: typeof import('element-plus/es')['ElBuTTO']
-  const ElBut: typeof import('element-plus/es')['ElBut']
-  const ElButt: typeof import('element-plus/es')['ElButt']
-  const ElButto: typeof import('element-plus/es')['ElButto']
   const ElButton: typeof import('element-plus/es')['ElButton']
   const ElDatePicker: typeof import('element-plus/es')['ElDatePicker']
   const ElForm: typeof import('element-plus/es')['ElForm']
@@ -238,7 +230,7 @@ declare global {
   const useMediaQuery: typeof import('@vueuse/core')['useMediaQuery']
   const useMemoize: typeof import('@vueuse/core')['useMemoize']
   const useMemory: typeof import('@vueuse/core')['useMemory']
-  const useMenu: typeof import('./src/store/menu/index')['useMenu']
+  const useMenu: typeof import('./src/store/index')['useMenu']
   const useMounted: typeof import('@vueuse/core')['useMounted']
   const useMouse: typeof import('@vueuse/core')['useMouse']
   const useMouseInElement: typeof import('@vueuse/core')['useMouseInElement']

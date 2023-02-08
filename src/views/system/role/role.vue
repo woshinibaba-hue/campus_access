@@ -23,7 +23,7 @@
           :data="menuList"
           style="flex: 1"
           ref="treeRef"
-          node-key="menuId"
+          node-key="id"
           :props="{
             children: 'children',
             label: 'name'
@@ -45,9 +45,15 @@ import mapRouters from '@/utils/mapRouters'
 const dialogVisible = ref(false)
 const treeRef = ref<InstanceType<typeof ElTree>>()
 
-const { menuList } = storeToRefs(useMenu())
+// const { menuList } = storeToRefs(useMenu())
+
+const menuList = ref<any>([])
 
 const { data, isLoading, refresh } = useLoading(getRole)
+getMenuList({ page: 1, limit: 500 }).then(res => {
+  // console.log(mapRouters.transformTree(res.data.data))
+  menuList.value = mapRouters.transformTreeData(res.data.data)
+})
 
 const tableConfigComputed = computed<TableConfig<any>>(() => ({
   ...tableConfig,
@@ -59,6 +65,8 @@ const tableConfigComputed = computed<TableConfig<any>>(() => ({
 // 当树形控件勾选时触发
 const checkList = ref<number[]>([])
 const handleCheck = (_: any, checkedKeys: any) => {
+  console.log([...checkedKeys.checkedKeys, ...checkedKeys.halfCheckedKeys])
+
   checkList.value = [...checkedKeys.checkedKeys, ...checkedKeys.halfCheckedKeys]
 }
 
@@ -71,9 +79,11 @@ const { confirm, handleDelete, handleEdit, editItem } = useTableUtil({
   editFn: async (formData: any) => {
     const menu = formData.menu.map((v: any) => v.menuId)
 
+    console.log(menu)
+
     const menuList = Array.from(new Set([...menu, ...checkList.value]))
     await updateRole({
-      menuList,
+      menuList: checkList.value,
       id: formData.id,
       intro: formData.intro,
       name: formData.name

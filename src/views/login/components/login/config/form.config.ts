@@ -9,7 +9,8 @@ export const formConfig: FormConfig<OmitBase<IUser>> = {
     {
       field: 'password',
       lable: '密码',
-      placeholder: '请输入密码'
+      placeholder: '请输入密码',
+      itemType: 'password'
     }
   ],
   rules: {

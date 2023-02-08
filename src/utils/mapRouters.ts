@@ -1,15 +1,20 @@
 import type { Menu } from '@/api/menu'
 
 class MapRouter {
-  transformTreeData(menu: Menu[], field = 'id') {
+  transformTreeData(menu: Menu[], field: keyof Menu = 'id') {
     const treeData: Menu[] = []
 
-    for (const r of menu ?? []) {
-      if (!r.parentId) {
-        treeData.push(r)
+    for (const m of menu ?? []) {
+      if (!m.parentId) {
+        treeData.push(m)
       } else {
-        const patent = menu.find((v: any) => v[field] === r.parentId)
-        !patent?.children ? (patent!.children = [r]) : patent?.children?.push(r)
+        // const patent = menu.find((v: any) => v[field] === r.parentId)
+        // !patent?.children ? (patent!.children = [r]) : patent?.children?.push(r)
+
+        const p = menu.find(pm => pm[field] === m.parentId)
+        if (!p) return
+        if (!p.children?.length) p.children = []
+        p.children.push(m)
       }
     }
 
