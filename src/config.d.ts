@@ -102,6 +102,7 @@ type FormConfig<K extends object> = {
   actionplace?: 'center' | 'start' | 'end'
   labelPosition?: 'right' | 'left' | 'top'
   modelValue?: any
+  isInLine?: boolean
 }
 
 /**

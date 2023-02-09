@@ -117,6 +117,7 @@ type TFormProps = {
   actionplace?: 'center' | 'start' | 'end'
   labelPosition?: 'right' | 'left' | 'top'
   modelValue: any
+  isInLine?: boolean
 }
 
 export default {
@@ -129,7 +130,8 @@ export default {
     'isAction',
     'actionplace',
     'labelPosition',
-    'modelValue'
+    'modelValue',
+    'isInLine'
   ],
   emits: ['submit', 'update:modelValue'],
   components: {
@@ -170,7 +172,8 @@ export default {
           'label-position': props.labelPosition ?? 'left',
           model: props.modelValue,
           ref: formRef,
-          class: 'form'
+          class: 'form',
+          inline: props.isInLine ?? false
         },
         () => [
           ...props.columns.map(v =>

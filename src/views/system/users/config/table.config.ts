@@ -7,6 +7,13 @@ export const tableConfig: TableConfig<IUserAndHealth> = {
       prop: 'nickName'
     },
     {
+      label: '角色',
+      prop: 'roles',
+      type: 'object',
+      field: 'name',
+      width: 140
+    },
+    {
       label: '邮箱',
       prop: 'email',
       width: 130

@@ -33,6 +33,7 @@ type health = {
 
 export type IUserAndHealth = {
   health: health
+  roles: any
 } & IUser
 
 export type IRegister = Partial<

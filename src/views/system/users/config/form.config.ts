@@ -9,5 +9,8 @@ export const roleConfig: FormConfig<IUser> = {
     }
   ],
   actionplace: 'end',
-  submitText: '查询'
+  submitText: '查询',
+  isInLine: true,
+  labelWidth: '50px',
+  labelPosition: 'right'
 }
