@@ -11,6 +11,7 @@ export default function <T = unknown>(
   options?: {
     after?: (data: T) => void
     pages?: IPage
+    otherParams?: Record<string, any> // 其他参数
   }
 ) {
   const isLoading = ref(true)
@@ -23,12 +24,13 @@ export default function <T = unknown>(
     }
   )
 
-  const getData = () =>
-    fn(pages).then(res => {
+  const getData = async (otherParams: Record<string, any> = {}) => {
+    return fn({ ...pages, ...otherParams }).then(res => {
       isLoading.value = false
       options?.after?.(res.data)
       data.value = res.data
     })
+  }
 
   const refresh = useDebounceFn(getData, 300)
 

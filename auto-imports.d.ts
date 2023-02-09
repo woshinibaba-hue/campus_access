@@ -49,7 +49,7 @@ declare global {
   const editMenuById: typeof import('./src/api/menu/index')['editMenuById']
   const effectScope: typeof import('vue')['effectScope']
   const extendRef: typeof import('@vueuse/core')['extendRef']
-  const form: typeof import('./src/components/Form/src/Form.vue')['default']
+  const form: typeof import('./src/components/Form/index')['default']
   const getActivePinia: typeof import('pinia')['getActivePinia']
   const getAskingAll: typeof import('./src/api/asking/index')['getAskingAll']
   const getAskingList: typeof import('./src/api/asking/index')['getAskingList']
