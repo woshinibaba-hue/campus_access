@@ -236,12 +236,12 @@ export default {
               h(
                 resolveComponent('el-button'),
                 { type: 'primary', onClick: handleSubmit },
-                props.submitText ?? '提交'
+                () => props.submitText ?? '提交'
               ),
               h(
                 resolveComponent('el-button'),
                 { onClick: clear },
-                props.clearText ?? '清空'
+                () => props.clearText ?? '清空'
               )
             ])
         ]
