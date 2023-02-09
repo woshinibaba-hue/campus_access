@@ -158,6 +158,6 @@ const getObj = (obj: any, field: string) => {
 }
 
 const getVlaue = (options: any[], value: any) => {
-  return options.filter(v => v.value === value)[0].label
+  return options.filter(v => v.value === value)[0]?.label
 }
 </script>

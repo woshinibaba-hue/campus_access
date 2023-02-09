@@ -22,13 +22,13 @@ export const tableConfig: TableConfig<TAsking> = {
       field: 'health.class',
       width: 120
     },
-    {
-      prop: 'user',
-      label: '邮箱',
-      type: 'object',
-      field: 'email',
-      width: 150
-    },
+    // {
+    //   prop: 'user',
+    //   label: '邮箱',
+    //   type: 'object',
+    //   field: 'email',
+    //   width: 150
+    // },
     {
       prop: 'address',
       label: '外出地点',
@@ -52,19 +52,24 @@ export const tableConfig: TableConfig<TAsking> = {
     },
     {
       prop: 'isAudit',
-      label: '是否审批',
+      label: '审批结果',
       type: 'select',
       align: 'center',
       options: [
         {
-          label: '是',
+          label: '已拒绝',
+          value: 2
+        },
+        {
+          label: '已同意',
           value: 1
         },
         {
-          label: '否',
+          label: '待审批',
           value: 0
         }
-      ]
+      ],
+      width: 120
     },
     {
       prop: 'isScanCode',
