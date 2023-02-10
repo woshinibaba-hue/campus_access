@@ -1,20 +1,51 @@
 import type { Menu } from '@/api/menu'
 
 class MapRouter {
+  // transformTreeData(menu: Menu[], field: keyof Menu = 'id') {
+  //   const treeData: Menu[] = []
+
+  //   for (const m of menu ?? []) {
+  //     if (!m.parentId) {
+  //       treeData.push(m)
+  //     } else {
+  //       // const patent = menu.find((v: any) => v[field] === r.parentId)
+  //       // !patent?.children ? (patent!.children = [r]) : patent?.children?.push(r)
+
+  //       const p = menu.find(pm => pm[field] === m.parentId)
+  //       if (!p) return
+  //       if (!p.children?.length) p.children = []
+  //       p.children.push(m)
+  //     }
+  //   }
+
+  //   return treeData
+  // }
+
   transformTreeData(menu: Menu[], field: keyof Menu = 'id') {
     const treeData: Menu[] = []
+    const parentMap: Map<number, Menu[]> = new Map()
 
     for (const m of menu ?? []) {
       if (!m.parentId) {
+        // 根节点
         treeData.push(m)
       } else {
-        // const patent = menu.find((v: any) => v[field] === r.parentId)
-        // !patent?.children ? (patent!.children = [r]) : patent?.children?.push(r)
+        // 去Map中查找父节点，如果没有则创建一个空数组
+        const parentChildren = parentMap.get(m.parentId!) ?? []
+        // 将当前节点放入父节点的children中
+        parentChildren.push(m)
+        // 将父节点存入Map中
+        parentMap.set(m.parentId!, parentChildren)
+      }
+    }
 
-        const p = menu.find(pm => pm[field] === m.parentId)
-        if (!p) return
-        if (!p.children?.length) p.children = []
-        p.children.push(m)
+    // 遍历Map对象，获取父节点id和子节点
+    for (const [parentId, children] of parentMap) {
+      // 根据Map对象中的父节点id，从menu中找到对应的父节点
+      const parent = menu.find(pm => pm[field] === parentId)
+      if (parent) {
+        // 将子节点赋值给父节点的children
+        parent.children = children
       }
     }
 

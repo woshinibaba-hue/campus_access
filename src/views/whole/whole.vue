@@ -88,7 +88,7 @@
     </el-col>
     <el-col :span="12">
       <Card title="全国疫情图" :loading="isLoading">
-        <Map :data="data?.chinaConfirm ?? []" />
+        <MapEchart :data="data?.chinaConfirm ?? []" />
       </Card>
     </el-col>
   </el-row>
@@ -96,6 +96,7 @@
 
 <script setup lang="ts">
 import CardData from './components/CardData.vue'
+import { MapEchart } from '@/components/Echart'
 
 const columns = [
   {

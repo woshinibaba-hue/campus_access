@@ -1,3 +1,3 @@
-import Map from './src/map.vue'
+import MapEchart from './src/map.vue'
 
-export { Map }
+export { MapEchart }
