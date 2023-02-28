@@ -57,7 +57,33 @@ class Request {
           type: 'error'
         })
       },
-      (err: AxiosError<IDataResult>) => {
+      async (err: AxiosError<IDataResult>) => {
+        if (err.response?.status === 401) {
+          // 利用refresh_token获取新的token
+          const user = storage.get<any>('user')
+          if (user?.refresh_token) {
+            try {
+              const res = await this.post<any>({
+                url: '/user/refreshToken',
+                data: {
+                  refresh_token: user.refresh_token
+                }
+              })
+              // 获取到新的token后，重新发起请求
+              user.token = res.data.token
+              user.refresh_token = res.data.refresh_token
+              storage.set('user', user)
+              useUser().user = user
+              return await this.request(err.config)
+            } catch (e) {
+              useUser().logout()
+            }
+          } else {
+            useUser().logout()
+          }
+
+          return
+        }
         if (Array.isArray(err.response?.data.message)) {
           if (err.response?.data.message.length) {
             ElNotification({
