@@ -22,7 +22,8 @@ export const useUser = defineStore('user', () => {
     })
   }
 
-  const logout = () => {
+  const logout = async () => {
+    await userLogout(user.value)
     user.value = null
     state.value.activeIndex = 0
     state.value.tabsRouter = []

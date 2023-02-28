@@ -10,6 +10,14 @@ export function userLogin(data: any) {
   })
 }
 
+// 退出登录
+export function userLogout(data: any) {
+  return request.post({
+    url: '/user/logout',
+    data
+  })
+}
+
 // 查询用户
 export function getUserAll(params: IPage) {
   return request.get<IPaging<IUserAndHealth[]>>({
