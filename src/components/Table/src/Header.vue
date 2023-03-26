@@ -5,7 +5,7 @@
         type="primary"
         :size="size"
         @click="$emit('add')"
-        v-if="isAdd"
+        v-if="isAdd && isPermissionAdd"
         class="addBtn"
       >
         <el-icon class="btn-icon"><IconEpCirclePlus /></el-icon>
@@ -78,6 +78,7 @@ defineProps<{
   isAdd?: boolean
   size?: 'small' | 'large' | 'default'
   addText?: string
+  isPermissionAdd?: boolean
 }>()
 
 const table = useTable()

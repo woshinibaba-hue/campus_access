@@ -32,5 +32,6 @@ export const tableConfig: TableConfig<TInform> = {
       align: 'center',
       isFixed: 'right'
     }
-  ]
+  ],
+  permissionName: 'issue'
 }

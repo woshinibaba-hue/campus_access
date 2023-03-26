@@ -15,5 +15,6 @@ export const tableConfig: TableConfig<{ latitude: number; longitude: number }> =
         prop: 'latitude',
         align: 'center'
       }
-    ]
+    ],
+    permissionName: 'range'
   }

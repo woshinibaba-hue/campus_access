@@ -67,6 +67,7 @@ type TableConfig<P extends object> = {
   addText?: string
   isFixedIndex?: boolean
   isShowExpand?: boolean
+  permissionName?: string
 }
 
 /**

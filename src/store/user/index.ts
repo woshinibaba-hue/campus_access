@@ -29,6 +29,7 @@ export const useUser = defineStore('user', () => {
     state.value.tabsRouter = []
     storage.remove('user')
     storage.remove('menuList')
+    storage.remove('permissionList')
     router.push('/login')
   }
 

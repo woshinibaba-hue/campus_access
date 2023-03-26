@@ -160,5 +160,6 @@ export const tableConfig: TableConfig<IUserAndHealth> = {
     }
   ],
   pagination: {},
-  isAdd: false
+  isAdd: false,
+  permissionName: 'user'
 }

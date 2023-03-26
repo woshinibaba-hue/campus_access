@@ -41,5 +41,6 @@ export const tableCondig: TableConfig<Menu> = {
       isFixed: 'right',
       type: 'action'
     }
-  ]
+  ],
+  permissionName: 'menu'
 }

@@ -6,6 +6,7 @@
         :columns="columns"
         :isAdd="isAdd"
         :add-text="addText"
+        v-bind="permission"
         @refresh="$emit('refresh')"
         @add="$emit('add')"
       />
@@ -26,6 +27,7 @@
         :isFixedIndex="isFixedIndex"
         :isShowIndex="isShowIndex"
         :is-show-expand="isShowExpand"
+        v-bind="permission"
         @edit="data => $emit('edit', data)"
         @delete="data => $emit('delete', data)"
         @consent="data => $emit('consent', data)"
@@ -48,6 +50,7 @@
 <script setup lang="ts">
 import TableHeader from './Header.vue'
 import TableColumn from './Colums.vue'
+import { usePermission } from '@/hooks/usePermission'
 
 import { useTable } from '@/store'
 
@@ -69,6 +72,7 @@ const props = withDefaults(
     addText?: string
     isFixedIndex?: boolean
     isShowExpand?: boolean
+    permissionName?: string
   }>(),
   {
     stripe: true,
@@ -84,6 +88,12 @@ const props = withDefaults(
   }
 )
 
+const permission = reactive({
+  isPermissionAdd: false,
+  isPermissionEdit: false,
+  isPermissionDelete: false
+})
+
 defineEmits<{
   (e: 'selectData', data: any): void
   (e: 'sizeChange', size: number): void
@@ -95,6 +105,14 @@ defineEmits<{
   (e: 'add'): void
   (e: 'refresh'): void
 }>()
+
+if (props.permissionName) {
+  permission.isPermissionAdd = usePermission(props.permissionName, 'add')
+  permission.isPermissionEdit = usePermission(props.permissionName, 'edit')
+  permission.isPermissionDelete = usePermission(props.permissionName, 'delete')
+
+  console.log(permission)
+}
 
 const { init } = useTable()
 init(props.columns)

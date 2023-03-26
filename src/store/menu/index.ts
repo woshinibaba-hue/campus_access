@@ -6,6 +6,7 @@ export const useMenu = defineStore('menu', () => {
   const router = useRouter()
 
   const menuList = ref<Menu[]>(storage.get('menuList') ?? [])
+  const permissionList = ref<string[]>(storage.get('permissionList') ?? [])
 
   const initMenu = async (id: number) => {
     router.push('/')
@@ -24,12 +25,17 @@ export const useMenu = defineStore('menu', () => {
 
     const m = mapRouters.transformTreeData(menus.data.menu!, 'menuId')
 
+    const permission = mapRouters.getPermission(m)
+
     menuList.value = m
+    permissionList.value = permission
     storage.set('menuList', m)
+    storage.set('permissionList', permissionList)
   }
 
   return {
     initMenu,
-    menuList
+    menuList,
+    permissionList
   }
 })

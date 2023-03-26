@@ -30,7 +30,7 @@
               class="btn-icon"
               type="primary"
               :size="size"
-              v-if="i.isEdit ?? true"
+              v-if="(i.isEdit ?? true) && isPermissionEdit"
               @click.stop="$emit('edit', row)"
             >
               <el-icon><IconEpEditPen /></el-icon>
@@ -38,7 +38,7 @@
             <el-popconfirm
               title="确认永久删除该数据？"
               @confirm="$emit('delete', row)"
-              v-if="i.isDelete ?? true"
+              v-if="(i.isDelete ?? true) && isPermissionDelete"
             >
               <template #reference>
                 <el-button class="btn-icon" type="danger" :size="size">
@@ -113,6 +113,7 @@ import IconIcSharpDiversity1 from '~icons/ic/sharp-diversity1'
 import IconMingcuteEbikeFill from '~icons/mingcute/ebike-fill'
 import IconEpPlace from '~icons/ep/place'
 import IconIcOutlineEditLocation from '~icons/ic/outline-edit-location'
+import { log } from 'console'
 
 const icons: any = {
   IconEpMonitor,
@@ -122,12 +123,14 @@ const icons: any = {
   IconIcOutlineEditLocation
 }
 
-withDefaults(
+const props = withDefaults(
   defineProps<{
     isShowIndex?: boolean
     isFixedIndex?: boolean
     isShowExpand?: boolean
     size?: 'small' | 'large' | 'default'
+    isPermissionDelete?: boolean
+    isPermissionEdit?: boolean
   }>(),
   {
     size: 'default'

@@ -63,6 +63,10 @@ const success = (
   uploadFiles: UploadFiles
 ) => {
   console.log(response)
+  ElNotification({
+    message: response.message,
+    type: 'success'
+  })
 }
 
 const error = (error: Error) => {

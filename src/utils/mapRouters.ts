@@ -89,6 +89,24 @@ class MapRouter {
 
     return routerList
   }
+
+  getPermission(menu: Menu[]) {
+    const permission: string[] = []
+
+    const _getPermission = (m: Menu[]) => {
+      m.forEach((v: any) => {
+        if (!v.children) {
+          v.permission && permission.push(v.permission)
+        } else {
+          _getPermission(v.children)
+        }
+      })
+    }
+
+    _getPermission(menu)
+
+    return permission
+  }
 }
 
 export default new MapRouter()
