@@ -1,10 +1,10 @@
-import { createRouter, RouteRecordRaw, createWebHashHistory } from 'vue-router'
+import { RouteRecordRaw, createRouter, createWebHashHistory } from 'vue-router'
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'Layout',
-    redirect: '/home',
+    redirect: '/whole',
     meta: {
       init: true
     },

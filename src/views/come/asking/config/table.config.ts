@@ -116,5 +116,6 @@ export const tableConfig: TableConfig<TAsking> = {
     }
   ],
   addText: '请假',
-  isFixedIndex: true
+  isFixedIndex: true,
+  permissionName: 'asking'
 }

@@ -37,9 +37,12 @@ export function getUserPunchAll(params?: Record<string, any>) {
 }
 
 export function getUserToDayPunch() {
-  return request.get<IPunch>({
-    url: '/punch/day'
-  })
+  return request.get<IPunch>(
+    {
+      url: '/punch/day'
+    },
+    false
+  )
 }
 export function getCode() {
   return request.get<string>({

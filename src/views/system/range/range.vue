@@ -86,7 +86,7 @@ const initMap = async () => {
     path: path.value
   })
   map.add([polygon])
-  polyEditor.addAdsorbPolygons([polygon])
+  polyEditor.addAdsorbPolygons([polygon ?? []])
   polyEditor.on('add', function (data: any) {
     console.log(data)
     var polygon = data.target
@@ -117,6 +117,8 @@ const initMap = async () => {
 }
 
 const { data, isLoading } = useLoading(getPath)
+
+nextTick(() => initMap())
 
 watch(
   () => data.value,

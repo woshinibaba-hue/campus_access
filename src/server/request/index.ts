@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosInstance } from 'axios'
 
-import NProgress from 'nprogress'
 import storage from '@/utils/storage'
+import NProgress from 'nprogress'
 
 NProgress.configure({
   easing: 'ease', // 动画方式
@@ -12,7 +12,7 @@ NProgress.configure({
   parent: 'body' //指定进度条的父容器
 })
 
-import { IRequestConfig, IDataResult } from './type'
+import { IDataResult, IRequestConfig } from './type'
 
 class Request {
   private instance: AxiosInstance
@@ -108,9 +108,13 @@ class Request {
   }
 
   // 请求方法
-  private request<T = unknown>(requestConfig: IRequestConfig) {
-    // 开启loading
-    NProgress.start()
+  private request<T = unknown>(
+    requestConfig: IRequestConfig,
+    isShowLoading = true
+  ) {
+    if (isShowLoading)
+      // 开启loading
+      NProgress.start()
     return new Promise<IDataResult<T>>((resolve, reject) => {
       this.instance
         .request<unknown, IDataResult<T>>(requestConfig)
@@ -121,26 +125,27 @@ class Request {
           reject(err)
         })
         .finally(() => {
-          // 关闭loading
-          NProgress.done()
+          if (isShowLoading)
+            // 关闭loading
+            NProgress.done()
         })
     })
   }
 
-  get<T = unknown>(config: IRequestConfig) {
-    return this.request<T>({ ...config, method: 'get' })
+  get<T = unknown>(config: IRequestConfig, isShowLoading = true) {
+    return this.request<T>({ ...config, method: 'get' }, isShowLoading)
   }
 
-  post<T = unknown>(config: IRequestConfig) {
-    return this.request<T>({ ...config, method: 'post' })
+  post<T = unknown>(config: IRequestConfig, isShowLoading = true) {
+    return this.request<T>({ ...config, method: 'post' }, isShowLoading)
   }
 
-  patch<T = unknown>(config: IRequestConfig) {
-    return this.request<T>({ ...config, method: 'patch' })
+  patch<T = unknown>(config: IRequestConfig, isShowLoading = true) {
+    return this.request<T>({ ...config, method: 'patch' }, isShowLoading)
   }
 
-  delete<T = unknown>(config: IRequestConfig) {
-    return this.request<T>({ ...config, method: 'delete' })
+  delete<T = unknown>(config: IRequestConfig, isShowLoading = true) {
+    return this.request<T>({ ...config, method: 'delete' }, isShowLoading)
   }
 }
 

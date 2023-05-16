@@ -57,22 +57,35 @@
 </template>
 
 <script setup lang="ts">
-import { tableConfig } from './config/table.config'
+import { IPunch } from '@/api/punch'
 import PunchCard from './components/punchCard/punchCard.vue'
-import { IPunch } from '@/api/punch';
+import { tableConfig } from './config/table.config'
 
 const url = ref<string>()
+
+let interId: number
 
 const { data, isLoading, refresh, pages } =
   useLoading<IPaging<IPunch[]>>(getUserPunchAll)
 
-const { data: dayData } = useLoading(getUserToDayPunch, {
-  after(res) {
+const { data: dayData, refresh: toDayRefresh } = useLoading(getUserToDayPunch, {
+  oneAfter(res) {
     if (!res.id) {
       getCode().then(res => {
         url.value = res.data
       })
+
+      interId = window.setInterval(() => {
+        toDayRefresh()
+      }, 2000)
     }
+  }
+})
+
+watchEffect(() => {
+  if (dayData.value?.id) {
+    window.clearInterval(interId)
+    refresh()
   }
 })
 

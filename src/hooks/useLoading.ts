@@ -12,10 +12,12 @@ export default function <T = unknown>(
     after?: (data: T) => void
     pages?: IPage
     otherParams?: Record<string, any> // 其他参数
+    oneAfter?: (data: T) => void // 一次性请求
   }
 ) {
   const isLoading = ref(true)
   const data = ref<T>()
+  let isFlag = false
 
   const pages = reactive(
     options?.pages ?? {
@@ -28,6 +30,10 @@ export default function <T = unknown>(
     return fn({ ...pages, ...otherParams }).then(res => {
       isLoading.value = false
       options?.after?.(res.data)
+      if (!isFlag) {
+        options?.oneAfter?.(res.data)
+        isFlag = true
+      }
       data.value = res.data
     })
   }
